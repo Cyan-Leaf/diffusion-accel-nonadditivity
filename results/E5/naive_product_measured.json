@@ -1,0 +1,33 @@
+{
+  "note": "ALL factors measured on this machine -- no literature values remain. distill from E1, FP8 GEMM from E0, SVG kernel from E4, shares from E1/E3.",
+  "inputs": {
+    "attention_share_of_denoise": 0.5166584966010502,
+    "gemm_share_of_denoise": 0.20434291779488076,
+    "distill_denoise_measured": 25.10566278518188,
+    "fp8_gemm_measured": 1.895,
+    "svg_kernel_measured": 3.2758898740389832,
+    "svg_profiling_frac_of_denoise": 0.024009605254222376
+  },
+  "per_vae_dtype": {
+    "float32": {
+      "vae_s": 9.693628098350018,
+      "base_4step_bf16_s": 19.344750213436782,
+      "both_axes_s": 15.206313844893677,
+      "denoise_factor": 0.568556330714459,
+      "e2e_4step_both_axes": 1.272152502621982,
+      "full_chain_vs_50step_bf16": 16.481687411132704,
+      "naive_product": 155.8512174156328,
+      "frac_of_naive": 0.1057527023813899
+    },
+    "bfloat16": {
+      "vae_s": 4.888887492008507,
+      "base_4step_bf16_s": 14.540009607095271,
+      "both_axes_s": 10.401573238552166,
+      "denoise_factor": 0.568556330714459,
+      "e2e_4step_both_axes": 1.397866387481126,
+      "full_chain_vs_50step_bf16": 23.6331926869387,
+      "naive_product": 155.8512174156328,
+      "frac_of_naive": 0.15163944869235363
+    }
+  }
+}

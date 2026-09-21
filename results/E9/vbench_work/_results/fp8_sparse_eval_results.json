@@ -1,0 +1,36 @@
+{
+    "aesthetic_quality": [
+        0.7465604742368063,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p2.mp4",
+                "video_results": 0.7289858460426331
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p0.mp4",
+                "video_results": 0.6677427887916565
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p1.mp4",
+                "video_results": 0.8429527878761292
+            }
+        ]
+    ],
+    "imaging_quality": [
+        0.720661062075768,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p2.mp4",
+                "video_results": 76.19439254572362
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p0.mp4",
+                "video_results": 72.52297578034577
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/fp8_sparse/fp8_sparse_p1.mp4",
+                "video_results": 67.480950296661
+            }
+        ]
+    ]
+}

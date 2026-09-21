@@ -1,0 +1,15 @@
+{
+  "written_before_the_run": true,
+  "timestamp_note": "written before benchmarks/e2_quality.py was invoked for the NVFP4 arm",
+  "arm": "NVFP4 W4A4, weights nvfp4:16:e4m3 (group-16 + E4M3 two-level scale), activations nvfp4:group:16, GPTQ+cd weights",
+  "readout": "latent relative L2 vs the bf16_dense reference, on the same 3 held-out prompts / seeds 7000+i as E2",
+  "preregistered_expectation": [
+    {"null_hypothesis": "NVFP4 W4A4 is quality-equivalent to FP8 W8A8",
+     "predicted_readout": "latent L2 in 0.31-0.39 (the E2 quantisation band)"},
+    {"null_hypothesis": "4 bits is not enough",
+     "predicted_readout": "latent L2 clearly above that band, but STILL well below the sparse arm's 1.13"}
+  ],
+  "stop_rule": "if the readout lands near 1.1, suspect the implementation first and do NOT write a conclusion -- that is the sparse arm's magnitude, and the two axes fail by completely different mechanisms",
+  "ruler": "implementation noise floor latent L2 = 0.12 (two mathematically equivalent real-kernel configs, section 4.3) must be reported alongside",
+  "scope_discipline": "this arm does NOT enter the 2x2 ladder, the waterfall, or the naive product (T13 section 2.4) -- those are pre-registered artefacts and adding an arm post hoc would contaminate I"
+}

@@ -1,0 +1,669 @@
+{
+  "timestamp": "2026-09-20T15:03:38",
+  "source": "results/E9/vbench_work/_results",
+  "reference_arm": "bf16",
+  "why": "VBench means over n=3 hide the fact that the design is PAIRED (same prompts, same seeds across arms). Recovering the pairing costs nothing and turns a suspicious mean difference into a directional observation.",
+  "per_video": {
+    "bf16": {
+      "aesthetic_quality": {
+        "mean_reported": 0.6914769411087036,
+        "per_video": {
+          "p1": 0.8359512686729431,
+          "p0": 0.6364313960075378,
+          "p2": 0.6020481586456299
+        },
+        "mean_recomputed": 0.6914769411087036
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7365397430545509,
+        "per_video": {
+          "p1": 0.7319033578001423,
+          "p0": 0.7631955163272811,
+          "p2": 0.7145203550362292
+        },
+        "mean_recomputed": 0.7365397430545508
+      }
+    },
+    "bf16_sparse": {
+      "aesthetic_quality": {
+        "mean_reported": 0.6968426704406738,
+        "per_video": {
+          "p1": 0.8010591268539429,
+          "p2": 0.6570799350738525,
+          "p0": 0.6323889493942261
+        },
+        "mean_recomputed": 0.6968426704406738
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7027123094880533,
+        "per_video": {
+          "p1": 0.5947641417420941,
+          "p2": 0.7617073887954524,
+          "p0": 0.7516653979266131
+        },
+        "mean_recomputed": 0.7027123094880533
+      }
+    },
+    "bf16_sparse_warm1": {
+      "aesthetic_quality": {
+        "mean_reported": 0.7014052073160807,
+        "per_video": {
+          "p0": 0.6409085988998413,
+          "p2": 0.6111605167388916,
+          "p1": 0.8521465063095093
+        },
+        "mean_recomputed": 0.7014052073160807
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7233943959616831,
+        "per_video": {
+          "p0": 0.766365111551167,
+          "p2": 0.6949157531173141,
+          "p1": 0.7089023232165679
+        },
+        "mean_recomputed": 0.723394395961683
+      }
+    },
+    "fp8_sparse": {
+      "aesthetic_quality": {
+        "mean_reported": 0.7465604742368063,
+        "per_video": {
+          "p2": 0.7289858460426331,
+          "p0": 0.6677427887916565,
+          "p1": 0.8429527878761292
+        },
+        "mean_recomputed": 0.7465604742368063
+      },
+      "imaging_quality": {
+        "mean_reported": 0.720661062075768,
+        "per_video": {
+          "p2": 0.7619439254572362,
+          "p0": 0.7252297578034578,
+          "p1": 0.67480950296661
+        },
+        "mean_recomputed": 0.720661062075768
+      }
+    },
+    "gptq_cd": {
+      "aesthetic_quality": {
+        "mean_reported": 0.6808549165725708,
+        "per_video": {
+          "p2": 0.5860097408294678,
+          "p0": 0.6363515853881836,
+          "p1": 0.820203423500061
+        },
+        "mean_recomputed": 0.6808549165725708
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7291951497395833,
+        "per_video": {
+          "p2": 0.7107565373550228,
+          "p0": 0.7592840613847898,
+          "p1": 0.7175448504789377
+        },
+        "mean_recomputed": 0.7291951497395833
+      }
+    },
+    "gptq_clip_cd": {
+      "aesthetic_quality": {
+        "mean_reported": 0.7011308272679647,
+        "per_video": {
+          "p1": 0.8576802611351013,
+          "p2": 0.5986876487731934,
+          "p0": 0.6470245718955994
+        },
+        "mean_recomputed": 0.7011308272679647
+      },
+      "imaging_quality": {
+        "mean_reported": 0.725495261361079,
+        "per_video": {
+          "p1": 0.7137011125352647,
+          "p2": 0.7144744213716483,
+          "p0": 0.7483102501763238
+        },
+        "mean_recomputed": 0.7254952613610789
+      }
+    },
+    "gptq": {
+      "aesthetic_quality": {
+        "mean_reported": 0.6875474651654562,
+        "per_video": {
+          "p0": 0.6454612612724304,
+          "p2": 0.5972676277160645,
+          "p1": 0.8199135065078735
+        },
+        "mean_recomputed": 0.6875474651654562
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7238384607888052,
+        "per_video": {
+          "p0": 0.756436649840555,
+          "p2": 0.7003429638897931,
+          "p1": 0.7147357686360677
+        },
+        "mean_recomputed": 0.7238384607888052
+      }
+    },
+    "rtn_tensor": {
+      "aesthetic_quality": {
+        "mean_reported": 0.687717080116272,
+        "per_video": {
+          "p2": 0.5506877303123474,
+          "p0": 0.661806046962738,
+          "p1": 0.8506574630737305
+        },
+        "mean_recomputed": 0.687717080116272
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7274894905875249,
+        "per_video": {
+          "p2": 0.6951527037443939,
+          "p0": 0.7593315473014925,
+          "p1": 0.7279842207166883
+        },
+        "mean_recomputed": 0.727489490587525
+      }
+    },
+    "rtn_token": {
+      "aesthetic_quality": {
+        "mean_reported": 0.6842796007792155,
+        "per_video": {
+          "p2": 0.5540811419487,
+          "p1": 0.8394515514373779,
+          "p0": 0.6593061089515686
+        },
+        "mean_recomputed": 0.6842796007792155
+      },
+      "imaging_quality": {
+        "mean_reported": 0.7283980155285493,
+        "per_video": {
+          "p2": 0.693746496129919,
+          "p1": 0.7279512654999156,
+          "p0": 0.7634962849558136
+        },
+        "mean_recomputed": 0.7283980155285494
+      }
+    }
+  },
+  "paired": {
+    "aesthetic_quality": {
+      "bf16_sparse": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6323889493942261,
+            "delta": -0.004042446613311768
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8010591268539429,
+            "delta": -0.034892141819000244
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.6570799350738525,
+            "delta": 0.055031776428222656
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": 0.005365729331970215,
+        "min_delta": -0.034892141819000244,
+        "max_delta": 0.055031776428222656
+      },
+      "bf16_sparse_warm1": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6409085988998413,
+            "delta": 0.004477202892303467
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8521465063095093,
+            "delta": 0.016195237636566162
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.6111605167388916,
+            "delta": 0.009112358093261719
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 0,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": 0.009928266207377115,
+        "min_delta": 0.004477202892303467,
+        "max_delta": 0.016195237636566162
+      },
+      "fp8_sparse": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6677427887916565,
+            "delta": 0.03131139278411865
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8429527878761292,
+            "delta": 0.007001519203186035
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.7289858460426331,
+            "delta": 0.12693768739700317
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 0,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": 0.05508353312810262,
+        "min_delta": 0.007001519203186035,
+        "max_delta": 0.12693768739700317
+      },
+      "gptq_cd": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6363515853881836,
+            "delta": -7.981061935424805e-05
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.820203423500061,
+            "delta": -0.01574784517288208
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.5860097408294678,
+            "delta": -0.01603841781616211
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 3,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": -0.010622024536132812,
+        "min_delta": -0.01603841781616211,
+        "max_delta": -7.981061935424805e-05
+      },
+      "gptq_clip_cd": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6470245718955994,
+            "delta": 0.010593175888061523
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8576802611351013,
+            "delta": 0.021728992462158203
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.5986876487731934,
+            "delta": -0.0033605098724365234
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 1,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": 0.009653886159261068,
+        "min_delta": -0.0033605098724365234,
+        "max_delta": 0.021728992462158203
+      },
+      "gptq": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6454612612724304,
+            "delta": 0.009029865264892578
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8199135065078735,
+            "delta": -0.01603776216506958
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.5972676277160645,
+            "delta": -0.00478053092956543
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.0039294759432474775,
+        "min_delta": -0.01603776216506958,
+        "max_delta": 0.009029865264892578
+      },
+      "rtn_tensor": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.661806046962738,
+            "delta": 0.025374650955200195
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8506574630737305,
+            "delta": 0.014706194400787354
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.5506877303123474,
+            "delta": -0.05136042833328247
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 1,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.0037598609924316406,
+        "min_delta": -0.05136042833328247,
+        "max_delta": 0.025374650955200195
+      },
+      "rtn_token": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.6364313960075378,
+            "arm": 0.6593061089515686,
+            "delta": 0.02287471294403076
+          },
+          "p1": {
+            "ref": 0.8359512686729431,
+            "arm": 0.8394515514373779,
+            "delta": 0.0035002827644348145
+          },
+          "p2": {
+            "ref": 0.6020481586456299,
+            "arm": 0.5540811419487,
+            "delta": -0.04796701669692993
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 1,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.007197340329488118,
+        "min_delta": -0.04796701669692993,
+        "max_delta": 0.02287471294403076
+      }
+    },
+    "imaging_quality": {
+      "bf16_sparse": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7516653979266131,
+            "delta": -0.011530118400667977
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.5947641417420941,
+            "delta": -0.13713921605804813
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.7617073887954524,
+            "delta": 0.047187033759223174
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.033827433566497644,
+        "min_delta": -0.13713921605804813,
+        "max_delta": 0.047187033759223174
+      },
+      "bf16_sparse_warm1": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.766365111551167,
+            "delta": 0.003169595223885935
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7089023232165679,
+            "delta": -0.023001034583574387
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.6949157531173141,
+            "delta": -0.01960460191891511
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.013145347092867854,
+        "min_delta": -0.023001034583574387,
+        "max_delta": 0.003169595223885935
+      },
+      "fp8_sparse": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7252297578034578,
+            "delta": -0.037965758523823334
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.67480950296661,
+            "delta": -0.05709385483353224
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.7619439254572362,
+            "delta": 0.04742357042100698
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.015878680978782866,
+        "min_delta": -0.05709385483353224,
+        "max_delta": 0.04742357042100698
+      },
+      "gptq_cd": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7592840613847898,
+            "delta": -0.003911454942491344
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7175448504789377,
+            "delta": -0.014358507321204583
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.7107565373550228,
+            "delta": -0.0037638176812064827
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 3,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": -0.00734459331496747,
+        "min_delta": -0.014358507321204583,
+        "max_delta": -0.0037638176812064827
+      },
+      "gptq_clip_cd": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7483102501763238,
+            "delta": -0.01488526615095731
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7137011125352647,
+            "delta": -0.01820224526487757
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.7144744213716483,
+            "delta": -4.5933664580943834e-05
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 3,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": -0.011044481693471941,
+        "min_delta": -0.01820224526487757,
+        "max_delta": -4.5933664580943834e-05
+      },
+      "gptq": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.756436649840555,
+            "delta": -0.006758866486726078
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7147357686360677,
+            "delta": -0.01716758916407457
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.7003429638897931,
+            "delta": -0.014177391146436125
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 3,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": -0.012701282265745592,
+        "min_delta": -0.01716758916407457,
+        "max_delta": -0.006758866486726078
+      },
+      "rtn_tensor": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7593315473014925,
+            "delta": -0.0038639690257885606
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7279842207166883,
+            "delta": -0.003919137083453927
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.6951527037443939,
+            "delta": -0.019367651291835375
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 3,
+        "all_same_direction": true,
+        "sign_test_p_two_sided": 0.25,
+        "mean_delta": -0.009050252467025954,
+        "min_delta": -0.019367651291835375,
+        "max_delta": -0.0038639690257885606
+      },
+      "rtn_token": {
+        "per_prompt": {
+          "p0": {
+            "ref": 0.7631955163272811,
+            "arm": 0.7634962849558136,
+            "delta": 0.0003007686285324551
+          },
+          "p1": {
+            "ref": 0.7319033578001423,
+            "arm": 0.7279512654999156,
+            "delta": -0.0039520923002266395
+          },
+          "p2": {
+            "ref": 0.7145203550362292,
+            "arm": 0.693746496129919,
+            "delta": -0.020773858906310227
+          }
+        },
+        "n_prompts": 3,
+        "n_worse_than_ref": 2,
+        "all_same_direction": false,
+        "sign_test_p_two_sided": 1.0,
+        "mean_delta": -0.008141727526001471,
+        "min_delta": -0.020773858906310227,
+        "max_delta": 0.0003007686285324551
+      }
+    }
+  },
+  "noise_floors": {
+    "imaging_quality": {
+      "a_direction_contradiction": {
+        "value": 0.017948752587714667,
+        "what": "fp8_sparse beats bf16_sparse on VBench imaging by this much, while PSNR (8.12 vs 8.26 dB) and latent L2 (1.1453 vs 1.1273) both say it is WORSE. Stacking a lossy quantiser on top of sparsity should not improve the image. Treat this as a lower bound on the noise."
+      },
+      "b_quant_arm_range": {
+        "value": 0.005356688950778121,
+        "arms": {
+          "rtn_tensor": 0.7274894905875249,
+          "rtn_token": 0.7283980155285493,
+          "gptq": 0.7238384607888052,
+          "gptq_cd": 0.7291951497395833,
+          "gptq_clip_cd": 0.725495261361079
+        },
+        "what": "range across five quantisation arms whose quality ought to be close; their VBench ordering also disagrees with their PSNR ordering"
+      },
+      "c_within_arm_across_prompts": {
+        "value": {
+          "bf16": 0.04867516129105187,
+          "bf16_sparse": 0.16694324705335828,
+          "bf16_sparse_warm1": 0.07144935843385292,
+          "fp8_sparse": 0.0871344224906262,
+          "gptq_cd": 0.04852752402976701,
+          "gptq_clip_cd": 0.03460913764105911,
+          "gptq": 0.05609368595076192,
+          "rtn_tensor": 0.06417884355709869,
+          "rtn_token": 0.06974978882589455
+        },
+        "what": "spread across the 3 prompts WITHIN one arm -- this is prompt difficulty, not method noise; listed only to show that the paired design is what removes it"
+      }
+    }
+  },
+  "verdict": {
+    "imaging_quality": {
+      "gap_sparse_vs_ref": 0.033827433566497644,
+      "conservative_noise_floor": 0.017948752587714667,
+      "floor_source": "direction contradiction",
+      "ratio": 1.8846676615093247,
+      "reading": "The drop on VBench imaging is about this many times the noise floor of the metric in THIS setting. Direction supported, magnitude NOT strong enough to carry the conclusion alone. Its value is that it agrees with PSNR, high-frequency energy ratio and the extracted frames -- and unlike those three, it is reference-free.",
+      "do_not_write": "VBench confirms that sparsity is worse (it does not, at n=3)",
+      "SUPERSEDES_the_ratio_above": {
+        "finding": "the paired breakdown makes the ratio the WEAKER statement. The mean gap is not a uniform shift: p1 -0.1371, p0 -0.0115, p2 +0.0472 (sparse BETTER). One prompt carries 135% of the mean gap and another cancels 47% of it.",
+        "why_it_matters": "this is the signature of 'a different video was generated', not 'the same video was degraded': a no-reference IQA score of a DIFFERENT scene is a draw from a different distribution. On p2 the sparse arm's close-up framing scores HIGHER than dense's wide shot -- the metric rewards the failure mode.",
+        "contrast_with_quantisation": "the five quantisation arms give 14 of 15 paired comparisons negative, each small. So the SMALLER effect is the BETTER established one -- exactly inverted from what the means suggest.",
+        "correct_wording": "VBench imaging cannot arbitrate the sparse arm, because sparsity changes which video is generated rather than degrading a fixed one. It CAN arbitrate the quantisation arms (composition preserved, 14/15 paired comparisons negative). The evidence that sparsity costs quality is the latent/pixel divergence plus the frames, not VBench."
+      },
+      "warm1_between": {
+        "bf16_sparse": 0.7027123094880533,
+        "bf16_sparse_warm1": 0.7233943959616831,
+        "quant_arm_band": [
+          0.7238384607888052,
+          0.7291951497395833
+        ],
+        "ref": 0.7365397430545509,
+        "what": "warm1 lands between the no-warmup sparse arm and the quantisation band: dense warmup recovers most of the VBench gap too, giving the 'first step sets the composition' mechanism a FOURTH independent line of evidence alongside PSNR, HF ratio and the frames"
+      }
+    }
+  }
+}

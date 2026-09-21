@@ -1,0 +1,36 @@
+{
+    "aesthetic_quality": [
+        0.6968426704406738,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p1.mp4",
+                "video_results": 0.8010591268539429
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p2.mp4",
+                "video_results": 0.6570799350738525
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p0.mp4",
+                "video_results": 0.6323889493942261
+            }
+        ]
+    ],
+    "imaging_quality": [
+        0.7027123094880533,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p1.mp4",
+                "video_results": 59.47641417420941
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p2.mp4",
+                "video_results": 76.17073887954524
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p0.mp4",
+                "video_results": 75.16653979266131
+            }
+        ]
+    ]
+}

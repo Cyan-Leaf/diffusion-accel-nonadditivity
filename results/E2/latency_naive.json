@@ -1,0 +1,178 @@
+{
+  "timestamp": "2026-09-18T13:45:57",
+  "device": "NVIDIA GeForce RTX 4090",
+  "sm": "89",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "config": {
+    "steps": 4,
+    "denoising_step_list": [
+      1000,
+      750,
+      500,
+      250
+    ],
+    "shift": 5.0,
+    "cfg": null,
+    "forwards": 4,
+    "seq_len": 32760,
+    "prompt": "Aerial drone shot flying over a dense green forest",
+    "seed": 242,
+    "embeds_from": "results/E1/prompt_embeds.pt"
+  },
+  "kernel": "torch._scaled_mm (real FP8 GEMM), use_fast_accum=True",
+  "rows": {
+    "bf16": {
+      "ok": true,
+      "n_fp8_linears": 0,
+      "denoise_s": 9.59720247797668,
+      "denoise_s_all": [
+        9.596610162872821,
+        9.59720247797668,
+        9.602124402299523
+      ],
+      "ms_per_forward": 2399.30061949417,
+      "weight_bytes": 2837993600,
+      "weight_gib": 2.6430875062942505,
+      "peak_alloc_gib": 4.268701553344727,
+      "latent_stats": {
+        "mean": 0.07678047567605972,
+        "std": 0.9696319699287415,
+        "finite": true
+      },
+      "denoise_speedup_vs_bf16": 1.0
+    },
+    "pertensor_naive": {
+      "ok": true,
+      "n_fp8_linears": 300,
+      "denoise_s": 11.47308445442468,
+      "denoise_s_all": [
+        11.470996183808893,
+        11.47308445442468,
+        11.489811436738819
+      ],
+      "ms_per_forward": 2868.27111360617,
+      "weight_bytes": 1446010160,
+      "weight_gib": 1.34670190513134,
+      "peak_alloc_gib": 4.621616363525391,
+      "latent_stats": {
+        "mean": 0.10275976359844208,
+        "std": 1.023630976676941,
+        "finite": true
+      },
+      "latent_rel_l2_vs_bf16": 0.5862189531326294,
+      "denoise_speedup_vs_bf16": 0.8364971526271167
+    },
+    "pertensor": {
+      "ok": true,
+      "n_fp8_linears": 300,
+      "denoise_s": 9.510819320101291,
+      "denoise_s_all": [
+        9.50939590902999,
+        9.510819320101291,
+        9.52032337943092
+      ],
+      "ms_per_forward": 2377.7048300253227,
+      "weight_bytes": 1446010160,
+      "weight_gib": 1.34670190513134,
+      "peak_alloc_gib": 3.02903413772583,
+      "latent_stats": {
+        "mean": 0.10306782275438309,
+        "std": 1.023624062538147,
+        "finite": true
+      },
+      "latent_rel_l2_vs_bf16": 0.5925306081771851,
+      "denoise_speedup_vs_bf16": 1.009082620010751
+    },
+    "pertok": {
+      "ok": true,
+      "n_fp8_linears": 300,
+      "denoise_s": 12.120423311367631,
+      "denoise_s_all": [
+        12.113160053268075,
+        12.120423311367631,
+        12.12120678089559
+      ],
+      "ms_per_forward": 3030.1058278419077,
+      "weight_bytes": 1448743040,
+      "weight_gib": 1.3492470979690552,
+      "peak_alloc_gib": 5.219357967376709,
+      "latent_stats": {
+        "mean": 0.09027836471796036,
+        "std": 1.006477952003479,
+        "finite": true
+      },
+      "latent_rel_l2_vs_bf16": 0.536406934261322,
+      "denoise_speedup_vs_bf16": 0.7918207336022294
+    }
+  },
+  "e2e": {
+    "bf16/vae_float32": {
+      "total_s": 19.34988618735224,
+      "vae_s": 9.693628098350018,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.59720247797668,
+      "e2e_speedup_vs_bf16": 1.0
+    },
+    "pertensor_naive/vae_float32": {
+      "total_s": 21.22576816380024,
+      "vae_s": 9.693628098350018,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 11.47308445442468,
+      "e2e_speedup_vs_bf16": 0.9116224222383034
+    },
+    "pertensor/vae_float32": {
+      "total_s": 19.26350302947685,
+      "vae_s": 9.693628098350018,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.510819320101291,
+      "e2e_speedup_vs_bf16": 1.0044842912394079
+    },
+    "pertok/vae_float32": {
+      "total_s": 21.87310702074319,
+      "vae_s": 9.693628098350018,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 12.120423311367631,
+      "e2e_speedup_vs_bf16": 0.8846427793272317
+    },
+    "bf16/vae_bfloat16": {
+      "total_s": 14.545145581010729,
+      "vae_s": 4.888887492008507,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.59720247797668,
+      "e2e_speedup_vs_bf16": 1.0
+    },
+    "pertensor_naive/vae_bfloat16": {
+      "total_s": 16.42102755745873,
+      "vae_s": 4.888887492008507,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 11.47308445442468,
+      "e2e_speedup_vs_bf16": 0.885763423154604
+    },
+    "pertensor/vae_bfloat16": {
+      "total_s": 14.45876242313534,
+      "vae_s": 4.888887492008507,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.510819320101291,
+      "e2e_speedup_vs_bf16": 1.0059744503262027
+    },
+    "pertok/vae_bfloat16": {
+      "total_s": 17.06836641440168,
+      "vae_s": 4.888887492008507,
+      "text_s": 0.05905561102554202,
+      "denoise_s": 12.120423311367631,
+      "e2e_speedup_vs_bf16": 0.8521697523869685
+    }
+  },
+  "three_number_structure": {
+    "ceiling_gemm_only_E0": 1.895,
+    "naive_w8a8_denoise": 0.8364971526271167,
+    "compiled_quant_denoise": 1.009082620010751,
+    "pertok_denoise": 0.7918207336022294,
+    "fused_E3": null,
+    "gap_ceiling_to_naive": 1.0585028473728832,
+    "gap_naive_to_compiled": 0.17258546738363434,
+    "note": "gap_ceiling_to_naive is the memory cost of un-fused quant/dequant; gap_naive_to_compiled is the part torch.compile already recovers by collapsing 3 activation passes into 1. E3 attacks the remainder."
+  },
+  "caveat": "Weights here are RTN-quantized inside Fp8Linear (latency does not depend on which solver produced them). Quality is in results/E2/quant_quality.json."
+}

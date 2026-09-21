@@ -1,0 +1,209 @@
+{
+  "timestamp": "2026-09-18T18:20:30",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "preregistered_criterion": {
+    "quantity": "I = c / (a*b) on the DENOISE stage, where a = FP8-only speedup, b = sparse-only speedup, c = both-on speedup",
+    "multiplicative_if": "I >= 0.95",
+    "competing_if": "I <= 0.9",
+    "inconclusive_between": [
+      0.9,
+      0.95
+    ],
+    "why_denoise_not_e2e": "both axes act only on denoise; the end-to-end number additionally carries the VAE fixed cost, which pushes I mechanically toward 1 by Amdahl arithmetic and would manufacture a false 'multiplicative' verdict.",
+    "written_before_measurement": true
+  },
+  "baseline_config": {
+    "bf16_dense": "COMPILED bf16 (fusion.wan_fused.convert_bf16_fused) -- the fair baseline established in T5-A, not eager",
+    "fp8": "full E3 fusion (F1 bias epilogue + F2 shared q/k/v quant + F3 norm/GELU epilogue), real torch._scaled_mm",
+    "sparse": "SVG mask + sample_mse classification + FlexAttention backend, online classification\u6bcf\u5c42\u6bcf\u6b65 (no caching), as SVG ships it"
+  },
+  "rows": {
+    "4step": {
+      "bf16_dense": {
+        "ok": true,
+        "denoise_s": 9.465041364077479,
+        "all_s": [
+          9.441622897982597,
+          9.465041364077479,
+          9.48066316312179
+        ],
+        "info": {
+          "bf16_compiled_blocks": 30
+        },
+        "peak_alloc_gib": 4.787748336791992,
+        "latent_finite": true,
+        "latent_std": 0.9704241752624512
+      },
+      "fp8_dense": {
+        "ok": true,
+        "denoise_s": 8.727880402002484,
+        "all_s": [
+          8.722371998708695,
+          8.727880402002484,
+          8.734474417287856
+        ],
+        "info": {
+          "fp8_linears": 300
+        },
+        "peak_alloc_gib": 3.406322479248047,
+        "latent_finite": true,
+        "latent_std": 1.02141535282135
+      },
+      "bf16_sparse": {
+        "ok": true,
+        "denoise_s": 6.357960034161806,
+        "all_s": [
+          6.347943078260869,
+          6.357960034161806,
+          6.358616411220282
+        ],
+        "info": {
+          "bf16_compiled_blocks": 30,
+          "sparse_attn_layers": 30
+        },
+        "peak_alloc_gib": 20.30791711807251,
+        "latent_finite": true,
+        "latent_std": 1.0713428258895874
+      },
+      "fp8_sparse": {
+        "ok": true,
+        "denoise_s": 5.6185218510217965,
+        "all_s": [
+          5.61667978996411,
+          5.6185218510217965,
+          5.62742826808244
+        ],
+        "info": {
+          "fp8_linears": 300,
+          "sparse_attn_layers": 30
+        },
+        "peak_alloc_gib": 18.964810371398926,
+        "latent_finite": true,
+        "latent_std": 1.0904289484024048
+      }
+    },
+    "50step": {
+      "bf16_dense": {
+        "ok": true,
+        "denoise_s": 238.84179738815874,
+        "all_s": [
+          238.84179738815874
+        ],
+        "info": {
+          "bf16_compiled_blocks": 30
+        },
+        "peak_alloc_gib": 4.803369998931885,
+        "latent_finite": true,
+        "latent_std": 1.7067805528640747
+      },
+      "fp8_dense": {
+        "ok": true,
+        "denoise_s": 219.31165705807507,
+        "all_s": [
+          219.31165705807507
+        ],
+        "info": {
+          "fp8_linears": 300
+        },
+        "peak_alloc_gib": 3.4219441413879395,
+        "latent_finite": true,
+        "latent_std": 1.587462067604065
+      },
+      "bf16_sparse": {
+        "ok": true,
+        "denoise_s": 159.15039944881573,
+        "all_s": [
+          159.15039944881573
+        ],
+        "info": {
+          "bf16_compiled_blocks": 30,
+          "sparse_attn_layers": 30
+        },
+        "peak_alloc_gib": 20.307917594909668,
+        "latent_finite": true,
+        "latent_std": 1.5764026641845703
+      },
+      "fp8_sparse": {
+        "ok": true,
+        "denoise_s": 140.9677674798295,
+        "all_s": [
+          140.9677674798295
+        ],
+        "info": {
+          "fp8_linears": 300,
+          "sparse_attn_layers": 30
+        },
+        "peak_alloc_gib": 18.964810848236084,
+        "latent_finite": true,
+        "latent_std": 1.5762882232666016
+      }
+    }
+  },
+  "merged_from": [
+    "bf16_dense.json",
+    "fp8_dense.json",
+    "bf16_sparse.json",
+    "fp8_sparse.json",
+    "50_bf16_dense.json",
+    "50_fp8_dense.json",
+    "50_bf16_sparse.json",
+    "50_fp8_sparse.json"
+  ],
+  "one_process_per_arm": true,
+  "why_one_process_per_arm": "torch.compile guards and the CUDA caching allocator carry state across arms. Running all four in one process put bf16_sparse at a 20.31 GiB peak on a 22.16 GiB card; memory pressure there would understate b and inflate I. Separate processes remove both the allocator and the compile-cache coupling.",
+  "H2": {
+    "4step": {
+      "a_fp8_only": 1.0844604793055899,
+      "b_sparse_only": 1.4886915477953757,
+      "c_both": 1.6846141414144622,
+      "product_ab": 1.6144271494603535,
+      "interaction_I": 1.0434748585450695,
+      "verdict": "multiplicative",
+      "loss_vs_product_pct": -4.3474858545069495,
+      "peak_gib": {
+        "bf16_dense": 4.787748336791992,
+        "fp8_dense": 3.406322479248047,
+        "bf16_sparse": 20.30791711807251,
+        "fp8_sparse": 18.964810371398926
+      },
+      "disjoint_amdahl_model": {
+        "gemm_share_p": 0.20434291779488076,
+        "attention_share_q": 0.5248673018969844,
+        "implied_local_speedup_gemm": 1.6158644778869593,
+        "implied_local_speedup_attention": 2.6697472300413665,
+        "predicted_c_if_perfectly_disjoint": 1.6839316336855694,
+        "predicted_I_if_perfectly_disjoint": 1.0430521031862285,
+        "measured_I": 1.0434748585450695,
+        "measured_minus_predicted": 0.00042275535884095383,
+        "reading": "I>1 is the SIGNATURE of disjointness, not an anomaly: for two optimisations on disjoint time fractions, c >= a*b always holds ((1/a)(1/b) - 1/c = (p-A)(q-B) >= 0). A measured I that matches the disjoint prediction means the two axes do not overlap at all; SPEC's H2 (they compete for the same attention time) is then refuted."
+      }
+    },
+    "50step": {
+      "a_fp8_only": 1.0890519938249883,
+      "b_sparse_only": 1.5007301157605484,
+      "c_both": 1.6943007728510253,
+      "product_ab": 1.6343731247622306,
+      "interaction_I": 1.03666705428573,
+      "verdict": "multiplicative",
+      "loss_vs_product_pct": -3.6667054285729916,
+      "peak_gib": {
+        "bf16_dense": 4.803369998931885,
+        "fp8_dense": 3.4219441413879395,
+        "bf16_sparse": 20.307917594909668,
+        "fp8_sparse": 18.964810848236084
+      },
+      "disjoint_amdahl_model": {
+        "gemm_share_p": 0.20434291779488076,
+        "attention_share_q": 0.5248673018969844,
+        "implied_local_speedup_gemm": 1.667115758060561,
+        "implied_local_speedup_attention": 2.7449836099560754,
+        "predicted_c_if_perfectly_disjoint": 1.710652872983493,
+        "predicted_I_if_perfectly_disjoint": 1.0466721748330017,
+        "measured_I": 1.03666705428573,
+        "measured_minus_predicted": -0.010005120547271762,
+        "reading": "I>1 is the SIGNATURE of disjointness, not an anomaly: for two optimisations on disjoint time fractions, c >= a*b always holds ((1/a)(1/b) - 1/c = (p-A)(q-B) >= 0). A measured I that matches the disjoint prediction means the two axes do not overlap at all; SPEC's H2 (they compete for the same attention time) is then refuted."
+      }
+    }
+  }
+}

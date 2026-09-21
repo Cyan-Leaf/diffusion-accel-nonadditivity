@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-09-18T20:23:10",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "purpose": "decide whether the 20.31 GiB sparse peak reported in T6 is a genuine block-sparse deployment cost or an artefact of the score matrix being materialised",
+  "rows": [
+    {
+      "num_frame": 5,
+      "S": 7800,
+      "qkv_bytes": 71884800,
+      "score_matrix_bytes_if_materialised": 1460160000,
+      "dense_peak_bytes": 96222208,
+      "sparse_peak_bytes": 120621056,
+      "ok": true,
+      "delta_bytes": 24398848,
+      "delta_gib": 0.02272319793701172,
+      "delta_over_S": 3128.057435897436,
+      "delta_over_S2": 0.4010330046022354,
+      "delta_as_frac_of_full_score_matrix": 0.01670970852509314
+    },
+    {
+      "num_frame": 21,
+      "S": 32760,
+      "qkv_bytes": 301916160,
+      "score_matrix_bytes_if_materialised": 25757222400,
+      "dense_peak_bytes": 404192256,
+      "sparse_peak_bytes": 507455488,
+      "ok": true,
+      "delta_bytes": 103263232,
+      "delta_gib": 0.09617137908935547,
+      "delta_over_S": 3152.113308913309,
+      "delta_over_S2": 0.09621835497293373,
+      "delta_as_frac_of_full_score_matrix": 0.004009098123872239
+    }
+  ],
+  "verdict": {
+    "S_ratio": 4.2,
+    "delta_ratio": 4.2322994921727455,
+    "fitted_exponent_alpha": 1.005338316384522,
+    "interpretation": "delta ~ S^alpha. alpha ~1 => genuinely block-sparse (memory scales with kept blocks). alpha ~2 => the score matrix is being materialised, i.e. the BlockMask is not delivering its memory advantage.",
+    "conclusion": "block-sparse (O(S))",
+    "delta_as_frac_of_full_score_matrix": {
+      "7800": 0.01670970852509314,
+      "32760": 0.004009098123872239
+    }
+  },
+  "stage_isolation_gib_at_S32760": {
+    "a_bare_flex": 0.9890809059143066,
+    "b_svg_attention_with_reorder": 1.3610601425170898,
+    "c_sample_mse_only": 1.0454049110412598,
+    "dense_masks_resident_bytes": 0.6102025508880615
+  },
+  "stage_isolation_note": "if the bare FlexAttention call is small but svg_attention or sample_mse is large, the 20.31 GiB reported in T6 belongs to OUR integration layer, not to the FlexAttention backend -- the attribution in the report must say so.",
+  "do_not_fix": "regardless of the outcome we do not optimise this; only the attribution in the report is corrected."
+}

@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-09-18T20:34:07",
+  "gate": {
+    "weights_source": "<SF_ROOT>/dumps/vbench_assets",
+    "cache_dir": "<REPO>/.vbench_cache",
+    "links": {
+      ".vbench_cache/pyiqa_model/musiq_spaq_ckpt-358bb6af.pth": "<SF_ROOT>/dumps/vbench_assets/musiq_spaq.pth",
+      ".vbench_cache/clip_model/ViT-L-14.pt": "<SF_ROOT>/dumps/vbench_assets/clip_vit_l14.pt"
+    },
+    "missing_sources": [],
+    "dimensions_available": [
+      "aesthetic_quality",
+      "imaging_quality"
+    ],
+    "dimensions_unavailable": {
+      "subject_consistency": "needs DINO ViT-B/16 (768-dim); only ViT-S/16 (dino_deitsmall16, 384-dim) is on disk, and the non-local path needs a GitHub fetch that this host cannot complete"
+    },
+    "aesthetic_head_note": "the LAION linear head (sa_0_4_vit_l_14_linear.pth, 4071 B) was fetched directly; the aesthetic_linear.pth in the prior project's assets is a different (MLP) predictor and is NOT interchangeable",
+    "comparability_note": "Infrastructure (weights, code) was reused from the author's prior project. SCORES ARE NOT COMPARABLE ACROSS PROJECTS: VBench scores depend on the exact prompt set, seeds and video specification. We compare only across arms within this project's own run."
+  },
+  "dimensions_run": [
+    "aesthetic_quality",
+    "imaging_quality"
+  ],
+  "n_videos_per_arm": {
+    "bf16": 3,
+    "bf16_sparse": 3,
+    "bf16_sparse_warm1": 3,
+    "fp8_sparse": 3,
+    "gptq_cd": 3,
+    "gptq_clip_cd": 3,
+    "gptq": 3,
+    "rtn_tensor": 3,
+    "rtn_token": 3
+  },
+  "scores": {
+    "bf16": {
+      "aesthetic_quality": 0.6914769411087036,
+      "imaging_quality": 0.7365397430545509
+    },
+    "bf16_sparse": {
+      "aesthetic_quality": 0.6968426704406738,
+      "imaging_quality": 0.7027123094880533
+    },
+    "bf16_sparse_warm1": {
+      "aesthetic_quality": 0.7014052073160807,
+      "imaging_quality": 0.7233943959616831
+    },
+    "fp8_sparse": {
+      "aesthetic_quality": 0.7465604742368063,
+      "imaging_quality": 0.720661062075768
+    },
+    "gptq": {
+      "aesthetic_quality": 0.6875474651654562,
+      "imaging_quality": 0.7238384607888052
+    },
+    "gptq_cd": {
+      "aesthetic_quality": 0.6808549165725708,
+      "imaging_quality": 0.7291951497395833
+    },
+    "gptq_clip_cd": {
+      "aesthetic_quality": 0.7011308272679647,
+      "imaging_quality": 0.725495261361079
+    },
+    "rtn_tensor": {
+      "aesthetic_quality": 0.687717080116272,
+      "imaging_quality": 0.7274894905875249
+    },
+    "rtn_token": {
+      "aesthetic_quality": 0.6842796007792155,
+      "imaging_quality": 0.7283980155285493
+    }
+  }
+}

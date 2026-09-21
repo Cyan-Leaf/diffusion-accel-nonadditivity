@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-09-20T19:57:46",
+  "question": "does clipping help? the answer differs between FP8 and NVFP4 in the author's prior work; this run asks WHY",
+  "hypothesis": "clipping and fine scale granularity are SUBSTITUTES, not complements: both shrink the gap between the dynamic range the codebook must cover and the one it can cover. Whichever is applied first consumes the other's benefit.",
+  "why_this_lever_and_not_section_8_4": "section 8.4 tried to vary the within-group dynamic range by SPLITTING TENSORS into terciles, but Wan's 300 tensors differ by only 0.03 decades on that quantity (1.56 vs 1.59) -- almost no leverage, which is why that test returned REFUTED-without-power rather than refuting the mechanism. Varying the SCALE GRANULARITY instead moves the same quantity from 1.58 to 3.81, a 2.23-decade lever, roughly 70x larger.",
+  "controlled": "same codebook family, same 301 on-policy Hessians, same solver, same layer set; ONLY the scale granularity differs between the two NVFP4 rows",
+  "within_group_weight_dynamic_range_log10_median": {
+    "per_channel": 3.811330199241638,
+    "group_16": 1.5837735533714294,
+    "n_tensors": 60
+  },
+  "rows": [
+    {
+      "codebook": "NVFP4 E2M1",
+      "granularity": "per-channel",
+      "codebook_dynamic_range_log10": 1.0791812460476249,
+      "codebook_absmax": 6.0,
+      "codebook_min_nonzero": 0.5,
+      "within_group_weight_dynamic_range_log10_median": 3.811330199241638,
+      "excess_range_the_codebook_cannot_cover": 2.732148953194013,
+      "clip_gain_pp": 1.6694744396913985,
+      "n_layers_gamma_lt_1": 300,
+      "n_layers": 300,
+      "recovery_cd_only": 0.7683330761311694,
+      "recovery_clip_cd": 0.7850278205280834,
+      "frac_snapped_to_zero_gamma1": 0.11827177566786608,
+      "frac_snapped_to_zero_gamma09": 0.10652552631994089,
+      "BENEFIT_deadzone_rescued_pp": 1.1746249347925188,
+      "COST_frac_saturated_at_gamma09_pp": 0.19762025292341906,
+      "benefit_over_cost": 5.943848959892306,
+      "source": "results/E7/clip_ablation_nvfp4_perchannel.json"
+    },
+    {
+      "codebook": "FP8 E4M3",
+      "granularity": "per-tensor",
+      "codebook_dynamic_range_log10": 5.360547974973975,
+      "codebook_absmax": 448.0,
+      "codebook_min_nonzero": 0.001953125,
+      "within_group_weight_dynamic_range_log10_median": 3.811330199241638,
+      "excess_range_the_codebook_cannot_cover": -1.5492177757323367,
+      "clip_gain_pp": 0.034890138583598684,
+      "n_layers_gamma_lt_1": 225,
+      "n_layers": 300,
+      "recovery_cd_only": 0.7815051752911435,
+      "recovery_clip_cd": 0.7818540766769795,
+      "frac_snapped_to_zero_gamma1": 1.649240995599636e-05,
+      "frac_snapped_to_zero_gamma09": 1.484724614329025e-05,
+      "BENEFIT_deadzone_rescued_pp": 0.000164516381270611,
+      "COST_frac_saturated_at_gamma09_pp": 0.00016756411236921545,
+      "benefit_over_cost": 0.9818115522738604,
+      "source": "results/E2/quant_quality.json"
+    },
+    {
+      "codebook": "NVFP4 E2M1",
+      "granularity": "group-16",
+      "codebook_dynamic_range_log10": 1.0791812460476249,
+      "codebook_absmax": 6.0,
+      "codebook_min_nonzero": 0.5,
+      "within_group_weight_dynamic_range_log10_median": 1.5837735533714294,
+      "excess_range_the_codebook_cannot_cover": 0.5045923073238046,
+      "clip_gain_pp": 0.007688404258221482,
+      "n_layers_gamma_lt_1": 16,
+      "n_layers": 300,
+      "recovery_cd_only": 0.7687858626943621,
+      "recovery_clip_cd": 0.7688627467369443,
+      "frac_snapped_to_zero_gamma1": 0.06705311816185713,
+      "frac_snapped_to_zero_gamma09": 0.06036634283761184,
+      "BENEFIT_deadzone_rescued_pp": 0.6686775324245297,
+      "COST_frac_saturated_at_gamma09_pp": 8.951679058372974,
+      "benefit_over_cost": 0.07469855968518894,
+      "source": "results/E7/clip_ablation_nvfp4.json"
+    }
+  ],
+  "prior_work_reference": {
+    "source": "an earlier in-house experiment log (a different model, 220 layers)",
+    "w8_gptq": 0.761,
+    "w8_gptqcd": 0.803,
+    "w8_gptqclipcd": 0.803,
+    "gamma_hist_clipcd": {
+      "1.0": 219,
+      "0.94": 1
+    },
+    "e2e_lpips_cd": 0.0245,
+    "e2e_lpips_clipcd": 0.0247,
+    "int4_control": {
+      "no_clip": 0.578,
+      "with_clip": 0.629
+    }
+  },
+  "verdict": {
+    "v2_mechanism": "clipping has TWO opposing effects and the GROUP SIZE controls both. BENEFIT: shrinking the scale lifts weights out of the codebook's dead zone (E2M1's smallest non-zero level is 0.5, so |w/s| < 0.25 snaps to zero). COST: shrinking the scale pushes weights that sit near the block maximum into saturation. How many weights sit near the block maximum is decided almost entirely by the group size -- with 16 elements the max is an ordinary member of the group, with 1536 it is an extreme outlier.",
+    "the_numbers": {
+      "per-channel / NVFP4 E2M1": {
+        "benefit_deadzone_rescued_pp": 1.1746249347925188,
+        "cost_saturated_pp": 0.19762025292341906,
+        "ratio": 5.943848959892306,
+        "measured_clip_gain_pp": 1.6694744396913985
+      },
+      "per-tensor / FP8 E4M3": {
+        "benefit_deadzone_rescued_pp": 0.000164516381270611,
+        "cost_saturated_pp": 0.00016756411236921545,
+        "ratio": 0.9818115522738604,
+        "measured_clip_gain_pp": 0.034890138583598684
+      },
+      "group-16 / NVFP4 E2M1": {
+        "benefit_deadzone_rescued_pp": 0.6686775324245297,
+        "cost_saturated_pp": 8.951679058372974,
+        "ratio": 0.07469855968518894,
+        "measured_clip_gain_pp": 0.007688404258221482
+      }
+    },
+    "benefit_over_cost_ranks_with_measured_gain": true,
+    "fine_granularity_kills_clip_twice": "group-16 both REDUCES the number of dead-zone weights there are to rescue and MULTIPLIES the saturation cost, because the block max is only the max of 16 numbers. That is why fine scale granularity does not merely substitute for clipping -- it makes clipping actively unprofitable.",
+    "corrects_our_own_v1": "our first hypothesis this round -- 'clip's value tracks the excess dynamic range' -- gets the ordering right but accounts only for the BENEFIT side. It cannot explain why NVFP4 group-16 (excess +0.50, still positive) gains nothing: the answer is that its saturation cost is ~40x larger.",
+    "corrects_the_prior_work_generalisation": "the prior work concluded 'clipping helps integer codebooks and does nothing for floating-point ones, because a float codebook's spacing is relative' (an earlier in-house experiment log). Its NVFP4 evidence was taken at group-16 only -- both the synthetic table and the 220-layer real run. At per-channel the SAME float codebook gains +1.669pp. The deciding variable is not integer-vs-float; it is the benefit/cost balance that the group size sets. The prior work's mechanism is however correct about WHY the benefit exists: a float codebook's relative spacing means the only thing clipping can buy is the dead zone at the bottom.",
+    "practical_rule": "already on group-16 (i.e. native NVFP4)? skip the clipping search entirely -- it is not merely useless, it is a net loss, which is why the gamma search returns 1.0 on 284/300 layers. Stuck at per-channel or per-tensor with a low-dynamic-range codebook? clipping is the first knob.",
+    "connects_to": "section 8.2 found the VALUE OF FINER SCALE is decided by the codebook's dynamic range; this run finds the VALUE OF CLIPPING is decided by the same quantity plus a cost term that the group size controls. Two readings of one mechanism.",
+    "caveat": "three configurations, one model. The dead-zone/saturation numbers are computed on 30 real Wan tensors; the clip gains come from three full 300-layer GPTQ solves."
+  }
+}

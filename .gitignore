@@ -1,0 +1,50 @@
+# ===== 权重 / 张量 / 中间产物（约 45 GB，绝不入库）=====
+# results/E2/hessians 12 GB、results/E2/solved 11 GB、
+# results/E7/solved_nvfp4{,_perchannel} 各 11 GB
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.npy
+*.npz
+results/E2/hessians/
+results/E2/solved/
+results/E7/solved_nvfp4/
+results/E7/solved_nvfp4_perchannel/
+
+# ===== 视频（70 个 / 331 MB）=====
+# 报告只引用 results/frames/*.png；视频可用 benchmarks/e2_quality.py --save-video 重生成
+*.mp4
+*.webm
+*.avi
+
+# ===== 含内部路径软链的缓存目录 =====
+.vbench_cache/
+
+# ===== 工作文档（仅本地；含内部路径与协作过程，不对外）=====
+SPEC.md
+CLAUDE.md
+START_HERE.md
+REPORT_NOTES.md
+HANDOVER.md
+HANDOFF.md
+T*_HANDOFF.md
+results/T*_REPORT.md
+results/T16_COMPLIANCE_SCAN.md
+research/
+# 原理分享的原始 markdown（含内部文档图片链接）；内容已以脱敏形式整合进 REPORT.md §4.4
+NVFP4*.md
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ===== 运行残留 =====
+nohup.out
+*.log
+.DS_Store

@@ -1,0 +1,720 @@
+{
+  "timestamp": "2026-09-18T18:13:00",
+  "device": "NVIDIA GeForce RTX 4090",
+  "ckpt": "<CKPT_DIR>/distill_native.pt",
+  "n_tensors": 300,
+  "metric": "relative Frobenius error ||W - RTN(W)||_F / ||W||_F, pure weight quantization, no sampler involved",
+  "summary": {
+    "fp8_pertensor": {
+      "rel_fro_err_mean": 0.02650197484220068,
+      "rel_fro_err_max": 0.02666134014725685,
+      "rel_fro_err_min": 0.026204243302345276
+    },
+    "fp8_perchannel": {
+      "rel_fro_err_mean": 0.02644549071167906,
+      "rel_fro_err_max": 0.02663564682006836,
+      "rel_fro_err_min": 0.02627168968319893
+    },
+    "fp8_group128": {
+      "rel_fro_err_mean": 0.025709703372170527,
+      "rel_fro_err_max": 0.02608429454267025,
+      "rel_fro_err_min": 0.025095134973526
+    },
+    "fp8_group16": {
+      "rel_fro_err_mean": 0.022323189930369455,
+      "rel_fro_err_max": 0.023059116676449776,
+      "rel_fro_err_min": 0.021434646099805832
+    },
+    "int8_pertensor": {
+      "rel_fro_err_mean": 0.02469852186429004,
+      "rel_fro_err_max": 0.15943892300128937,
+      "rel_fro_err_min": 0.010029415600001812
+    },
+    "int8_perchannel": {
+      "rel_fro_err_mean": 0.008622785209057232,
+      "rel_fro_err_max": 0.012519845739006996,
+      "rel_fro_err_min": 0.006601591594517231
+    },
+    "int8_group128": {
+      "rel_fro_err_mean": 0.006512643514821927,
+      "rel_fro_err_max": 0.00825764611363411,
+      "rel_fro_err_min": 0.005565628409385681
+    },
+    "int8_group16": {
+      "rel_fro_err_mean": 0.004688852637385329,
+      "rel_fro_err_max": 0.005145935341715813,
+      "rel_fro_err_min": 0.004287903197109699
+    },
+    "nvfp4_pertensor": {
+      "rel_fro_err_mean": 0.2555138184626897,
+      "rel_fro_err_max": 0.9581276774406433,
+      "rel_fro_err_min": 0.1252492219209671
+    },
+    "nvfp4_perchannel": {
+      "rel_fro_err_mean": 0.11945486781497797,
+      "rel_fro_err_max": 0.14642110466957092,
+      "rel_fro_err_min": 0.10914028435945511
+    },
+    "nvfp4_group128": {
+      "rel_fro_err_mean": 0.10926709823310375,
+      "rel_fro_err_max": 0.11684002727270126,
+      "rel_fro_err_min": 0.10677731782197952
+    },
+    "nvfp4_group16": {
+      "rel_fro_err_mean": 0.09521948913733165,
+      "rel_fro_err_max": 0.09766320884227753,
+      "rel_fro_err_min": 0.09364092350006104
+    },
+    "nvfp4grid_fp32scale_group16": {
+      "rel_fro_err_mean": 0.09423465641836325,
+      "rel_fro_err_max": 0.09687080979347229,
+      "rel_fro_err_min": 0.09238819032907486
+    },
+    "nvfp4grid_fp32scale_group128": {
+      "rel_fro_err_mean": 0.10909811658163865,
+      "rel_fro_err_max": 0.11648616194725037,
+      "rel_fro_err_min": 0.10669455677270889
+    },
+    "nvfp4grid_fp32scale_perchan": {
+      "rel_fro_err_mean": 0.11943786730368933,
+      "rel_fro_err_max": 0.14656078815460205,
+      "rel_fro_err_min": 0.10903937369585037
+    },
+    "nvfp4grid_fp32scale_pertensor": {
+      "rel_fro_err_mean": 0.25551382218798,
+      "rel_fro_err_max": 0.9581276774406433,
+      "rel_fro_err_min": 0.1252492219209671
+    },
+    "int4_pertensor": {
+      "rel_fro_err_mean": 0.4032946098347505,
+      "rel_fro_err_max": 0.9836947321891785,
+      "rel_fro_err_min": 0.18211494386196136
+    },
+    "int4_perchannel": {
+      "rel_fro_err_mean": 0.1562871434291204,
+      "rel_fro_err_max": 0.22577407956123352,
+      "rel_fro_err_min": 0.11968138068914413
+    },
+    "int4_group128": {
+      "rel_fro_err_mean": 0.11810132304827373,
+      "rel_fro_err_max": 0.1499294638633728,
+      "rel_fro_err_min": 0.10089278966188431
+    },
+    "int4_group16": {
+      "rel_fro_err_mean": 0.0850334868580103,
+      "rel_fro_err_max": 0.09340831637382507,
+      "rel_fro_err_min": 0.07773571461439133
+    },
+    "fp8e5m2_pertensor": {
+      "rel_fro_err_mean": 0.05273655142635107,
+      "rel_fro_err_max": 0.05311247706413269,
+      "rel_fro_err_min": 0.052035100758075714
+    },
+    "fp8e5m2_perchannel": {
+      "rel_fro_err_mean": 0.052638485965629415,
+      "rel_fro_err_max": 0.053049102425575256,
+      "rel_fro_err_min": 0.05232686176896095
+    },
+    "fp8e5m2_group128": {
+      "rel_fro_err_mean": 0.051271617511908216,
+      "rel_fro_err_max": 0.05201859027147293,
+      "rel_fro_err_min": 0.05003897845745087
+    },
+    "fp8e5m2_group16": {
+      "rel_fro_err_mean": 0.0445814802745978,
+      "rel_fro_err_max": 0.04610582813620567,
+      "rel_fro_err_min": 0.042750902473926544
+    },
+    "fp6e3m2_pertensor": {
+      "rel_fro_err_mean": 0.05288628584394852,
+      "rel_fro_err_max": 0.06018272787332535,
+      "rel_fro_err_min": 0.05206424742937088
+    },
+    "fp6e3m2_perchannel": {
+      "rel_fro_err_mean": 0.05263997729867697,
+      "rel_fro_err_max": 0.05304960906505585,
+      "rel_fro_err_min": 0.0523320809006691
+    },
+    "fp6e3m2_group128": {
+      "rel_fro_err_mean": 0.051272240293522675,
+      "rel_fro_err_max": 0.0520189106464386,
+      "rel_fro_err_min": 0.05004067346453667
+    },
+    "fp6e3m2_group16": {
+      "rel_fro_err_mean": 0.044581770511964956,
+      "rel_fro_err_max": 0.04610600695014,
+      "rel_fro_err_min": 0.04275141656398773
+    },
+    "fp6e2m3_pertensor": {
+      "rel_fro_err_mean": 0.054882673112054664,
+      "rel_fro_err_max": 0.3370334506034851,
+      "rel_fro_err_min": 0.02915561944246292
+    },
+    "fp6e2m3_perchannel": {
+      "rel_fro_err_mean": 0.028615809176117182,
+      "rel_fro_err_max": 0.032720986753702164,
+      "rel_fro_err_min": 0.02744734100997448
+    },
+    "fp6e2m3_group128": {
+      "rel_fro_err_mean": 0.026500109943250815,
+      "rel_fro_err_max": 0.027316946536302567,
+      "rel_fro_err_min": 0.026224706321954727
+    },
+    "fp6e2m3_group16": {
+      "rel_fro_err_mean": 0.022397155587871868,
+      "rel_fro_err_max": 0.022857217118144035,
+      "rel_fro_err_min": 0.021883122622966766
+    }
+  },
+  "error_reduction_vs_pertensor": {
+    "int8": {
+      "pertensor": 1.0,
+      "perchannel": 2.8643322621961076,
+      "group128": 3.7923957925962672,
+      "group16": 5.267497994576092
+    },
+    "int4": {
+      "pertensor": 1.0,
+      "perchannel": 2.580472078419255,
+      "group128": 3.4148187287445078,
+      "group16": 4.742773991006339
+    },
+    "nvfp4": {
+      "pertensor": 1.0,
+      "perchannel": 2.1389987962520842,
+      "group128": 2.3384332758392845,
+      "group16": 2.6834193375493887
+    },
+    "fp6e2m3": {
+      "pertensor": 1.0,
+      "perchannel": 1.9179144218595037,
+      "group128": 2.071035676062637,
+      "group16": 2.4504304976018387
+    },
+    "fp6e3m2": {
+      "pertensor": 1.0,
+      "perchannel": 1.0046791157198645,
+      "group128": 1.0314799107896548,
+      "group16": 1.186276032481814
+    },
+    "fp8": {
+      "pertensor": 1.0,
+      "perchannel": 1.0021358700104086,
+      "group128": 1.0308160486553006,
+      "group16": 1.1871947927185003
+    },
+    "fp8e5m2": {
+      "pertensor": 1.0,
+      "perchannel": 1.0018629992660824,
+      "group128": 1.0285720245534016,
+      "group16": 1.1829250868639274
+    }
+  },
+  "per_role_mean": {
+    "self_attn.q": {
+      "fp8_pertensor": 0.026501107091705004,
+      "fp8_perchannel": 0.026421722397208212,
+      "fp8_group128": 0.025641713043053946,
+      "fp8_group16": 0.02217383918662866,
+      "int8_pertensor": 0.025508781460424266,
+      "int8_perchannel": 0.008624376853307088,
+      "int8_group128": 0.006708272996669014,
+      "int8_group16": 0.0047681718599051235,
+      "nvfp4_pertensor": 0.27135787655909854,
+      "nvfp4_perchannel": 0.11917767003178596,
+      "nvfp4_group128": 0.10980089356501897,
+      "nvfp4_group16": 0.09485729982455572,
+      "nvfp4grid_fp32scale_group16": 0.09382172351082166,
+      "nvfp4grid_fp32scale_group128": 0.1096145436167717,
+      "nvfp4grid_fp32scale_perchan": 0.11915423522392908,
+      "nvfp4grid_fp32scale_pertensor": 0.27135788400967914,
+      "int4_pertensor": 0.4551548431317011,
+      "int4_perchannel": 0.15639692197243374,
+      "int4_group128": 0.12164888009428979,
+      "int4_group16": 0.08645925397674242,
+      "fp8e5m2_pertensor": 0.05272889398038387,
+      "fp8e5m2_perchannel": 0.052600598086913426,
+      "fp8e5m2_group128": 0.05113308106859525,
+      "fp8e5m2_group16": 0.044280484691262244,
+      "fp6e3m2_pertensor": 0.05277918664117654,
+      "fp6e3m2_perchannel": 0.052602008109291394,
+      "fp6e3m2_group128": 0.05113377049565315,
+      "fp6e3m2_group16": 0.044280801465113956,
+      "fp6e2m3_pertensor": 0.05519652950266997,
+      "fp6e2m3_perchannel": 0.028526926537354787,
+      "fp6e2m3_group128": 0.026543067457775276,
+      "fp6e2m3_group16": 0.022298684902489187
+    },
+    "self_attn.k": {
+      "fp8_pertensor": 0.026494325635333858,
+      "fp8_perchannel": 0.02639516641696294,
+      "fp8_group128": 0.025540263143678507,
+      "fp8_group16": 0.02201566193252802,
+      "int8_pertensor": 0.027712152029077213,
+      "int8_perchannel": 0.009223587966213623,
+      "int8_group128": 0.007002364456032713,
+      "int8_group16": 0.00484926210095485,
+      "nvfp4_pertensor": 0.2917288889487584,
+      "nvfp4_perchannel": 0.12303655470410983,
+      "nvfp4_group128": 0.11094376469651858,
+      "nvfp4_group16": 0.09454042042295138,
+      "nvfp4grid_fp32scale_group16": 0.09347191204627354,
+      "nvfp4grid_fp32scale_group128": 0.11073924203713735,
+      "nvfp4grid_fp32scale_perchan": 0.12302028213938078,
+      "nvfp4grid_fp32scale_pertensor": 0.29172889043887457,
+      "int4_pertensor": 0.4790548046429952,
+      "int4_perchannel": 0.1672462244828542,
+      "int4_group128": 0.12700439641873043,
+      "int4_group16": 0.08795937250057856,
+      "fp8e5m2_pertensor": 0.05273014356692632,
+      "fp8e5m2_perchannel": 0.052530075112978615,
+      "fp8e5m2_group128": 0.050916780903935435,
+      "fp8e5m2_group16": 0.04395565489927928,
+      "fp6e3m2_pertensor": 0.05281499748428663,
+      "fp6e3m2_perchannel": 0.05253192285696665,
+      "fp6e3m2_group128": 0.05091762791077296,
+      "fp6e3m2_group16": 0.043956006815036135,
+      "fp6e2m3_pertensor": 0.059572141617536545,
+      "fp6e2m3_perchannel": 0.02904673044880231,
+      "fp6e2m3_group128": 0.026662259300549825,
+      "fp6e2m3_group16": 0.02221338717887799
+    },
+    "self_attn.v": {
+      "fp8_pertensor": 0.026487795325616997,
+      "fp8_perchannel": 0.026409055478870867,
+      "fp8_group128": 0.025604703898231187,
+      "fp8_group16": 0.022150094620883465,
+      "int8_pertensor": 0.016591235405455033,
+      "int8_perchannel": 0.008855030437310537,
+      "int8_group128": 0.006791890319436789,
+      "int8_group16": 0.004780655540525913,
+      "nvfp4_pertensor": 0.18195136437813442,
+      "nvfp4_perchannel": 0.12038309847315153,
+      "nvfp4_group128": 0.10994145795702934,
+      "nvfp4_group16": 0.09469325616955757,
+      "nvfp4grid_fp32scale_group16": 0.09364848112066587,
+      "nvfp4grid_fp32scale_group128": 0.10975430011749268,
+      "nvfp4grid_fp32scale_perchan": 0.12036716888348262,
+      "nvfp4grid_fp32scale_pertensor": 0.18195136537154516,
+      "int4_pertensor": 0.2995443721612295,
+      "int4_perchannel": 0.16060090859731038,
+      "int4_group128": 0.12315281704068184,
+      "int4_group16": 0.0867054911951224,
+      "fp8e5m2_pertensor": 0.05272034369409084,
+      "fp8e5m2_perchannel": 0.052570972964167594,
+      "fp8e5m2_group128": 0.05104538227121035,
+      "fp8e5m2_group16": 0.04422929733991623,
+      "fp6e3m2_pertensor": 0.05273489393293858,
+      "fp6e3m2_perchannel": 0.05257251796623071,
+      "fp6e3m2_group128": 0.05104609901706378,
+      "fp6e3m2_group16": 0.044229613865415254,
+      "fp6e2m3_pertensor": 0.03868262978891532,
+      "fp6e2m3_perchannel": 0.028683946654200553,
+      "fp6e2m3_group128": 0.026551586451629798,
+      "fp6e2m3_group16": 0.02229188270866871
+    },
+    "self_attn.o": {
+      "fp8_pertensor": 0.02649701287349065,
+      "fp8_perchannel": 0.02642121519893408,
+      "fp8_group128": 0.025753976156314213,
+      "fp8_group16": 0.022383394278585912,
+      "int8_pertensor": 0.017617306454728046,
+      "int8_perchannel": 0.008544656354933977,
+      "int8_group128": 0.006384679830322663,
+      "int8_group16": 0.004660058688993256,
+      "nvfp4_pertensor": 0.19073176781336468,
+      "nvfp4_perchannel": 0.11856147100528082,
+      "nvfp4_group128": 0.10880408212542533,
+      "nvfp4_group16": 0.09531143779555956,
+      "nvfp4grid_fp32scale_group16": 0.0943374921878179,
+      "nvfp4grid_fp32scale_group128": 0.10863932048281034,
+      "nvfp4grid_fp32scale_perchan": 0.11854879433910052,
+      "nvfp4grid_fp32scale_pertensor": 0.1907317707935969,
+      "int4_pertensor": 0.31950790286064146,
+      "int4_perchannel": 0.15493005563815435,
+      "int4_group128": 0.11576789518197378,
+      "int4_group16": 0.08450370704134305,
+      "fp8e5m2_pertensor": 0.05272750941415628,
+      "fp8e5m2_perchannel": 0.052591820061206815,
+      "fp8e5m2_group128": 0.051363362744450566,
+      "fp8e5m2_group16": 0.044700036322077114,
+      "fp6e3m2_pertensor": 0.0527412890146176,
+      "fp6e3m2_perchannel": 0.052593158558011055,
+      "fp6e3m2_group128": 0.05136392513910929,
+      "fp6e3m2_group16": 0.04470031398038069,
+      "fp6e2m3_pertensor": 0.0400758129854997,
+      "fp6e2m3_perchannel": 0.028432615163425604,
+      "fp6e2m3_group128": 0.026445752754807473,
+      "fp6e2m3_group16": 0.022432728918890157
+    },
+    "cross_attn.q": {
+      "fp8_pertensor": 0.026518621606131394,
+      "fp8_perchannel": 0.0264517176275452,
+      "fp8_group128": 0.025714335901041826,
+      "fp8_group16": 0.022333288192749025,
+      "int8_pertensor": 0.015321852794537941,
+      "int8_perchannel": 0.008213544900839528,
+      "int8_group128": 0.006487851946925124,
+      "int8_group16": 0.00468724927244087,
+      "nvfp4_pertensor": 0.16942530969778696,
+      "nvfp4_perchannel": 0.11676263610521952,
+      "nvfp4_group128": 0.10904121870795885,
+      "nvfp4_group16": 0.09518453478813171,
+      "nvfp4grid_fp32scale_group16": 0.09420088032881418,
+      "nvfp4grid_fp32scale_group128": 0.10887710228562356,
+      "nvfp4grid_fp32scale_perchan": 0.11674460470676422,
+      "nvfp4grid_fp32scale_pertensor": 0.16942531019449233,
+      "int4_pertensor": 0.2781997298200925,
+      "int4_perchannel": 0.14895548522472382,
+      "int4_group128": 0.11764926016330719,
+      "int4_group16": 0.08499295860528946,
+      "fp8e5m2_pertensor": 0.05276376344263554,
+      "fp8e5m2_perchannel": 0.05263814317683379,
+      "fp8e5m2_group128": 0.051279474919040995,
+      "fp8e5m2_group16": 0.04459729020794233,
+      "fp6e3m2_pertensor": 0.052772684146960576,
+      "fp6e3m2_perchannel": 0.05263930360476176,
+      "fp6e3m2_group128": 0.051280070344607034,
+      "fp6e3m2_group16": 0.0445975753168265,
+      "fp6e2m3_pertensor": 0.03644279235353073,
+      "fp6e2m3_perchannel": 0.0282196298862497,
+      "fp6e2m3_group128": 0.026476957214375336,
+      "fp6e2m3_group16": 0.022401014404992262
+    },
+    "cross_attn.k": {
+      "fp8_pertensor": 0.02651118462284406,
+      "fp8_perchannel": 0.02651903616885344,
+      "fp8_group128": 0.025891669342915216,
+      "fp8_group16": 0.022655452539523443,
+      "int8_pertensor": 0.01176466594139735,
+      "int8_perchannel": 0.007346195479234059,
+      "int8_group128": 0.006015944636116425,
+      "int8_group16": 0.00450786550839742,
+      "nvfp4_pertensor": 0.1377327079574267,
+      "nvfp4_perchannel": 0.11240146532654763,
+      "nvfp4_group128": 0.10790357266863188,
+      "nvfp4_group16": 0.09607160861293475,
+      "nvfp4grid_fp32scale_group16": 0.09520207072297732,
+      "nvfp4grid_fp32scale_group128": 0.10777129953106244,
+      "nvfp4grid_fp32scale_perchan": 0.11236310203870138,
+      "nvfp4grid_fp32scale_pertensor": 0.13773270944754282,
+      "int4_pertensor": 0.21344143003225327,
+      "int4_perchannel": 0.13321265851457914,
+      "int4_group128": 0.10909014716744422,
+      "int4_group16": 0.08175709396600724,
+      "fp8e5m2_pertensor": 0.05277795058985551,
+      "fp8e5m2_perchannel": 0.05280787820617358,
+      "fp8e5m2_group128": 0.05165441247324149,
+      "fp8e5m2_group16": 0.04527773770193259,
+      "fp6e3m2_pertensor": 0.05278124784429868,
+      "fp6e3m2_perchannel": 0.052808653190732004,
+      "fp6e3m2_group128": 0.05165485342343648,
+      "fp6e3m2_group16": 0.04527797016004721,
+      "fp6e2m3_pertensor": 0.031140312366187573,
+      "fp6e2m3_perchannel": 0.02775457836687565,
+      "fp6e2m3_group128": 0.02638586244235436,
+      "fp6e2m3_group16": 0.02260897886008024
+    },
+    "cross_attn.v": {
+      "fp8_pertensor": 0.02651383715371291,
+      "fp8_perchannel": 0.026522708187500636,
+      "fp8_group128": 0.025899993193646272,
+      "fp8_group16": 0.02269633108129104,
+      "int8_pertensor": 0.011498489789664746,
+      "int8_perchannel": 0.007332621002569794,
+      "int8_group128": 0.005989424046128988,
+      "int8_group16": 0.004488759534433484,
+      "nvfp4_pertensor": 0.13516035328308743,
+      "nvfp4_perchannel": 0.11225507905085881,
+      "nvfp4_group128": 0.10778470983107885,
+      "nvfp4_group16": 0.09617067004243533,
+      "nvfp4grid_fp32scale_group16": 0.0953126867612203,
+      "nvfp4grid_fp32scale_group128": 0.10765218262871107,
+      "nvfp4grid_fp32scale_perchan": 0.11221850936611494,
+      "nvfp4grid_fp32scale_pertensor": 0.13516035278638203,
+      "int4_pertensor": 0.20863020966450374,
+      "int4_perchannel": 0.13296556795636813,
+      "int4_group128": 0.10860287522276242,
+      "int4_group16": 0.08141085704167685,
+      "fp8e5m2_pertensor": 0.052754753331343336,
+      "fp8e5m2_perchannel": 0.05278593401114146,
+      "fp8e5m2_group128": 0.0516686737537384,
+      "fp8e5m2_group16": 0.045355993509292605,
+      "fp6e3m2_pertensor": 0.05275765955448151,
+      "fp6e3m2_perchannel": 0.05278670017917951,
+      "fp6e3m2_group128": 0.051669106756647425,
+      "fp6e3m2_group16": 0.0453562210003535,
+      "fp6e2m3_pertensor": 0.030758118256926537,
+      "fp6e2m3_perchannel": 0.02772834338247776,
+      "fp6e2m3_group128": 0.026387371433277924,
+      "fp6e2m3_group16": 0.022633380691210427
+    },
+    "cross_attn.o": {
+      "fp8_pertensor": 0.02650543289879958,
+      "fp8_perchannel": 0.026452013291418552,
+      "fp8_group128": 0.02585294091453155,
+      "fp8_group16": 0.022596735258897147,
+      "int8_pertensor": 0.05954403541982174,
+      "int8_perchannel": 0.00807950715534389,
+      "int8_group128": 0.006099793749550979,
+      "int8_group16": 0.0045463047300775845,
+      "nvfp4_pertensor": 0.5274454519152642,
+      "nvfp4_perchannel": 0.11642279500762621,
+      "nvfp4_group128": 0.1082129031419754,
+      "nvfp4_group16": 0.09600921099384625,
+      "nvfp4grid_fp32scale_group16": 0.09508400211731592,
+      "nvfp4grid_fp32scale_group128": 0.10807246839006741,
+      "nvfp4grid_fp32scale_perchan": 0.1163900929192702,
+      "nvfp4grid_fp32scale_pertensor": 0.5274454588691394,
+      "int4_pertensor": 0.6974471906820933,
+      "int4_perchannel": 0.1457506423195203,
+      "int4_group128": 0.11061860720316569,
+      "int4_group16": 0.0824504295984904,
+      "fp8e5m2_pertensor": 0.05272162966430187,
+      "fp8e5m2_perchannel": 0.05264877441028754,
+      "fp8e5m2_group128": 0.05157889996965726,
+      "fp8e5m2_group16": 0.04510114192962646,
+      "fp6e3m2_pertensor": 0.0538845290740331,
+      "fp6e3m2_perchannel": 0.05265008521576722,
+      "fp6e3m2_group128": 0.05157937097052733,
+      "fp6e3m2_group16": 0.045101386432846384,
+      "fp6e2m3_pertensor": 0.1262355785816908,
+      "fp6e2m3_perchannel": 0.02821150328963995,
+      "fp6e2m3_group128": 0.02639858555048704,
+      "fp6e2m3_group16": 0.022555345296859743
+    },
+    "ffn.0": {
+      "fp8_pertensor": 0.026501780562102794,
+      "fp8_perchannel": 0.026412708001832166,
+      "fp8_group128": 0.02560836561024189,
+      "fp8_group16": 0.022104138943056264,
+      "int8_pertensor": 0.033131918497383596,
+      "int8_perchannel": 0.008801063460608324,
+      "int8_group128": 0.00679246373474598,
+      "int8_group16": 0.004803582358484467,
+      "nvfp4_pertensor": 0.3500293870766958,
+      "nvfp4_perchannel": 0.12020253986120225,
+      "nvfp4_group128": 0.11008594731489817,
+      "nvfp4_group16": 0.0946740984916687,
+      "nvfp4grid_fp32scale_group16": 0.09362959961096445,
+      "nvfp4grid_fp32scale_group128": 0.10990094766020775,
+      "nvfp4grid_fp32scale_perchan": 0.12019054591655731,
+      "nvfp4grid_fp32scale_pertensor": 0.3500293935338656,
+      "int4_pertensor": 0.5763939211765925,
+      "int4_perchannel": 0.15961577693621318,
+      "int4_group128": 0.12318496728936831,
+      "int4_group16": 0.0871108981470267,
+      "fp8e5m2_pertensor": 0.052730958163738254,
+      "fp8e5m2_perchannel": 0.05257616403202216,
+      "fp8e5m2_group128": 0.05105939855178197,
+      "fp8e5m2_group16": 0.0441419513275226,
+      "fp6e3m2_pertensor": 0.052831069380044934,
+      "fp6e3m2_perchannel": 0.05257768544058005,
+      "fp6e3m2_group128": 0.0510601253559192,
+      "fp6e3m2_group16": 0.044142278656363484,
+      "fp6e2m3_pertensor": 0.07039361620942751,
+      "fp6e2m3_perchannel": 0.028665920719504356,
+      "fp6e2m3_group128": 0.026564531959593296,
+      "fp6e2m3_group16": 0.022262402065098285
+    },
+    "ffn.2": {
+      "fp8_pertensor": 0.026488650652269522,
+      "fp8_perchannel": 0.026449564347664514,
+      "fp8_group128": 0.02558907251805067,
+      "fp8_group16": 0.022122963269551595,
+      "int8_pertensor": 0.028294780850410463,
+      "int8_perchannel": 0.011207268480211497,
+      "int8_group128": 0.006853749432290594,
+      "int8_group16": 0.004796616779640317,
+      "nvfp4_pertensor": 0.29957507699728014,
+      "nvfp4_perchannel": 0.1353453685839971,
+      "nvfp4_group128": 0.11015243232250213,
+      "nvfp4_group16": 0.09468235423167547,
+      "nvfp4grid_fp32scale_group16": 0.09363771577676137,
+      "nvfp4grid_fp32scale_group128": 0.10995975906650225,
+      "nvfp4grid_fp32scale_perchan": 0.1353813375035922,
+      "nvfp4grid_fp32scale_pertensor": 0.2995750864346822,
+      "int4_pertensor": 0.5055716941754024,
+      "int4_perchannel": 0.2031971926490466,
+      "int4_group128": 0.12429338470101356,
+      "int4_group16": 0.08698480650782585,
+      "fp8e5m2_pertensor": 0.052709568416078885,
+      "fp8e5m2_perchannel": 0.05263449959456921,
+      "fp8e5m2_group128": 0.051016708463430406,
+      "fp8e5m2_group16": 0.04417521481712659,
+      "fp6e3m2_pertensor": 0.05276530136664708,
+      "fp6e3m2_perchannel": 0.052637737865249314,
+      "fp6e3m2_group128": 0.0510174535214901,
+      "fp6e3m2_group16": 0.04417553742726644,
+      "fp6e2m3_pertensor": 0.06032919945816199,
+      "fp6e2m3_perchannel": 0.030887897312641143,
+      "fp6e2m3_group128": 0.02658512486765782,
+      "fp6e2m3_group16": 0.022273750851551692
+    }
+  },
+  "interpretation": "If finer scale granularity reduces error much more for int8 than for fp8, then scale-side degrees of freedom (granularity AND clipping) are worth little on a floating-point codebook, because E4M3 already keeps ~3 mantissa bits at every magnitude. That is the same mechanism behind the clip result.",
+  "D2_scale_quantization_cost": {
+    "claim": "SPEC 4.7 D2: NVFP4's block scale is itself quantized to FP8 E4M3, so the true grid is shifted relative to the FP32-optimal one. This block isolates that cost by holding the E2M1 element grid fixed and only changing the scale format.",
+    "per_granularity": {
+      "group16": {
+        "e4m3_scale_err": 0.09521948913733165,
+        "fp32_scale_err": 0.09423465641836325,
+        "d2_cost_ratio": 1.0104508548807791,
+        "d2_cost_pct": 1.0450854880779126
+      },
+      "group128": {
+        "e4m3_scale_err": 0.10926709823310375,
+        "fp32_scale_err": 0.10909811658163865,
+        "d2_cost_ratio": 1.0015488961382633,
+        "d2_cost_pct": 0.1548896138263256
+      },
+      "perchannel": {
+        "e4m3_scale_err": 0.11945486781497797,
+        "fp32_scale_err": 0.11943786730368933,
+        "d2_cost_ratio": 1.0001423376996963,
+        "d2_cost_pct": 0.014233769969629329
+      },
+      "pertensor": {
+        "e4m3_scale_err": 0.2555138184626897,
+        "fp32_scale_err": 0.25551382218798,
+        "d2_cost_ratio": 0.9999999854203961,
+        "d2_cost_pct": -1.4579603857534096e-06
+      }
+    }
+  },
+  "T6B_exponent_bit_curve": {
+    "claim_under_test": "the value of finer scale granularity decreases monotonically with the number of exponent bits in the codebook",
+    "curve": [
+      {
+        "format": "int4",
+        "exp_bits": 0,
+        "mant_bits": 3,
+        "total_bits": 4,
+        "absmax": 7.0,
+        "gain_perchannel": 2.580472078419255,
+        "gain_group128": 3.4148187287445078,
+        "gain_group16": 4.742773991006339,
+        "err_group16": 0.0850334868580103
+      },
+      {
+        "format": "int8",
+        "exp_bits": 0,
+        "mant_bits": 7,
+        "total_bits": 8,
+        "absmax": 127.0,
+        "gain_perchannel": 2.8643322621961076,
+        "gain_group128": 3.7923957925962672,
+        "gain_group16": 5.267497994576092,
+        "err_group16": 0.004688852637385329
+      },
+      {
+        "format": "nvfp4",
+        "exp_bits": 2,
+        "mant_bits": 1,
+        "total_bits": 4,
+        "absmax": 6.0,
+        "gain_perchannel": 2.1389987962520842,
+        "gain_group128": 2.3384332758392845,
+        "gain_group16": 2.6834193375493887,
+        "err_group16": 0.09521948913733165
+      },
+      {
+        "format": "fp6e2m3",
+        "exp_bits": 2,
+        "mant_bits": 3,
+        "total_bits": 6,
+        "absmax": 7.5,
+        "gain_perchannel": 1.9179144218595037,
+        "gain_group128": 2.071035676062637,
+        "gain_group16": 2.4504304976018387,
+        "err_group16": 0.022397155587871868
+      },
+      {
+        "format": "fp6e3m2",
+        "exp_bits": 3,
+        "mant_bits": 2,
+        "total_bits": 6,
+        "absmax": 28.0,
+        "gain_perchannel": 1.0046791157198645,
+        "gain_group128": 1.0314799107896548,
+        "gain_group16": 1.186276032481814,
+        "err_group16": 0.044581770511964956
+      },
+      {
+        "format": "fp8",
+        "exp_bits": 4,
+        "mant_bits": 3,
+        "total_bits": 8,
+        "absmax": 448.0,
+        "gain_perchannel": 1.0021358700104086,
+        "gain_group128": 1.0308160486553006,
+        "gain_group16": 1.1871947927185003,
+        "err_group16": 0.022323189930369455
+      },
+      {
+        "format": "fp8e5m2",
+        "exp_bits": 5,
+        "mant_bits": 2,
+        "total_bits": 8,
+        "absmax": 57344.0,
+        "gain_perchannel": 1.0018629992660824,
+        "gain_group128": 1.0285720245534016,
+        "gain_group16": 1.1829250868639274,
+        "err_group16": 0.0445814802745978
+      }
+    ],
+    "mean_gain_group16_by_exp_bits": {
+      "0": 5.005135992791216,
+      "2": 2.566924917575614,
+      "3": 1.186276032481814,
+      "4": 1.1871947927185003,
+      "5": 1.1829250868639274
+    },
+    "monotone_decreasing_strict": false,
+    "monotone_decreasing_within_2pct_tolerance": true,
+    "saturation_exp_bits": 3,
+    "plateau_values": {
+      "3": 1.186276032481814,
+      "4": 1.1871947927185003,
+      "5": 1.1829250868639274
+    },
+    "reading": "the gain decreases with exponent bits and then SATURATES: e=0 -> 5.005, e=2 -> 2.567, and e>=3 is a plateau at ~1.185 if plateau is non-empty. The strict-monotonicity flag can be False purely from sub-1% noise on the plateau -- read the plateau, not the flag.",
+    "within_exp_bit_spread": 0.5247240035697534,
+    "between_exp_bit_spread": 3.822210905927288,
+    "driver_is_exponent_bits_not_total_width": true,
+    "convention_note": "FP8 E4M3 levels come from the hardware dtype (finite-only, max 448). FP8 E5M2 follows IEEE (inf/nan reserved, max 57344). FP6 E3M2/E2M3 and FP4 E2M1 follow OCP (no inf/nan; max 28 / 7.5 / 6). Each format uses ITS OWN standard convention."
+  },
+  "E7_prediction_test": {
+    "prediction": "NVFP4 E2M1 should behave MORE LIKE AN INTEGER codebook on this axis, because at a dynamic range of +-6 the 'step size is relative to magnitude' property no longer holds (T3 section 5.4).",
+    "per_granularity": {
+      "perchannel": {
+        "fp8_gain": 1.0021358700104086,
+        "int8_gain": 2.8643322621961076,
+        "int4_gain": 2.580472078419255,
+        "nvfp4_gain": 2.1389987962520842,
+        "closer_to": "int4(integer-like)",
+        "log_dist_to_fp8": 0.7582042750553432,
+        "log_dist_to_int4": 0.18763449098881835
+      },
+      "group128": {
+        "fp8_gain": 1.0308160486553006,
+        "int8_gain": 3.7923957925962672,
+        "int4_gain": 3.4148187287445078,
+        "nvfp4_gain": 2.3384332758392845,
+        "closer_to": "int4(integer-like)",
+        "log_dist_to_fp8": 0.8191303960867348,
+        "log_dist_to_int4": 0.37864324583136255
+      },
+      "group16": {
+        "fp8_gain": 1.1871947927185003,
+        "int8_gain": 5.267497994576092,
+        "int4_gain": 4.742773991006339,
+        "nvfp4_gain": 2.6834193375493887,
+        "closer_to": "int4(integer-like)",
+        "log_dist_to_fp8": 0.8154986462752608,
+        "log_dist_to_int4": 0.5695303411873329
+      }
+    },
+    "verdict": "CONFIRMED"
+  }
+}

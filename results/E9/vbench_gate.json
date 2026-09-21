@@ -1,0 +1,18 @@
+{
+  "weights_source": "<SF_ROOT>/dumps/vbench_assets",
+  "cache_dir": "<REPO>/.vbench_cache",
+  "links": {
+    ".vbench_cache/pyiqa_model/musiq_spaq_ckpt-358bb6af.pth": "<SF_ROOT>/dumps/vbench_assets/musiq_spaq.pth",
+    ".vbench_cache/clip_model/ViT-L-14.pt": "<SF_ROOT>/dumps/vbench_assets/clip_vit_l14.pt",
+    ".vbench_cache/aesthetic_model/emb_reader/sa_0_4_vit_l_14_linear.pth": "<SF_ROOT>/dumps/vbench_assets/aesthetic_linear.pth"
+  },
+  "missing_sources": [],
+  "dimensions_available": [
+    "aesthetic_quality",
+    "imaging_quality"
+  ],
+  "dimensions_unavailable": {
+    "subject_consistency": "needs DINO ViT-B/16 (768-dim); only ViT-S/16 (dino_deitsmall16, 384-dim) is on disk, and the non-local path needs a GitHub fetch that this host cannot complete"
+  },
+  "comparability_note": "Infrastructure (weights, code) was reused from the author's prior project. SCORES ARE NOT COMPARABLE ACROSS PROJECTS: VBench scores depend on the exact prompt set, seeds and video specification. We compare only across arms within this project's own run."
+}

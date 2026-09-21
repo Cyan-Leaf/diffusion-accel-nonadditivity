@@ -1,0 +1,372 @@
+{
+  "timestamp": "2026-09-18T16:10:51",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "purpose": "decide whether the fake-quant path is a valid proxy for a real FP8/FP4 kernel, which gates E7",
+  "L0_fp8_cast_semantics": {
+    "input": [
+      0.0,
+      1.0,
+      448.0,
+      449.0,
+      1000.0,
+      100000.0,
+      -100000.0,
+      0.0009765625,
+      0.000244140625
+    ],
+    "after_cast": [
+      0.0,
+      1.0,
+      448.0,
+      448.0,
+      NaN,
+      NaN,
+      NaN,
+      0.0,
+      0.0
+    ],
+    "saturates_at_448": false,
+    "has_nan_or_inf": true
+  },
+  "L1_single_gemm": [
+    {
+      "layer": "blocks.0.ffn.0",
+      "shape": {
+        "M_full": 32760,
+        "K": 1536,
+        "N": 8960,
+        "M_used": 4096
+      },
+      "scale_note": "activation scale computed on the FULL 32760 rows; only the matmul rows are subsampled (fp64 ref does not fit otherwise)",
+      "quant_decision_parity": {
+        "act_levels_identical": true,
+        "wgt_levels_identical": true,
+        "act_mismatch_frac": 0.0,
+        "wgt_mismatch_frac": 0.0,
+        "note": "bucketize-to-253-levels vs hardware .to(float8_e4m3fn)"
+      },
+      "act_scale_dtype_effect": {
+        "scale_fp32": 0.00833565928041935,
+        "scale_bf16": 0.007293701171875,
+        "rel_scale_diff": 0.1250000837956432,
+        "level_mismatch_frac": 0.9993504285812378
+      },
+      "rel_err_vs_fp64_ref": {
+        "fake_bucketize_bf16": 0.0023828766164493156,
+        "fake_bucketize_fp32": 6.150419714205875e-07,
+        "fake_parity_fp32": 6.150419714205875e-07,
+        "fake_hwexact_fp32": 0.024497632283138088,
+        "fake_parity_tf32": 0.0001780215623746626,
+        "real_scaled_mm_fastaccum": 0.0024580331028334506,
+        "real_scaled_mm_slowaccum": 0.002339882274536999
+      },
+      "quantization_error_magnitude": {
+        "fp64_ref_vs_unquantized_bf16": 0.022418758301921773,
+        "note": "this is the actual quantization error; every path-difference number must be compared against THIS, not against zero"
+      },
+      "path_diff_vs_real_fastaccum": {
+        "fake_bucketize_bf16": 0.003501704866457819,
+        "fake_bucketize_fp32": 0.0024585990229153234,
+        "fake_parity_fp32": 0.0024585990229153234,
+        "fake_hwexact_fp32": 0.024628218334455228,
+        "fake_parity_tf32": 0.0024625011360987522,
+        "real_scaled_mm_slowaccum": 0.0017979360400291345
+      },
+      "path_diff_as_frac_of_quant_err": {
+        "fake_bucketize_bf16": 0.1561953083796638,
+        "fake_bucketize_fp32": 0.1096670471131565,
+        "fake_parity_fp32": 0.1096670471131565,
+        "fake_hwexact_fp32": 1.0985540770268287,
+        "fake_parity_tf32": 0.10984110283608627,
+        "real_scaled_mm_slowaccum": 0.08019784217375735
+      }
+    },
+    {
+      "layer": "blocks.0.self_attn.q",
+      "shape": {
+        "M_full": 32760,
+        "K": 1536,
+        "N": 1536,
+        "M_used": 4096
+      },
+      "scale_note": "activation scale computed on the FULL 32760 rows; only the matmul rows are subsampled (fp64 ref does not fit otherwise)",
+      "quant_decision_parity": {
+        "act_levels_identical": true,
+        "wgt_levels_identical": false,
+        "act_mismatch_frac": 0.0,
+        "wgt_mismatch_frac": 0.00335693359375,
+        "note": "bucketize-to-253-levels vs hardware .to(float8_e4m3fn)"
+      },
+      "act_scale_dtype_effect": {
+        "scale_fp32": 0.0345982164144516,
+        "scale_bf16": 0.032470703125,
+        "rel_scale_diff": 0.061491993227805276,
+        "level_mismatch_frac": 0.9996923208236694
+      },
+      "rel_err_vs_fp64_ref": {
+        "fake_bucketize_bf16": 0.0028739021512097927,
+        "fake_bucketize_fp32": 0.002146871801947263,
+        "fake_parity_fp32": 2.3715783434699874e-07,
+        "fake_hwexact_fp32": 0.015558800356949346,
+        "fake_parity_tf32": 0.0001088123132656624,
+        "real_scaled_mm_fastaccum": 0.0025460627307416685,
+        "real_scaled_mm_slowaccum": 0.0023249654525859488
+      },
+      "quantization_error_magnitude": {
+        "fp64_ref_vs_unquantized_bf16": 0.014715241974171567,
+        "note": "this is the actual quantization error; every path-difference number must be compared against THIS, not against zero"
+      },
+      "path_diff_vs_real_fastaccum": {
+        "fake_bucketize_bf16": 0.003899001364011775,
+        "fake_bucketize_fp32": 0.003404295061172692,
+        "fake_parity_fp32": 0.0025477112518681386,
+        "fake_hwexact_fp32": 0.015815150526748655,
+        "fake_parity_tf32": 0.0025502052827883473,
+        "real_scaled_mm_slowaccum": 0.0020719084471714335
+      },
+      "path_diff_as_frac_of_quant_err": {
+        "fake_bucketize_bf16": 0.264963455637044,
+        "fake_bucketize_fp32": 0.2313448237649076,
+        "fake_parity_fp32": 0.1731341731478098,
+        "fake_hwexact_fp32": 1.0747462090333049,
+        "fake_parity_tf32": 0.1733036593801522,
+        "real_scaled_mm_slowaccum": 0.14080016154733174
+      }
+    },
+    {
+      "layer": "blocks.15.ffn.2",
+      "shape": {
+        "M_full": 32760,
+        "K": 8960,
+        "N": 1536,
+        "M_used": 4096
+      },
+      "scale_note": "activation scale computed on the FULL 32760 rows; only the matmul rows are subsampled (fp64 ref does not fit otherwise)",
+      "quant_decision_parity": {
+        "act_levels_identical": false,
+        "wgt_levels_identical": true,
+        "act_mismatch_frac": 0.0399056039750576,
+        "wgt_mismatch_frac": 0.0,
+        "note": "bucketize-to-253-levels vs hardware .to(float8_e4m3fn)"
+      },
+      "act_scale_dtype_effect": {
+        "scale_fp32": 0.01953125,
+        "scale_bf16": 0.01953125,
+        "rel_scale_diff": 0.0,
+        "level_mismatch_frac": 0.0
+      },
+      "rel_err_vs_fp64_ref": {
+        "fake_bucketize_bf16": 0.01637237361242724,
+        "fake_bucketize_fp32": 0.01611659201969869,
+        "fake_parity_fp32": 6.046066431393485e-07,
+        "fake_hwexact_fp32": 6.046066431393485e-07,
+        "fake_parity_tf32": 0.00020931306797066857,
+        "real_scaled_mm_fastaccum": 0.0033336860252596587,
+        "real_scaled_mm_slowaccum": 0.002344159897751878
+      },
+      "quantization_error_magnitude": {
+        "fp64_ref_vs_unquantized_bf16": 0.03814033073124443,
+        "note": "this is the actual quantization error; every path-difference number must be compared against THIS, not against zero"
+      },
+      "path_diff_vs_real_fastaccum": {
+        "fake_bucketize_bf16": 0.016784838522119806,
+        "fake_bucketize_fp32": 0.016530369333336466,
+        "fake_parity_fp32": 0.0033354440280324764,
+        "fake_hwexact_fp32": 0.0033354440280324764,
+        "fake_parity_tf32": 0.003341002209451817,
+        "real_scaled_mm_slowaccum": 0.003370965839180613
+      },
+      "path_diff_as_frac_of_quant_err": {
+        "fake_bucketize_bf16": 0.44008109526878647,
+        "fake_bucketize_fp32": 0.4334091764913523,
+        "fake_parity_fp32": 0.08745189053381994,
+        "fake_hwexact_fp32": 0.08745189053381994,
+        "fake_parity_tf32": 0.08759762029842282,
+        "real_scaled_mm_slowaccum": 0.08838323566028045
+      }
+    },
+    {
+      "layer": "blocks.29.cross_attn.o",
+      "shape": {
+        "M_full": 32760,
+        "K": 1536,
+        "N": 1536,
+        "M_used": 4096
+      },
+      "scale_note": "activation scale computed on the FULL 32760 rows; only the matmul rows are subsampled (fp64 ref does not fit otherwise)",
+      "quant_decision_parity": {
+        "act_levels_identical": false,
+        "wgt_levels_identical": true,
+        "act_mismatch_frac": 0.0043385825119912624,
+        "wgt_mismatch_frac": 0.0,
+        "note": "bucketize-to-253-levels vs hardware .to(float8_e4m3fn)"
+      },
+      "act_scale_dtype_effect": {
+        "scale_fp32": 0.0023018973879516125,
+        "scale_bf16": 0.002227783203125,
+        "rel_scale_diff": 0.03219699766572323,
+        "level_mismatch_frac": 0.9995869398117065
+      },
+      "rel_err_vs_fp64_ref": {
+        "fake_bucketize_bf16": 0.003726970265350757,
+        "fake_bucketize_fp32": 0.003183263692525476,
+        "fake_parity_fp32": 3.8302405497441875e-07,
+        "fake_hwexact_fp32": 0.022124286571266666,
+        "fake_parity_tf32": 0.0001586873808356059,
+        "real_scaled_mm_fastaccum": 0.002623588062559489,
+        "real_scaled_mm_slowaccum": 0.002341409164094135
+      },
+      "quantization_error_magnitude": {
+        "fp64_ref_vs_unquantized_bf16": 0.018992646132947974,
+        "note": "this is the actual quantization error; every path-difference number must be compared against THIS, not against zero"
+      },
+      "path_diff_vs_real_fastaccum": {
+        "fake_bucketize_bf16": 0.004533978475586893,
+        "fake_bucketize_fp32": 0.004119228934056136,
+        "fake_parity_fp32": 0.002623469774412257,
+        "fake_hwexact_fp32": 0.022270419784675838,
+        "fake_parity_tf32": 0.002625860161973775,
+        "real_scaled_mm_slowaccum": 0.0021564927849907437
+      },
+      "path_diff_as_frac_of_quant_err": {
+        "fake_bucketize_bf16": 0.2387228427176063,
+        "fake_bucketize_fp32": 0.21688546741837092,
+        "fake_parity_fp32": 0.1381308194786574,
+        "fake_hwexact_fp32": 1.1725811995223594,
+        "fake_parity_tf32": 0.13825667806333197,
+        "real_scaled_mm_slowaccum": 0.11354356680450721
+      }
+    }
+  ],
+  "L2_end_to_end": {
+    "fake_bucketize_bf16": {
+      "rel_l2_vs_bf16": 0.40377431253239326
+    },
+    "fake_parity_fp32": {
+      "rel_l2_vs_bf16": 0.38863731892439807
+    },
+    "fake_hwexact_fp32": {
+      "rel_l2_vs_bf16": 0.3981094689953691
+    },
+    "real_pertensor": {
+      "rel_l2_vs_bf16": 0.5925439582723463
+    },
+    "real_pertensor_rerun": {
+      "rel_l2_vs_bf16": 0.5925439582723463
+    },
+    "real_pertensor_naive": {
+      "rel_l2_vs_bf16": 0.5862333186460469
+    },
+    "pairs": {
+      "fake_bucketize_bf16_vs_real": 0.4645973491088559,
+      "fake_parity_fp32_vs_real": 0.47581065246409826,
+      "fake_hwexact_fp32_vs_real": 0.4694262948903267,
+      "real_pertensor_vs_real_naive": 0.12043398457363048,
+      "real_pertensor_vs_ITSELF_rerun": 0.0
+    },
+    "determinism_note": "real_pertensor_vs_ITSELF_rerun is a pure determinism check (identical config, identical seed, fresh model build). It calibrates how much of every other number is run-to-run noise vs a real difference.",
+    "t3_numbers_for_comparison": {
+      "latency_script_pertensor_naive": 0.5862189531326294,
+      "quality_script_rtn_tensor": 0.3883,
+      "note": "T3 compared these two and attributed the gap to an activation-scale shape difference. That attribution was WRONG on two counts: the two numbers used DIFFERENT prompts and seeds, and the real cause is the bf16 dequantization round-trip in the fake-quant path (see L1)."
+    }
+  },
+  "verdict": {
+    "headline": "The parity fake-quant path IS a valid proxy for FORMAT-LEVEL claims (which grid / which scale scheme / which solver), and is NOT a valid proxy for 'what a specific vendor kernel will output'. E7 may proceed.",
+    "L1_accuracy_vs_exact_fp8_arithmetic_fp64_ref": {
+      "fake_parity_fp32": 6.150419714205875e-07,
+      "fake_bucketize_bf16": 0.01637237361242724,
+      "real_scaled_mm_fastaccum": 0.0033336860252596587,
+      "real_scaled_mm_slowaccum": 0.002344159897751878,
+      "interpretation": "the parity fake-quant reproduces exact FP8 arithmetic to ~1e-6; the 4090 kernel itself deviates by 0.25-0.33%. The fake path is therefore a MORE faithful model of the format than the hardware."
+    },
+    "L1_diagnosis_of_status_quo": {
+      "bug1_bf16_dequant_roundtrip_frac_of_quant_err": 0.0066719187774341715,
+      "bug2_bucketize_vs_hw_cast_frac_of_quant_err": 0.2602750033435425,
+      "bug2_max_element_mismatch_act": 0.0399056039750576,
+      "bug2_max_element_mismatch_wgt": 0.00335693359375,
+      "tf32_effect_frac_of_quant_err": 0.0001694862323423918,
+      "rejected_hypothesis_hw_bf16_scale_seq": {
+        "frac_of_quant_err": 1.1725811995223594,
+        "note": "replicating the real kernel's bf16 amax/divide dtype sequence made L1 WORSE (117% vs 17%). Hypothesis rejected: the real kernel's bf16-derived scale is NOT the source of the end-to-end gap."
+      },
+      "residual_after_fix_frac_of_quant_err": 0.1731341731478098,
+      "residual_is_the_real_kernels_own_error": 0.14080016154733174,
+      "CORRECTION": "the earlier max-over-layers aggregation obscured which bug dominates. Per layer: bug2 (bucketize vs hardware cast) dominates on the GELU-output layer (blocks.15.ffn.2: 34.6 pp of 44.0), while bug1 (bf16 round-trip) dominates on blocks.0.ffn.0 (4.7 pp of 15.6). See L1_per_layer_attribution.",
+      "bug1_bf16_roundtrip_pp_range": [
+        0.0066719187774341715,
+        0.046528261266507304
+      ],
+      "bug2_rounding_mode_pp_range": [
+        0.0,
+        0.3459572859575324
+      ]
+    },
+    "L2_resolution_limit": {
+      "determinism_same_config_rerun": 0.0,
+      "two_mathematically_equivalent_real_configs": 0.12043398457363048,
+      "fake_parity_vs_real": 0.47581065246409826,
+      "ratio_fake_gap_to_real_real_floor": 3.950800549766739,
+      "interpretation": "the pipeline is bit-deterministic (rerun = 0.0000), yet two real kernel configurations that are mathematically identical (eager vs compiled activation quant) diverge by 0.1204 in latent L2. That is the resolution limit of ANY end-to-end comparison here. No fake-quant path can be closer to 'the' real kernel than the real kernels are to each other."
+    },
+    "answer_to_the_question_that_gates_E7": {
+      "fakequant_valid_for_format_level_claims": true,
+      "fakequant_valid_for_kernel_output_prediction": false,
+      "must_use": "quant/fp8/wan_fp8.py::FakeQuantLinearParity (hw cast + fp32 storage + fp32 matmul, TF32 off). The status-quo FakeQuantLinear must NOT be used for E7.",
+      "supportability_floor": 0.12043398457363048,
+      "supportability_note": "any E7 claim resting on a latent-L2 difference smaller than 0.1204 is not supportable. The format-axis conclusions in SPEC 4.8.1 rest on weight-error ratios of 2.86-5.27x, far above this floor -> E7 may proceed.",
+      "consequence_for_E2": "the E2 quality table (results/E2/quality_pixel.json) was produced with the status-quo fake-quant path. Cross-arm comparisons there remain valid (all arms share the bias), but the absolute numbers are optimistic by the bug1+bug2 amount."
+    },
+    "L1_per_layer_attribution": [
+      {
+        "layer": "blocks.0.ffn.0",
+        "quant_err": 0.022418758301921773,
+        "status_quo": 0.1561953083796638,
+        "after_fixing_bf16_roundtrip": 0.1096670471131565,
+        "after_also_fixing_rounding_mode": 0.1096670471131565,
+        "delta_bug1_bf16_roundtrip": 0.046528261266507304,
+        "delta_bug2_rounding_mode": 0.0,
+        "real_kernel_own_error": 0.08019784217375735,
+        "act_elem_mismatch": 0.0,
+        "wgt_elem_mismatch": 0.0
+      },
+      {
+        "layer": "blocks.0.self_attn.q",
+        "quant_err": 0.014715241974171567,
+        "status_quo": 0.264963455637044,
+        "after_fixing_bf16_roundtrip": 0.2313448237649076,
+        "after_also_fixing_rounding_mode": 0.1731341731478098,
+        "delta_bug1_bf16_roundtrip": 0.0336186318721364,
+        "delta_bug2_rounding_mode": 0.05821065061709779,
+        "real_kernel_own_error": 0.14080016154733174,
+        "act_elem_mismatch": 0.0,
+        "wgt_elem_mismatch": 0.00335693359375
+      },
+      {
+        "layer": "blocks.15.ffn.2",
+        "quant_err": 0.03814033073124443,
+        "status_quo": 0.44008109526878647,
+        "after_fixing_bf16_roundtrip": 0.4334091764913523,
+        "after_also_fixing_rounding_mode": 0.08745189053381994,
+        "delta_bug1_bf16_roundtrip": 0.0066719187774341715,
+        "delta_bug2_rounding_mode": 0.3459572859575324,
+        "real_kernel_own_error": 0.08838323566028045,
+        "act_elem_mismatch": 0.0399056039750576,
+        "wgt_elem_mismatch": 0.0
+      },
+      {
+        "layer": "blocks.29.cross_attn.o",
+        "quant_err": 0.018992646132947974,
+        "status_quo": 0.2387228427176063,
+        "after_fixing_bf16_roundtrip": 0.21688546741837092,
+        "after_also_fixing_rounding_mode": 0.1381308194786574,
+        "delta_bug1_bf16_roundtrip": 0.02183737529923538,
+        "delta_bug2_rounding_mode": 0.07875464793971351,
+        "real_kernel_own_error": 0.11354356680450721,
+        "act_elem_mismatch": 0.0043385825119912624,
+        "wgt_elem_mismatch": 0.0
+      }
+    ]
+  }
+}

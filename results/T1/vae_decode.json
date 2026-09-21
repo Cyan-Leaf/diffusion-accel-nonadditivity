@@ -1,0 +1,110 @@
+{
+  "timestamp": "2026-09-18T12:44:49",
+  "device": "NVIDIA GeForce RTX 4090",
+  "sm": "89",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "vae_ckpt": "<SF_ROOT>/wan_models/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth",
+  "latent_shape_FCHW": [
+    21,
+    16,
+    60,
+    104
+  ],
+  "pixel_geometry": "832x480, 81 frames, 16 fps",
+  "rows": [
+    {
+      "dtype": "torch.float32",
+      "use_cache": false,
+      "reps": 5,
+      "ms_median": 9647.404752206057,
+      "ms_min": 9639.591326005757,
+      "ms_max": 9648.42119300738,
+      "peak_alloc_bytes": 9335379456,
+      "peak_alloc_gib": 8.694249629974365,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "weight_bytes": 507570124,
+      "ok": true
+    },
+    {
+      "dtype": "torch.float32",
+      "use_cache": true,
+      "reps": 5,
+      "ms_median": 9994.74316695705,
+      "ms_min": 9994.483417831361,
+      "ms_max": 9997.125357855111,
+      "peak_alloc_bytes": 9350804992,
+      "peak_alloc_gib": 8.708615779876709,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "weight_bytes": 507570124,
+      "ok": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "use_cache": false,
+      "reps": 5,
+      "ms_median": 4869.501585140824,
+      "ms_min": 4869.136814959347,
+      "ms_max": 4876.333657186478,
+      "peak_alloc_bytes": 4662457856,
+      "peak_alloc_gib": 4.342252254486084,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "weight_bytes": 253785062,
+      "ok": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "use_cache": true,
+      "reps": 5,
+      "ms_median": 5046.833673026413,
+      "ms_min": 5046.2060030549765,
+      "ms_max": 5047.278463840485,
+      "peak_alloc_bytes": 4668597760,
+      "peak_alloc_gib": 4.347970485687256,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "weight_bytes": 253785062,
+      "ok": true
+    }
+  ],
+  "bf16_vs_fp32_fidelity": {
+    "seed": 1234,
+    "latent": "random normal (NOT real model output)",
+    "mean_abs_diff": 0.0022553238086402416,
+    "max_abs_diff": 0.03700929880142212,
+    "mse": 8.364782843273133e-06,
+    "psnr_db": 56.79605484008789,
+    "fp32_has_nan": false,
+    "bf16_has_nan": false
+  },
+  "dit_reference": {
+    "dit_gemm_only_bf16_ms_per_step_lb": 514.8884793296456,
+    "note": "GEMM only (no attention/norm/rope), so this is a lower bound on DiT per-step cost; the derived VAE share is an upper bound.",
+    "vae_share_ub_at_4steps": 0.8240743838380519,
+    "vae_share_ub_at_50steps": 0.27258847879515846
+  },
+  "caveat": "decode() is a per-latent-frame causal loop with a feature cache (wan/modules/vae.py:545-569); it is NOT spatially tiled. Peak memory reported is torch allocator peak during decode only, VAE weights included."
+}

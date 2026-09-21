@@ -1,0 +1,1064 @@
+{
+  "timestamp": "2026-09-18T12:32:29",
+  "device": "NVIDIA GeForce RTX 4090",
+  "sm": "89",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "iters": 50,
+  "warmup": 10,
+  "shapes_file": "research/gemm_shapes.json",
+  "shapes_note": "Wan2.1-T2V-1.3B @ 832x480x81, batch=1, CFG-free (distilled). seq_len=32760, text_len=512.",
+  "peak_reference_4090": {
+    "bf16_fp32acc_dense_tflops": 165.2,
+    "fp8_fp32acc_dense_tflops": 330.3,
+    "fp8_fp16acc_dense_tflops": 660.6,
+    "int8_dense_tops": 660.6,
+    "hbm_gbps": 1008.0,
+    "source": "NVIDIA Ada GPU Architecture Whitepaper v2.1, Appendix A"
+  },
+  "rows": [
+    {
+      "name": "self_q",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "DiT self-attn Q proj",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.9184319972991943,
+        "tflops": 168.30976531150043,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 224.2910009731438,
+        "pct_of_peak": 1.0188242452270002
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.5746880173683167,
+        "tflops": 268.9825944655624,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 266.7836658611574,
+        "pct_of_peak": 0.814358445248448,
+        "speedup_vs_bf16": 1.598140155253268
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5174720287322998,
+        "tflops": 298.72353545116613,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 296.2814751081254,
+        "pct_of_peak": 0.9044006522893313,
+        "speedup_vs_bf16": 1.7748437525196565
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.59552001953125,
+        "tflops": 259.57326177157734,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 426.4442632842062,
+        "pct_of_peak": 0.7858712133562741,
+        "speedup_vs_bf16": 1.54223530221892
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.8027840256690979,
+        "tflops": 192.55624050461273,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 316.3442319225706,
+        "pct_of_peak": 0.5829737829385793,
+        "speedup_vs_bf16": 1.1440586358625002
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.9706240296363831,
+        "tops": 159.25947555399947,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 261.64208616918074,
+        "pct_of_peak": 0.24108306926127682,
+        "speedup_vs_bf16": 0.9462283739701551
+      }
+    },
+    {
+      "name": "self_k",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "DiT self-attn K proj",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.9725760221481323,
+        "tflops": 158.93983647527747,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 211.80455543723542,
+        "pct_of_peak": 0.9621055476711712
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.5840319991111755,
+        "tflops": 264.67911716353433,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 262.5153694203915,
+        "pct_of_peak": 0.8013294494808789,
+        "speedup_vs_bf16": 1.6652786553275725
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5449600219726562,
+        "tflops": 283.6558053569592,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 281.3369234774671,
+        "pct_of_peak": 0.8587823353223106,
+        "speedup_vs_bf16": 1.7846740732055608
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.6004160046577454,
+        "tflops": 257.4566179462783,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 422.96689966611126,
+        "pct_of_peak": 0.7794629668370521,
+        "speedup_vs_bf16": 1.6198369373956463
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.7946879863739014,
+        "tflops": 194.51794486706822,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 319.5670506594439,
+        "pct_of_peak": 0.5889129423768339,
+        "speedup_vs_bf16": 1.2238463885504551
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 1.0369280576705933,
+        "tops": 149.07598726497824,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 244.91197255333182,
+        "pct_of_peak": 0.225667555653918,
+        "speedup_vs_bf16": 0.9379397297175808
+      }
+    },
+    {
+      "name": "self_v",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "DiT self-attn V proj",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.9667519927024841,
+        "tflops": 159.89734191070033,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 213.08053518891978,
+        "pct_of_peak": 0.9679015854158617
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.5751360058784485,
+        "tflops": 268.77307687230723,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 266.57586107102935,
+        "pct_of_peak": 0.8137241201099219,
+        "speedup_vs_bf16": 1.6809102244014285
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5444480180740356,
+        "tflops": 283.9225578721449,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 281.6014952949125,
+        "pct_of_peak": 0.8595899420894487,
+        "speedup_vs_bf16": 1.775655270309061
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.6080960035324097,
+        "tflops": 254.2050482523214,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 417.62500415193887,
+        "pct_of_peak": 0.7696186746967042,
+        "speedup_vs_bf16": 1.589801589036359
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.8038079738616943,
+        "tflops": 192.31094856816847,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 315.9412499728405,
+        "pct_of_peak": 0.5822311491618785,
+        "speedup_vs_bf16": 1.2027151062684365
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.9878399968147278,
+        "tops": 156.4839188719265,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 257.08221657239716,
+        "pct_of_peak": 0.23688149995750302,
+        "speedup_vs_bf16": 0.9786524091145921
+      }
+    },
+    {
+      "name": "self_o",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "DiT self-attn out proj",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.9715840220451355,
+        "tflops": 159.1021161449471,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 212.02081068232135,
+        "pct_of_peak": 0.9630878701267985
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.5850560069084167,
+        "tflops": 264.21585642175575,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 262.05589582810643,
+        "pct_of_peak": 0.799926904092509,
+        "speedup_vs_bf16": 1.6606683985337232
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5481600165367126,
+        "tflops": 281.99990742967117,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 279.6945624904615,
+        "pct_of_peak": 0.8537690203744207,
+        "speedup_vs_bf16": 1.7724459879135752
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.6044800281524658,
+        "tflops": 255.7256926956908,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 420.1232202430112,
+        "pct_of_peak": 0.7742225028631269,
+        "speedup_vs_bf16": 1.6073054142329355
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.7945600152015686,
+        "tflops": 194.54927376478284,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 319.61851986168085,
+        "pct_of_peak": 0.5890077922033994,
+        "speedup_vs_bf16": 1.2227950103915792
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.9776639938354492,
+        "tops": 158.1126797086664,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 259.75805348390827,
+        "pct_of_peak": 0.2393470779725498,
+        "speedup_vs_bf16": 0.9937811233423238
+      }
+    },
+    {
+      "name": "self_qkv_fused",
+      "m": 32760,
+      "n": 4608,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "hypothetical fused QKV (E3 P1 item), not in current graph",
+      "gflop": 463.74322176,
+      "bf16": {
+        "ok": true,
+        "ms": 2.845855951309204,
+        "tflops": 162.95386333474121,
+        "bytes_lb": 416710656,
+        "arith_intensity_ub": 1112.8662420382166,
+        "eff_bw_gbps_lb": 146.4271780194275,
+        "pct_of_peak": 0.9864035310819687
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 1.745695948600769,
+        "tflops": 265.64948044457856,
+        "bytes_lb": 359313408,
+        "arith_intensity_ub": 1290.6371191135734,
+        "eff_bw_gbps_lb": 205.82817316383253,
+        "pct_of_peak": 0.804267273522793,
+        "speedup_vs_bf16": 1.6302128406669263
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 1.5876480340957642,
+        "tflops": 292.0944767359109,
+        "bytes_lb": 359313408,
+        "arith_intensity_ub": 1290.6371191135734,
+        "eff_bw_gbps_lb": 226.31805052726617,
+        "pct_of_peak": 0.8843308408595547,
+        "speedup_vs_bf16": 1.7924980160543231
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 1.6443519592285156,
+        "tflops": 282.0218744274039,
+        "bytes_lb": 661229568,
+        "arith_intensity_ub": 701.3346713497241,
+        "eff_bw_gbps_lb": 402.12167735077264,
+        "pct_of_peak": 0.8538355265740353,
+        "speedup_vs_bf16": 1.730685413993973
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 1.8286720514297485,
+        "tflops": 253.59561950838696,
+        "bytes_lb": 661229568,
+        "arith_intensity_ub": 701.3346713497241,
+        "eff_bw_gbps_lb": 361.590022378817,
+        "pct_of_peak": 0.7677735982694125,
+        "speedup_vs_bf16": 1.5562418363009207
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 3.133023977279663,
+        "tops": 148.01776977227547,
+        "bytes_lb": 661229568,
+        "arith_intensity_ub": 701.3346713497241,
+        "eff_bw_gbps_lb": 211.05155044939406,
+        "pct_of_peak": 0.22406565209245455,
+        "speedup_vs_bf16": 0.9083415805135967
+      }
+    },
+    {
+      "name": "ffn_up",
+      "m": 32760,
+      "n": 8960,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "ffn.0",
+      "gflop": 901.7229312,
+      "bf16": {
+        "ok": true,
+        "ms": 5.511199951171875,
+        "tflops": 163.6164427328139,
+        "bytes_lb": 715223040,
+        "arith_intensity_ub": 1260.7576668671077,
+        "eff_bw_gbps_lb": 129.77628217751715,
+        "pct_of_peak": 0.9904143022567429
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 3.4500479698181152,
+        "tflops": 261.36533146451825,
+        "bytes_lb": 651141120,
+        "arith_intensity_ub": 1384.8348745046235,
+        "eff_bw_gbps_lb": 188.7339323094478,
+        "pct_of_peak": 0.7912967952301491,
+        "speedup_vs_bf16": 1.5974270501121244
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 2.7952959537506104,
+        "tflops": 322.5858535623414,
+        "bytes_lb": 651141120,
+        "arith_intensity_ub": 1384.8348745046235,
+        "eff_bw_gbps_lb": 232.9417459808956,
+        "pct_of_peak": 0.9766450304642489,
+        "speedup_vs_bf16": 1.9715980140768918
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 3.3128321170806885,
+        "tflops": 272.1909530370679,
+        "bytes_lb": 1238200320,
+        "arith_intensity_ub": 728.2528655783258,
+        "eff_bw_gbps_lb": 373.75884929874394,
+        "pct_of_peak": 0.8240719135242746,
+        "speedup_vs_bf16": 1.663591681195248
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 3.594111919403076,
+        "tflops": 250.88894041723705,
+        "bytes_lb": 1238200320,
+        "arith_intensity_ub": 728.2528655783258,
+        "eff_bw_gbps_lb": 344.5080030244703,
+        "pct_of_peak": 0.7595789900612687,
+        "speedup_vs_bf16": 1.5333968654173675
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 6.160384178161621,
+        "tops": 146.3744638518781,
+        "bytes_lb": 1238200320,
+        "arith_intensity_ub": 728.2528655783258,
+        "eff_bw_gbps_lb": 200.99401014459184,
+        "pct_of_peak": 0.22157805608821993,
+        "speedup_vs_bf16": 0.894619522384483
+      }
+    },
+    {
+      "name": "ffn_down",
+      "m": 32760,
+      "n": 1536,
+      "k": 8960,
+      "per_step_calls": 30,
+      "role": "ffn.2",
+      "gflop": 901.7229312,
+      "bf16": {
+        "ok": true,
+        "ms": 5.809535980224609,
+        "tflops": 155.21427774428508,
+        "bytes_lb": 715223040,
+        "arith_intensity_ub": 1260.7576668671077,
+        "eff_bw_gbps_lb": 123.1119047088418,
+        "pct_of_peak": 0.9395537393721858
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 5.0614399909973145,
+        "tflops": 178.15541284770285,
+        "bytes_lb": 407930880,
+        "arith_intensity_ub": 2210.479704797048,
+        "eff_bw_gbps_lb": 80.59581477318288,
+        "pct_of_peak": 0.5393745469200812,
+        "speedup_vs_bf16": 1.147802994910128
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 2.9729599952697754,
+        "tflops": 303.30812813987257,
+        "bytes_lb": 407930880,
+        "arith_intensity_ub": 2210.479704797048,
+        "eff_bw_gbps_lb": 137.21371315088388,
+        "pct_of_peak": 0.9182807391458448,
+        "speedup_vs_bf16": 1.9541251780945792
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 3.378783941268921,
+        "tflops": 266.87794984054324,
+        "bytes_lb": 508569600,
+        "arith_intensity_ub": 1773.0570824524314,
+        "eff_bw_gbps_lb": 150.51853235960505,
+        "pct_of_peak": 0.8079865269165705,
+        "speedup_vs_bf16": 1.7194162400460582
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 3.294271945953369,
+        "tflops": 273.7244969431446,
+        "bytes_lb": 508569600,
+        "arith_intensity_ub": 1773.0570824524314,
+        "eff_bw_gbps_lb": 154.37996872866512,
+        "pct_of_peak": 0.8287147954681943,
+        "speedup_vs_bf16": 1.7635265319734608
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 5.965248107910156,
+        "tops": 151.1626867630668,
+        "bytes_lb": 508569600,
+        "arith_intensity_ub": 1773.0570824524314,
+        "eff_bw_gbps_lb": 85.25539773033354,
+        "pct_of_peak": 0.22882634992895368,
+        "speedup_vs_bf16": 0.9738967893927049
+      }
+    },
+    {
+      "name": "cross_q",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "cross-attn Q proj (on latent tokens)",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.9584000110626221,
+        "tflops": 161.29076808816905,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 214.9374265674337,
+        "pct_of_peak": 0.9763363685724519
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.5790719985961914,
+        "tflops": 266.946207543693,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 264.76392637129385,
+        "pct_of_peak": 0.8081931805743051,
+        "speedup_vs_bf16": 1.655061915247175
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5455039739608765,
+        "tflops": 283.3729565663742,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 281.0563869714282,
+        "pct_of_peak": 0.8579259962651354,
+        "speedup_vs_bf16": 1.7569074778754192
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.6050559878349304,
+        "tflops": 255.48226449776467,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 419.72330016719627,
+        "pct_of_peak": 0.7734855116493027,
+        "speedup_vs_bf16": 1.5839856646854467
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.7969920039176941,
+        "tflops": 193.95561456092562,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 318.6432169352432,
+        "pct_of_peak": 0.5872104588583882,
+        "speedup_vs_bf16": 1.2025214887370395
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 1.003167986869812,
+        "tops": 154.0929096056382,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 253.15410711262817,
+        "pct_of_peak": 0.23326204905485648,
+        "speedup_vs_bf16": 0.9553734006735205
+      }
+    },
+    {
+      "name": "cross_k",
+      "m": 512,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "cross-attn K proj (on text embedding, M=text_len); cacheable across steps",
+      "gflop": 2.415919104,
+      "bf16": {
+        "ok": true,
+        "ms": 0.051231998950242996,
+        "tflops": 47.156448186735076,
+        "bytes_lb": 7864320,
+        "arith_intensity_ub": 307.2,
+        "eff_bw_gbps_lb": 153.5040631078616,
+        "pct_of_peak": 0.2854506548833843
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.06003199890255928,
+        "tflops": 40.24385574635604,
+        "bytes_lb": 4718592,
+        "arith_intensity_ub": 512.0,
+        "eff_bw_gbps_lb": 78.60128075460163,
+        "pct_of_peak": 0.12184031409735403,
+        "speedup_vs_bf16": 0.8534115119738064
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.06220800057053566,
+        "tflops": 38.836147791965544,
+        "bytes_lb": 4718592,
+        "arith_intensity_ub": 512.0,
+        "eff_bw_gbps_lb": 75.8518511561827,
+        "pct_of_peak": 0.1175784068784909,
+        "speedup_vs_bf16": 0.8235596463537302
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.059328000992536545,
+        "tflops": 40.72139737699779,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 106.04530566926509,
+        "pct_of_peak": 0.12328609560096213,
+        "speedup_vs_bf16": 0.8635382634363155
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.0605119988322258,
+        "tflops": 39.924629009501444,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 103.9703880455767,
+        "pct_of_peak": 0.12087383896306825,
+        "speedup_vs_bf16": 0.8466419873567171
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.0626240000128746,
+        "tops": 38.57816657357118,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 100.46397545200827,
+        "pct_of_peak": 0.058398677828597,
+        "speedup_vs_bf16": 0.818088894668345
+      }
+    },
+    {
+      "name": "cross_v",
+      "m": 512,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "cross-attn V proj (on text embedding, M=text_len); cacheable across steps",
+      "gflop": 2.415919104,
+      "bf16": {
+        "ok": true,
+        "ms": 0.0496320016682148,
+        "tflops": 48.67664053024073,
+        "bytes_lb": 7864320,
+        "arith_intensity_ub": 307.2,
+        "eff_bw_gbps_lb": 158.45260589271072,
+        "pct_of_peak": 0.29465278771332165
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.058687999844551086,
+        "tflops": 41.16547011994152,
+        "bytes_lb": 4718592,
+        "arith_intensity_ub": 512.0,
+        "eff_bw_gbps_lb": 80.40130882801077,
+        "pct_of_peak": 0.1246305483498078,
+        "speedup_vs_bf16": 0.8456925061286257
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.059808000922203064,
+        "tflops": 40.394580436530134,
+        "bytes_lb": 4718592,
+        "arith_intensity_ub": 512.0,
+        "eff_bw_gbps_lb": 78.89566491509791,
+        "pct_of_peak": 0.12229664074032738,
+        "speedup_vs_bf16": 0.8298555528176743
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.05951999872922897,
+        "tflops": 40.590039576287744,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 105.70322806324931,
+        "pct_of_peak": 0.12288840319796471,
+        "speedup_vs_bf16": 0.8338710135731506
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.05993599817156792,
+        "tflops": 40.30831516452577,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 104.96957074095253,
+        "pct_of_peak": 0.12203546825469504,
+        "speedup_vs_bf16": 0.8280833419365481
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.06220800057053566,
+        "tops": 38.836147791965544,
+        "bytes_lb": 6291456,
+        "arith_intensity_ub": 384.0,
+        "eff_bw_gbps_lb": 101.13580154157695,
+        "pct_of_peak": 0.05878920343924545,
+        "speedup_vs_bf16": 0.797839525672243
+      }
+    },
+    {
+      "name": "cross_o",
+      "m": 32760,
+      "n": 1536,
+      "k": 1536,
+      "per_step_calls": 30,
+      "role": "cross-attn out proj",
+      "gflop": 154.58107392,
+      "bf16": {
+        "ok": true,
+        "ms": 0.959231972694397,
+        "tflops": 161.15087728549702,
+        "bytes_lb": 205996032,
+        "arith_intensity_ub": 750.4080171796708,
+        "eff_bw_gbps_lb": 214.75100691376616,
+        "pct_of_peak": 0.975489571946108
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.578656017780304,
+        "tflops": 267.13810825465083,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 264.9542582968685,
+        "pct_of_peak": 0.808774169708298,
+        "speedup_vs_bf16": 1.6576894445407544
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.5491200089454651,
+        "tflops": 281.5069045050077,
+        "bytes_lb": 153317376,
+        "arith_intensity_ub": 1008.2423659533541,
+        "eff_bw_gbps_lb": 279.2055898571827,
+        "pct_of_peak": 0.8522764290190968,
+        "speedup_vs_bf16": 1.7468530686698427
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.6071360111236572,
+        "tflops": 254.60699264718136,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 418.2853452062424,
+        "pct_of_peak": 0.7708355817353356,
+        "speedup_vs_bf16": 1.5799292993988252
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.7982720136642456,
+        "tflops": 193.64461145322954,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 318.13228029163287,
+        "pct_of_peak": 0.5862688811784121,
+        "speedup_vs_bf16": 1.2016354779761218
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 1.03603196144104,
+        "tops": 149.20492771766396,
+        "bytes_lb": 253956096,
+        "arith_intensity_ub": 608.6921178690666,
+        "eff_bw_gbps_lb": 245.12380452700202,
+        "pct_of_peak": 0.22586274253355126,
+        "speedup_vs_bf16": 0.9258710236701383
+      }
+    },
+    {
+      "name": "head",
+      "m": 32760,
+      "n": 64,
+      "k": 1536,
+      "per_step_calls": 1,
+      "role": "final unpatchify proj, out_dim*prod(patch)=16*4=64",
+      "gflop": 6.44087808,
+      "bf16": {
+        "ok": true,
+        "ms": 0.20998400449752808,
+        "tflops": 30.673184347600255,
+        "bytes_lb": 105028608,
+        "arith_intensity_ub": 61.324987569101175,
+        "eff_bw_gbps_lb": 500.1743263794,
+        "pct_of_peak": 0.18567302873850033
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.13516800105571747,
+        "tflops": 47.65090871873597,
+        "bytes_lb": 54610944,
+        "arith_intensity_ub": 117.94115992574675,
+        "eff_bw_gbps_lb": 404.02272411714426,
+        "pct_of_peak": 0.14426554259381158,
+        "speedup_vs_bf16": 1.5535038090189022
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.1342719942331314,
+        "tflops": 47.96888671227259,
+        "bytes_lb": 54610944,
+        "arith_intensity_ub": 117.94115992574675,
+        "eff_bw_gbps_lb": 406.718797258504,
+        "pct_of_peak": 0.1452282370943766,
+        "speedup_vs_bf16": 1.5638704533794348
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.13708800077438354,
+        "tflops": 46.98352914636386,
+        "bytes_lb": 58804224,
+        "arith_intensity_ub": 109.5308745167694,
+        "eff_bw_gbps_lb": 428.9523785293121,
+        "pct_of_peak": 0.1422450170946529,
+        "speedup_vs_bf16": 1.5317460559010938
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.13504000008106232,
+        "tflops": 47.69607580075271,
+        "bytes_lb": 58804224,
+        "arith_intensity_ub": 109.5308745167694,
+        "eff_bw_gbps_lb": 435.45781964381507,
+        "pct_of_peak": 0.1444022882251066,
+        "speedup_vs_bf16": 1.5549763356892632
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.12960000336170197,
+        "tops": 49.69813204421059,
+        "bytes_lb": 58804224,
+        "arith_intensity_ub": 109.5308745167694,
+        "eff_bw_gbps_lb": 453.73628452680435,
+        "pct_of_peak": 0.07523180751469964,
+        "speedup_vs_bf16": 1.6202469062557168
+      }
+    },
+    {
+      "name": "text_embed_0",
+      "m": 512,
+      "n": 1536,
+      "k": 4096,
+      "per_step_calls": 0,
+      "role": "text_embedding[0]; runs once per prompt, not per step",
+      "gflop": 6.442450944,
+      "bf16": {
+        "ok": true,
+        "ms": 0.08342400193214417,
+        "tflops": 77.22538831498629,
+        "bytes_lb": 18350080,
+        "arith_intensity_ub": 351.0857142857143,
+        "eff_bw_gbps_lb": 219.96163663936525,
+        "pct_of_peak": 0.46746603096238676
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.07891199737787247,
+        "tflops": 81.64095648409621,
+        "bytes_lb": 9961472,
+        "arith_intensity_ub": 646.7368421052631,
+        "eff_bw_gbps_lb": 126.23520289695864,
+        "pct_of_peak": 0.2471721358888774,
+        "speedup_vs_bf16": 1.0571776751850017
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.07686399668455124,
+        "tflops": 83.81623675437706,
+        "bytes_lb": 9961472,
+        "arith_intensity_ub": 646.7368421052631,
+        "eff_bw_gbps_lb": 129.59867336695672,
+        "pct_of_peak": 0.25375790721882246,
+        "speedup_vs_bf16": 1.0853456173312859
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.07852800190448761,
+        "tflops": 82.04017404945377,
+        "bytes_lb": 11534336,
+        "arith_intensity_ub": 558.5454545454545,
+        "eff_bw_gbps_lb": 146.88182202864445,
+        "pct_of_peak": 0.24838078731290877,
+        "speedup_vs_bf16": 1.062347187104181
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.10115200281143188,
+        "tflops": 63.69078975144024,
+        "bytes_lb": 11534336,
+        "arith_intensity_ub": 558.5454545454545,
+        "eff_bw_gbps_lb": 114.02973425550825,
+        "pct_of_peak": 0.19282709582634042,
+        "speedup_vs_bf16": 0.8247390028219576
+      },
+      "int8_acc_int32": {
+        "ok": true,
+        "ms": 0.12444800138473511,
+        "tops": 51.76821541780289,
+        "bytes_lb": 11534336,
+        "arith_intensity_ub": 558.5454545454545,
+        "eff_bw_gbps_lb": 92.68397942640492,
+        "pct_of_peak": 0.07836544870996502,
+        "speedup_vs_bf16": 0.6703522837159602
+      }
+    },
+    {
+      "name": "time_proj",
+      "m": 1,
+      "n": 9216,
+      "k": 1536,
+      "per_step_calls": 1,
+      "role": "time_projection -> 6*dim modulation; M=1, degenerate GEMM",
+      "gflop": 0.028311552,
+      "bf16": {
+        "ok": true,
+        "ms": 0.07273600250482559,
+        "tflops": 0.3892371181399707,
+        "bytes_lb": 28333056,
+        "arith_intensity_ub": 0.9992410278651198,
+        "eff_bw_gbps_lb": 389.53276265244676,
+        "pct_of_peak": 0.0023561568894671352
+      },
+      "fp8_e4m3_out_bf16_slowacc": {
+        "ok": true,
+        "ms": 0.06595200300216675,
+        "tflops": 0.4292750896294972,
+        "bytes_lb": 14175744,
+        "arith_intensity_ub": 1.997182793368729,
+        "eff_bw_gbps_lb": 214.9403104487104,
+        "pct_of_peak": 0.0012996521030260283,
+        "speedup_vs_bf16": 1.1028626757922113
+      },
+      "fp8_e4m3_out_bf16_fastacc": {
+        "ok": true,
+        "ms": 0.0655680000782013,
+        "tflops": 0.43178916493157526,
+        "bytes_lb": 14175744,
+        "arith_intensity_ub": 1.997182793368729,
+        "eff_bw_gbps_lb": 216.19912126483874,
+        "pct_of_peak": 0.0013072635934955352,
+        "speedup_vs_bf16": 1.1093216571814786
+      },
+      "fp8_e4m3_out_fp32_slowacc": {
+        "ok": true,
+        "ms": 0.0655680000782013,
+        "tflops": 0.43178916493157526,
+        "bytes_lb": 14194176,
+        "arith_intensity_ub": 1.9945893301590738,
+        "eff_bw_gbps_lb": 216.4802340024244,
+        "pct_of_peak": 0.0013072635934955352,
+        "speedup_vs_bf16": 1.1093216571814786
+      },
+      "fp8_e4m3_out_fp32_fastacc": {
+        "ok": true,
+        "ms": 0.06540799885988235,
+        "tflops": 0.4328454087190357,
+        "bytes_lb": 14194176,
+        "arith_intensity_ub": 1.9945893301590738,
+        "eff_bw_gbps_lb": 217.0097885184792,
+        "pct_of_peak": 0.0013104614251257514,
+        "speedup_vs_bf16": 1.112035282728055
+      },
+      "int8_acc_int32": {
+        "ok": false,
+        "err": "RuntimeError: self.size(0) needs to be greater than 16, but got 1"
+      }
+    }
+  ],
+  "cp0_weighting": "FLOPs x per_step_calls, DiT per-step GEMMs only; self_qkv_fused excluded (hypothetical)",
+  "cp0_per_shape_best": [
+    {
+      "name": "self_q",
+      "w": 4637432217600.0,
+      "speedup": 1.7748437525196565,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "self_k",
+      "w": 4637432217600.0,
+      "speedup": 1.7846740732055608,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "self_v",
+      "w": 4637432217600.0,
+      "speedup": 1.775655270309061,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "self_o",
+      "w": 4637432217600.0,
+      "speedup": 1.7724459879135752,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "ffn_up",
+      "w": 27051687936000.0,
+      "speedup": 1.9715980140768918,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "ffn_down",
+      "w": 27051687936000.0,
+      "speedup": 1.9541251780945792,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "cross_q",
+      "w": 4637432217600.0,
+      "speedup": 1.7569074778754192,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "cross_k",
+      "w": 72477573120.0,
+      "speedup": 0.8635382634363155,
+      "config": "fp8_e4m3_out_fp32_slowacc"
+    },
+    {
+      "name": "cross_v",
+      "w": 72477573120.0,
+      "speedup": 0.8456925061286257,
+      "config": "fp8_e4m3_out_bf16_slowacc"
+    },
+    {
+      "name": "cross_o",
+      "w": 4637432217600.0,
+      "speedup": 1.7468530686698427,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "head",
+      "w": 6440878080.0,
+      "speedup": 1.5638704533794348,
+      "config": "fp8_e4m3_out_bf16_fastacc"
+    },
+    {
+      "name": "time_proj",
+      "w": 28311552.0,
+      "speedup": 1.112035282728055,
+      "config": "fp8_e4m3_out_fp32_fastacc"
+    }
+  ],
+  "aggregate_fp8_speedup_vs_bf16": 1.895006418928911,
+  "cp0_verdict": "A",
+  "cp0_action": "\u6309\u8ba1\u5212\u8d70\uff0cE2 \u52a0\u901f\u6bd4\u76ee\u6807 = \u672c\u4e0a\u754c * 0.70",
+  "semantics_note": "out_dtype is the epilogue output element type, NOT the MMA accumulator. FP8 MMA on Ada always accumulates in FP32. use_fast_accum is the actual accumulate-path switch. The L4 reference table's FP32-acc/FP16-acc rows refer to the MMA accumulator and are therefore NOT comparable to out_dtype.",
+  "reference_L4": {
+    "measured_fp8_tflops": 188,
+    "measured_fp16_fp32acc_tflops": 87,
+    "measured_fp16_fp16acc_tflops": 85,
+    "measured_int8_tops": 165,
+    "spec_dense_bf16_tflops": 121,
+    "spec_dense_fp16_tflops": 121,
+    "spec_dense_fp8_tflops": 242,
+    "spec_dense_int8_tops": 242,
+    "spec_source": "NVIDIA Ada GPU Architecture Whitepaper v2.1, L4 spec table (dense | sparse)",
+    "pct_of_dense_peak": {
+      "fp8": 0.7768595041322314,
+      "fp16_fp32acc": 0.71900826446281,
+      "fp16_fp16acc": 0.7024793388429752,
+      "int8": 0.6818181818181818
+    },
+    "note": "L4 is Ada datacenter (AD104), NOT 4090 (AD102). The forum's 'whitepaper says 660' refers to the FP8-with-FP16-Accumulate row (or the pre-v2.02 erroneous FP32-acc value), not to the accumulate mode their 188 TFLOPS was measured under."
+  }
+}

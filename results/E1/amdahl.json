@@ -1,0 +1,115 @@
+{
+  "inputs": {
+    "fp8_gemm_speedup_measured_E0": 1.8950877155587238,
+    "svg_attention_speedup_LITERATURE_not_measured": 2.3,
+    "note": "SVG factor is literature (CogVideoX-v1.5 2.28x / HunyuanVideo 2.33x). Everything else on this page is measured on this machine. Any row that uses the SVG factor MUST be labelled a projection in the report."
+  },
+  "4step": {
+    "denoise_s": 9.592066504061222,
+    "text_s": 0.05905561102554202,
+    "share_gemm": 0.201820156297888,
+    "share_attention": 0.5166584966010502,
+    "share_other": 0.2815213471010618,
+    "denoise_ceiling_fp8_only": 1.1053677236541757,
+    "denoise_ceiling_svg_only_PROJECTION": 1.4124779926002586,
+    "denoise_ceiling_fp8_plus_svg_PROJECTION": 1.6322481349700486,
+    "naive_product_fp8_x_svg": 4.358701745785065,
+    "vae": {
+      "float32": {
+        "vae_s": 9.693628098350018,
+        "total_s_bf16_baseline": 19.344750213436782,
+        "share_vae": 0.5010986438903132,
+        "share_denoise": 0.4958485583028419,
+        "e2e_ceiling_fp8_only": 1.0496110318651548,
+        "e2e_total_s_fp8_only": 18.43039909656936,
+        "e2e_ceiling_svg_only_PROJECTION": 1.1693169296850383,
+        "e2e_total_s_svg_only_PROJECTION": 16.54363305818842,
+        "e2e_ceiling_fp8_plus_svg_PROJECTION": 1.237724822296075,
+        "e2e_total_s_fp8_plus_svg_PROJECTION": 15.629281941320995,
+        "excess_retained_fp8_only": 0.05542588843841639,
+        "excess_retained_fp8_plus_svg_PROJECTION": 0.07077878308021933
+      },
+      "bfloat16": {
+        "vae_s": 4.888887492008507,
+        "total_s_bf16_baseline": 14.540009607095271,
+        "share_vae": 0.33623688182591127,
+        "share_denoise": 0.6597015245010884,
+        "e2e_ceiling_fp8_only": 1.0671050956930401,
+        "e2e_total_s_fp8_only": 13.625658490227847,
+        "e2e_ceiling_svg_only_PROJECTION": 1.2386185210179395,
+        "e2e_total_s_svg_only_PROJECTION": 11.738892451846908,
+        "e2e_ceiling_fp8_plus_svg_PROJECTION": 1.3432448689635708,
+        "e2e_total_s_fp8_plus_svg_PROJECTION": 10.824541334979484,
+        "excess_retained_fp8_only": 0.07497041298477923,
+        "excess_retained_fp8_plus_svg_PROJECTION": 0.10219569790450105
+      }
+    }
+  },
+  "50step": {
+    "denoise_s": 240.81518706399947,
+    "text_s": 0.11877384409308434,
+    "share_gemm": 0.20173960530125232,
+    "share_attention": 0.5177772768104375,
+    "share_other": 0.28048311788831015,
+    "denoise_ceiling_fp8_only": 1.1053212397611332,
+    "denoise_ceiling_svg_only_PROJECTION": 1.4137407262406911,
+    "denoise_ceiling_fp8_plus_svg_PROJECTION": 1.633833048498392,
+    "naive_product_fp8_x_svg": 4.358701745785065,
+    "vae": {
+      "float32": {
+        "vae_s": 9.691750559024513,
+        "total_s_bf16_baseline": 250.62571146711707,
+        "share_vae": 0.0386702166441375,
+        "share_denoise": 0.9608558741013099,
+        "e2e_ceiling_fp8_only": 1.100783032889361,
+        "e2e_total_s_fp8_only": 227.6794826763171,
+        "e2e_ceiling_svg_only_PROJECTION": 1.39120936837455,
+        "e2e_total_s_svg_only_PROJECTION": 180.14952829130323,
+        "e2e_ceiling_fp8_plus_svg_PROJECTION": 1.5942776790528799,
+        "e2e_total_s_fp8_plus_svg_PROJECTION": 157.20329950050325,
+        "excess_retained_fp8_only": 0.11259570558004048,
+        "excess_retained_fp8_plus_svg_PROJECTION": 0.176936722588916
+      },
+      "bfloat16": {
+        "vae_s": 4.888423685915768,
+        "total_s_bf16_baseline": 245.82238459400833,
+        "share_vae": 0.019885998966242713,
+        "share_denoise": 0.9796308316743466,
+        "e2e_ceiling_fp8_only": 1.1029550635782712,
+        "e2e_total_s_fp8_only": 222.87615580320835,
+        "e2e_ceiling_svg_only_PROJECTION": 1.4019259191576705,
+        "e2e_total_s_svg_only_PROJECTION": 175.34620141819448,
+        "e2e_ceiling_fp8_plus_svg_PROJECTION": 1.6130080626393812,
+        "e2e_total_s_fp8_plus_svg_PROJECTION": 152.3999726273945,
+        "excess_retained_fp8_only": 0.11502231768872564,
+        "excess_retained_fp8_plus_svg_PROJECTION": 0.18251339625754606
+      }
+    }
+  },
+  "full_chain_PROJECTION": {
+    "float32": {
+      "baseline_50step_bf16_vaefp32_s": 250.62571146711707,
+      "target_4step_fp8_svg_s": 15.629281941320995,
+      "e2e_speedup": 16.035651056016082,
+      "naive_product": 109.42809621086339,
+      "naive_product_breakdown": {
+        "distill_measured": 25.10566278518188,
+        "fp8_gemm_measured": 1.8950877155587238,
+        "svg_literature": 2.3
+      },
+      "fraction_of_naive_product": 0.1465405285413725
+    },
+    "bfloat16": {
+      "baseline_50step_bf16_vaefp32_s": 245.82238459400833,
+      "target_4step_fp8_svg_s": 10.824541334979484,
+      "e2e_speedup": 22.709727552116576,
+      "naive_product": 109.42809621086339,
+      "naive_product_breakdown": {
+        "distill_measured": 25.10566278518188,
+        "fp8_gemm_measured": 1.8950877155587238,
+        "svg_literature": 2.3
+      },
+      "fraction_of_naive_product": 0.2075310485924554
+    }
+  }
+}

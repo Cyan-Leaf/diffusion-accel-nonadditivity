@@ -1,0 +1,113 @@
+{
+  "timestamp": "2026-09-20T18:37:36",
+  "THIS_IS_A_PROJECTION_NOT_A_MEASUREMENT": "NVFP4 has no hardware path on Ada (sm_89). Fake-quant latency on a 4090 carries no speedup semantics and is not reported. What follows substitutes an ASSUMED operator-level ratio into THIS PROJECT'S MEASURED operator mix.",
+  "measured_inputs": {
+    "gemm_share_of_denoise": 0.20434291779488076,
+    "denoise_share_of_e2e": {
+      "float32": 0.4958485583028419,
+      "bfloat16": 0.6597015245010884
+    },
+    "fp8_bare_gemm_speedup_E0": 1.8950877155587238,
+    "fp8_measured_denoise_speedup_E3": 1.0840349649867562,
+    "fp8_zero_overhead_ceiling": 1.1068255252448116,
+    "fp8_realisation_rate": 0.9794090760122157
+  },
+  "three_ceilings": {
+    "fp8_zero_overhead": 1.1068255252448116,
+    "absolute_any_gemm_only_method": 1.2568228478888868,
+    "headroom_left_for_ANY_better_format": 1.13552029585774,
+    "reading": "FP8 already captured 97.9% of ITS OWN ceiling. The room a better weight format can still address is the gap between the two ceilings, not the gap to 1.107."
+  },
+  "assumed_inputs": {
+    "nvfp4_over_fp8_gemm_throughput": "1.5 / 2.0 / 3.0 (Blackwell nominal is ~2x)",
+    "nvfp4_realisation_rate": "taken equal to FP8's 0.9794 -- OPTIMISTIC. NVFP4 uses group-16 scales, so a GEMM reads 2048x more scale values than per-tensor FP8; the realisation rate can only be lower."
+  },
+  "projection": [
+    {
+      "nvfp4_over_fp8_gemm_ratio": 1.5,
+      "assumed_bare_gemm_speedup": 2.842631573338086,
+      "denoise_ceiling_zero_overhead": 1.1526816735983267,
+      "denoise_projected_at_fp8_realisation_rate": 1.1289468928751516,
+      "gain_over_measured_fp8_denoise": 1.0414303314367208,
+      "fraction_of_absolute_ceiling": 0.9171393371265583,
+      "e2e_projected": {
+        "vae_float32_ceiling": 1.070295976986837,
+        "vae_float32_projected": 1.0600353097687043,
+        "vae_bfloat16_ceiling": 1.0957494462306048,
+        "vae_bfloat16_projected": 1.0814906183484718
+      }
+    },
+    {
+      "nvfp4_over_fp8_gemm_ratio": 2.0,
+      "assumed_bare_gemm_speedup": 3.7901754311174476,
+      "denoise_ceiling_zero_overhead": 1.177064765272183,
+      "denoise_projected_at_fp8_realisation_rate": 1.1528279141617643,
+      "gain_over_measured_fp8_denoise": 1.0634600832970813,
+      "fraction_of_absolute_ceiling": 0.9365399167029187,
+      "e2e_projected": {
+        "vae_float32_ceiling": 1.0806021588614971,
+        "vae_float32_projected": 1.0703584908281312,
+        "vae_bfloat16_ceiling": 1.1101715247202812,
+        "vae_bfloat16_projected": 1.0958366225516631
+      }
+    },
+    {
+      "nvfp4_over_fp8_gemm_ratio": 3.0,
+      "assumed_bare_gemm_speedup": 5.685263146676172,
+      "denoise_ceiling_zero_overhead": 1.2025017183424822,
+      "denoise_projected_at_fp8_realisation_rate": 1.1777410968649122,
+      "gain_over_measured_fp8_denoise": 1.0864419828739573,
+      "fraction_of_absolute_ceiling": 0.9567790085630214,
+      "e2e_projected": {
+        "vae_float32_ceiling": 1.0911087528256385,
+        "vae_float32_projected": 1.0808847143489553,
+        "vae_bfloat16_ceiling": 1.12497830881192,
+        "vae_bfloat16_projected": 1.1105683436180989
+      }
+    }
+  ],
+  "memory": {
+    "weights_bf16_gib": 2.64,
+    "weights_fp8_gib": 1.35,
+    "weights_nvfp4_gib_naive_half_of_fp8": 0.675,
+    "scale_overhead_note": "NVFP4 \u662f group-16 + E4M3 \u7684\u4e8c\u7ea7 scale\uff1a\u6bcf 16 \u4e2a 4-bit \u6743\u91cd\u914d 1 \u4e2a 8-bit scale = \u6bcf\u6743\u91cd\u591a 0.5 bit\uff0c\u5373 4 -> 4.5 bit\uff0c\u76f8\u5bf9 FP8 \u662f 4.5/8 = 0.5625",
+    "weights_nvfp4_gib_with_scales": 0.759375,
+    "vs_bf16": 0.28764204545454547,
+    "vs_fp8": 0.5625,
+    "D2_quality_cost_of_quantising_the_scale": {
+      "claim": "SPEC 4.7 D2: NVFP4's block scale is itself quantized to FP8 E4M3, so the true grid is shifted relative to the FP32-optimal one. This block isolates that cost by holding the E2M1 element grid fixed and only changing the scale format.",
+      "per_granularity": {
+        "group16": {
+          "e4m3_scale_err": 0.09521948913733165,
+          "fp32_scale_err": 0.09423465641836325,
+          "d2_cost_ratio": 1.0104508548807791,
+          "d2_cost_pct": 1.0450854880779126
+        },
+        "group128": {
+          "e4m3_scale_err": 0.10926709823310375,
+          "fp32_scale_err": 0.10909811658163865,
+          "d2_cost_ratio": 1.0015488961382633,
+          "d2_cost_pct": 0.1548896138263256
+        },
+        "perchannel": {
+          "e4m3_scale_err": 0.11945486781497797,
+          "fp32_scale_err": 0.11943786730368933,
+          "d2_cost_ratio": 1.0001423376996963,
+          "d2_cost_pct": 0.014233769969629329
+        },
+        "pertensor": {
+          "e4m3_scale_err": 0.2555138184626897,
+          "fp32_scale_err": 0.25551382218798,
+          "d2_cost_ratio": 0.9999999854203961,
+          "d2_cost_pct": -1.4579603857534096e-06
+        }
+      }
+    }
+  },
+  "verdict": {
+    "headline": "Even at the nominal 2x NVFP4:FP8 GEMM ratio and an optimistic realisation rate, the projected denoise speedup is 1.153x against FP8's measured 1.084x -- a gain of 6.3%, and the end-to-end gain (VAE fp32) is 2.9%.",
+    "why_so_small": "GEMM is only 20.4% of denoise and denoise is only 49.6% of end-to-end. The format axis is bounded by the operator mix, not by the format.",
+    "where_nvfp4_does_pay": "memory: weights 1.35 -> 0.76 GiB including the group-16 E4M3 scales (56% of FP8, 29% of BF16). That is a deployment benefit, and it is NOT a speed benefit.",
+    "this_is_the_paper_s_own_thesis_applied_forward": "cause (1): a headline operator-level ratio does not transfer to the stage or the chain. We do not need a Blackwell to say that -- the operator mix already bounds it."
+  }
+}

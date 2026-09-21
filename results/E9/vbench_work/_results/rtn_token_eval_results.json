@@ -1,0 +1,36 @@
+{
+    "aesthetic_quality": [
+        0.6842796007792155,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p2.mp4",
+                "video_results": 0.5540811419487
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p1.mp4",
+                "video_results": 0.8394515514373779
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p0.mp4",
+                "video_results": 0.6593061089515686
+            }
+        ]
+    ],
+    "imaging_quality": [
+        0.7283980155285493,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p2.mp4",
+                "video_results": 69.3746496129919
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p1.mp4",
+                "video_results": 72.79512654999156
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_token/rtn_token_p0.mp4",
+                "video_results": 76.34962849558136
+            }
+        ]
+    ]
+}

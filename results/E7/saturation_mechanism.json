@@ -1,0 +1,56 @@
+{
+  "hypothesis": "the saturation point should move right for tensors with wider within-group dynamic range, because scale's job is to move the tensor's dynamic range into the codebook's",
+  "group16_log10_dynrange": {
+    "median_all": 1.5808004140853882,
+    "low_tercile_max": 1.5615540742874146,
+    "high_tercile_min": 1.5934746265411377,
+    "n_low": 101,
+    "n_high": 100
+  },
+  "gain_by_format": {
+    "low_dynrange": {
+      "int8": 5.755058334436118,
+      "int4": 4.409343712391315,
+      "nvfp4": 2.6733385716605764,
+      "fp6e2m3": 2.624661553823857,
+      "fp6e3m2": 1.174308938504033,
+      "fp8": 1.1711324844791982,
+      "fp8e5m2": 1.166683832632603
+    },
+    "high_dynrange": {
+      "int8": 5.691366179305903,
+      "int4": 5.495432712772512,
+      "nvfp4": 3.112632883957574,
+      "fp6e2m3": 2.6658253993606627,
+      "fp6e3m2": 1.1989638050730334,
+      "fp8": 1.2014330859071387,
+      "fp8e5m2": 1.1973590069401743
+    }
+  },
+  "exp_bits": {
+    "int8": 0,
+    "int4": 0,
+    "nvfp4": 2,
+    "fp6e2m3": 2,
+    "fp6e3m2": 3,
+    "fp8": 4,
+    "fp8e5m2": 5
+  },
+  "saturation_low_dynrange": 3,
+  "saturation_high_dynrange": 3,
+  "mean_by_expbits_low": {
+    "0": 5.082201023413717,
+    "2": 2.6490000627422168,
+    "3": 1.174308938504033,
+    "4": 1.1711324844791982,
+    "5": 1.166683832632603
+  },
+  "mean_by_expbits_high": {
+    "0": 5.593399446039207,
+    "2": 2.8892291416591185,
+    "3": 1.1989638050730334,
+    "4": 1.2014330859071387,
+    "5": 1.1973590069401743
+  },
+  "verdict": "REFUTED_OR_EQUAL"
+}

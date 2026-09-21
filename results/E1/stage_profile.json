@@ -1,0 +1,446 @@
+{
+  "timestamp": "2026-09-18T13:31:02",
+  "device": "NVIDIA GeForce RTX 4090",
+  "sm": "89",
+  "total_mem_gib": 22.15869140625,
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "prompt": "Aerial drone shot flying over a dense green forest",
+  "seed": 242,
+  "pixel_geometry": "832x480, 81 frames, 16 fps",
+  "seq_len": 32760,
+  "attention_backend": "torch SDPA fallback (flash_attn package NOT installed in this env)",
+  "structure_note": "T5 / DiT / VAE are loaded and freed sequentially; they never co-reside. This is the only feasible layout on a single 24 GB card and is the accounting used in the report.",
+  "text_encode": {
+    "t5_fp32_fits_in_24gb": true,
+    "t5_fp32_err": null,
+    "t5_params": 5680910336,
+    "t5_fp32_bytes": 22723641344,
+    "t5_bf16_bytes": 11361820672,
+    "t5_fp32_forward_ok": true,
+    "t5_fp32_weights_peak_gib": 21.163040161132812,
+    "t5_fp32_forward_peak_gib": 21.460045337677002,
+    "ms_cond_plus_uncond": 118.77384409308434,
+    "ms_single_prompt": 59.05561102554202,
+    "peak_alloc_gib": 10.840439319610596,
+    "dtype_used": "bfloat16",
+    "embed_shape": [
+      1,
+      512,
+      4096
+    ]
+  },
+  "denoise_4step": {
+    "config": {
+      "steps": 4,
+      "solver": "step-distill",
+      "shift": 5.0,
+      "guide_scale": null,
+      "denoising_step_list": [
+        1000,
+        750,
+        500,
+        250
+      ],
+      "forwards_per_step": 1,
+      "total_forwards": 4,
+      "weights": "lightx2v distilled, <CKPT_DIR>/distill_native.pt",
+      "ckpt_load": {
+        "missing": 0,
+        "unexpected": 0,
+        "missing_examples": [],
+        "unexpected_examples": []
+      },
+      "sigmas": [
+        1.0,
+        0.9375,
+        0.83333,
+        0.625
+      ],
+      "timesteps": [
+        1000.0,
+        937.5,
+        833.33,
+        625.0
+      ]
+    },
+    "denoise_wall_s": 9.592066504061222,
+    "ms_per_forward": 2398.0166260153055,
+    "peak_alloc_gib": 4.279491424560547,
+    "profile": {
+      "n_forwards_profiled": 4,
+      "total_device_ms": 9578.643998999978,
+      "buckets_ms": {
+        "attention": 4948.887808,
+        "gemm": 1933.1634290000022,
+        "elementwise": 1529.906000999989,
+        "reshape": 606.5720420000084,
+        "norm": 384.5752119999948,
+        "gelu": 172.52460099999976,
+        "conv": 2.0909619999987634,
+        "other": 0.923943999983991
+      },
+      "buckets_share": {
+        "attention": 0.5166584966010502,
+        "gemm": 0.201820156297888,
+        "elementwise": 0.15972052006105594,
+        "reshape": 0.06332546047888775,
+        "norm": 0.040149233235951244,
+        "gelu": 0.018011380422741627,
+        "conv": 0.00021829415522876334,
+        "other": 9.645874719641443e-05
+      },
+      "top_ops_ms": {
+        "aten::_flash_attention_forward": 4948.887808,
+        "aten::addmm": 1933.1634290000022,
+        "aten::copy_": 703.4751509999791,
+        "aten::mul": 627.6929779999984,
+        "aten::cat": 606.5631780000087,
+        "aten::add": 197.48259700000926,
+        "aten::pow": 183.2503829999887,
+        "aten::gelu": 172.5135289999982,
+        "aten::mean": 112.0955770000016,
+        "aten::native_layer_norm": 88.58719699999979,
+        "aten::cudnn_convolution": 2.0909619999987634,
+        "aten::add_": 1.0838809999989867,
+        "aten::rsqrt": 0.6420550000047015,
+        "aten::_local_scalar_dense": 0.4306279999821854,
+        "aten::cumsum": 0.2669770000007702,
+        "aten::sub": 0.161570000001695,
+        "aten::fill_": 0.11110499999985086,
+        "aten::argmin": 0.0665930000008084,
+        "Activity Buffer Request": 0.021088000000223473,
+        "aten::silu": 0.011072000001572178,
+        "aten::cos": 0.010080000000018572,
+        "aten::sin": 0.009952999998718497,
+        "aten::index": 0.008863999999593943,
+        "aten::div": 0.005696000001449193,
+        "aten::abs": 0.004895999999716878
+      },
+      "kernel_view": {
+        "total_device_ms": 9578.620286999974,
+        "buckets_ms": {
+          "attention": 4948.887808,
+          "gemm": 1933.861448999999,
+          "other": 1646.5049179999803,
+          "elementwise": 535.9796519999946,
+          "rope": 252.28573400000323,
+          "gelu": 172.5135289999982,
+          "norm": 88.58719699999979
+        },
+        "buckets_share": {
+          "attention": 0.5166597755959269,
+          "gemm": 0.20189352861441018,
+          "other": 0.17189374551516604,
+          "elementwise": 0.05595583037438303,
+          "rope": 0.026338421029425643,
+          "gelu": 0.018010269102548323,
+          "norm": 0.00924842976813995
+        },
+        "top_ops_ms": {
+          "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 32, 4, false, false, cutlass::bfloat16_": 4948.887808,
+          "ampere_bf16_s16816gemm_bf16_128x64_ldg8_relu_f2f_tn": 1295.8058830000018,
+          "ampere_bf16_s1688gemm_bf16_64x128_sliced1x2_ldg8_relu_f2f_tn": 630.2329369999951,
+          "Memcpy DtoD (Device -> Device)": 535.3615660000108,
+          "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::": 252.28573400000323,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::": 216.7408889999935,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::pow_tensor_scalar_kernel_": 183.2306699999887,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_": 181.63285900000224,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::GeluCUDAKernelImpl(at::TensorIteratorBase&, at::": 172.5135289999982,
+          "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float": 158.57422400000237,
+          "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{la": 134.02974799999274,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::bfloat16_copy_kernel_cuda(at::TensorIteratorBase": 135.78149299999083,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*": 132.7680570000006,
+          "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float, float, fl": 112.0955770000016,
+          "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<c10::BFloat16, float, false>(int, float, ": 88.58719699999979,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<c10": 64.62804700000451,
+          "void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous namespace)::OpaqueType<16u>": 11.937128999992856,
+          "void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_64x64_32x6_tn_align8>(cutlass_80_tensorop_": 6.721469000000786,
+          "void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous namespace)::OpaqueType<2u>,": 2.7008869999997986,
+          "void cudnn::engines_precompiled::nhwcToNchwKernel<__nv_bfloat16, __nv_bfloat16, float, true, false, (cudnnKern": 1.2121389999991807,
+          "sm80_xmma_fprop_implicit_gemm_bf16bf16_bf16f32_f32_nhwckrsc_nhwc_tilesize128x128x64_stage3_warpsize2x2x1_g1_te": 0.8437499999999067,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, ": 0.7027259999961106,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::rsqrt_kernel_cuda(at::TensorIteratorBase&)::{lam": 0.6420550000047015
+        }
+      },
+      "view_agreement": 0.9999975244930278
+    },
+    "profile_scope": "all 4 steps",
+    "latent_stats": {
+      "mean": 0.07678047567605972,
+      "std": 0.9696319699287415,
+      "min": -3.46539306640625,
+      "max": 3.245295524597168,
+      "finite": true
+    }
+  },
+  "denoise_50step": {
+    "config": {
+      "steps": 50,
+      "solver": "unipc",
+      "shift": 5.0,
+      "guide_scale": 5.0,
+      "forwards_per_step": 2,
+      "total_forwards": 100,
+      "weights": "official Wan2.1-T2V-1.3B (WanModel.from_pretrained)",
+      "ckpt_load": {},
+      "timesteps_head": [
+        999.0,
+        995.0,
+        991.0,
+        987.0,
+        982.0
+      ]
+    },
+    "denoise_wall_s": 240.81518706399947,
+    "ms_per_forward": 2408.1518706399947,
+    "peak_alloc_gib": 4.302874565124512,
+    "profile": {
+      "n_forwards_profiled": 4,
+      "total_device_ms": 9617.411137999978,
+      "buckets_ms": {
+        "attention": 4979.676948999999,
+        "gemm": 1940.2127269999835,
+        "elementwise": 1530.2506660000136,
+        "reshape": 607.1535469999826,
+        "norm": 384.3986580000088,
+        "gelu": 172.7185659999962,
+        "conv": 2.07422800000016,
+        "other": 0.9257969999958762
+      },
+      "buckets_share": {
+        "attention": 0.5177772768104375,
+        "gemm": 0.20173960530125232,
+        "elementwise": 0.1591125349683493,
+        "reshape": 0.06313066357338294,
+        "norm": 0.03996903662371117,
+        "gelu": 0.017958945866165237,
+        "conv": 0.00021567425684907481,
+        "other": 9.626259985266715e-05
+      },
+      "top_ops_ms": {
+        "aten::_flash_attention_forward": 4979.676948999999,
+        "aten::addmm": 1940.2127269999835,
+        "aten::copy_": 703.16738500001,
+        "aten::mul": 628.4591199999886,
+        "aten::cat": 607.1446189999813,
+        "aten::add": 197.34859600001138,
+        "aten::pow": 183.3994300000026,
+        "aten::gelu": 172.70739799999475,
+        "aten::mean": 111.98604699999687,
+        "aten::native_layer_norm": 88.36824100000688,
+        "aten::cudnn_convolution": 2.07422800000016,
+        "aten::add_": 1.0877230000004323,
+        "aten::rsqrt": 0.6449400000024225,
+        "aten::_local_scalar_dense": 0.4421769999993121,
+        "aten::cumsum": 0.2696669999987353,
+        "aten::sub": 0.17222500000242144,
+        "aten::fill_": 0.11491300000109186,
+        "aten::argmin": 0.06691199999861419,
+        "aten::div": 0.011392000000857024,
+        "aten::silu": 0.011168000001474866,
+        "aten::sin": 0.010111999999578984,
+        "aten::cos": 0.010079999999210486,
+        "aten::index": 0.008928000001236796,
+        "aten::abs": 0.005119999999646098,
+        "aten::nonzero": 0.0045760000003501776
+      },
+      "kernel_view": {
+        "total_device_ms": 9617.410433999978,
+        "buckets_ms": {
+          "attention": 4979.676948999999,
+          "gemm": 1940.9044459999855,
+          "other": 1646.8380550000156,
+          "elementwise": 536.3821429999762,
+          "rope": 252.53320200000172,
+          "gelu": 172.70739799999475,
+          "norm": 88.36824100000688
+        },
+        "buckets_share": {
+          "attention": 0.5177773147120333,
+          "gemm": 0.20181154369146995,
+          "other": 0.17123508103366647,
+          "elementwise": 0.05577199254216391,
+          "rope": 0.02625792085437396,
+          "gelu": 0.01795778595342364,
+          "norm": 0.009188361212868985
+        },
+        "top_ops_ms": {
+          "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 32, 4, false, false, cutlass::bfloat16_": 4979.676948999999,
+          "ampere_bf16_s16816gemm_bf16_128x64_ldg8_relu_f2f_tn": 1300.4547319999951,
+          "ampere_bf16_s1688gemm_bf16_64x128_sliced1x2_ldg8_relu_f2f_tn": 632.6592059999992,
+          "Memcpy DtoD (Device -> Device)": 535.7480299999788,
+          "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::": 252.53320200000172,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::": 217.19750299998856,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::pow_tensor_scalar_kernel_": 183.37987800000232,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_": 181.62177199998905,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::GeluCUDAKernelImpl(at::TensorIteratorBase&, at::": 172.70739799999475,
+          "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float": 158.601212999999,
+          "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{la": 133.96618500001014,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::bfloat16_copy_kernel_cuda(at::TensorIteratorBase": 135.6934130000126,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*": 132.68996200000433,
+          "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float, float, fl": 111.98604699999687,
+          "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<c10::BFloat16, float, false>(int, float, ": 88.36824100000688,
+          "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<c10": 64.57917999999862,
+          "void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous namespace)::OpaqueType<16u>": 12.005778999996817,
+          "void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_64x64_32x6_tn_align8>(cutlass_80_tensorop_": 6.68611199999066,
+          "void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous namespace)::OpaqueType<2u>,": 2.719162000000205,
+          "void cudnn::engines_precompiled::nhwcToNchwKernel<__nv_bfloat16, __nv_bfloat16, float, true, false, (cudnnKern": 1.1968430000002086,
+          "sm80_xmma_fprop_implicit_gemm_bf16bf16_bf16f32_f32_nhwckrsc_nhwc_tilesize128x128x64_stage3_warpsize2x2x1_g1_te": 0.841609000000134,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, ": 0.7144360000044117,
+          "void at::native::vectorized_elementwise_kernel<4, at::native::rsqrt_kernel_cuda(at::TensorIteratorBase&)::{lam": 0.6449400000024225
+        }
+      },
+      "view_agreement": 0.9999999267994276
+    },
+    "profile_scope": "first 2 of 50 steps (4 of 100 forwards)",
+    "latent_stats": {
+      "mean": 0.07698459178209305,
+      "std": 1.1070266962051392,
+      "min": -3.0377275943756104,
+      "max": 3.0821683406829834,
+      "finite": true
+    }
+  },
+  "vae": {
+    "4step/float32": {
+      "decode_s": 9.693628098350018,
+      "peak_alloc_gib": 9.059163570404053,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "has_nan": false
+    },
+    "4step/bfloat16": {
+      "decode_s": 4.888887492008507,
+      "peak_alloc_gib": 4.528106212615967,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "has_nan": false
+    },
+    "4step/fidelity_bf16_vs_fp32": {
+      "latent_source": "real model output (4step)",
+      "mse": 0.00010302895680069923,
+      "psnr_db": 45.89100646972656,
+      "mean_abs_diff": 0.005856530275195837,
+      "max_abs_diff": 0.4322986602783203,
+      "mean_abs_diff_8bit": 0.7467076100874692,
+      "max_abs_diff_8bit": 55.11807918548584,
+      "abs_diff_8bit_quantiles": {
+        "p50": 0.36933258175849915,
+        "p90": 1.8979373574256897,
+        "p99": 4.992020130157471,
+        "p99.9": 9.328754022717476,
+        "p99.99": 15.540885832160711
+      },
+      "frac_pixels_over_2_255": 0.09153512120246887,
+      "frac_pixels_over_8_255": 0.0018711213488131762,
+      "frac_pixels_over_16_255": 8.65273323142901e-05
+    },
+    "50step/float32": {
+      "decode_s": 9.691750559024513,
+      "peak_alloc_gib": 9.052484035491943,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "has_nan": false
+    },
+    "50step/bfloat16": {
+      "decode_s": 4.888423685915768,
+      "peak_alloc_gib": 4.527426242828369,
+      "out_shape": [
+        1,
+        3,
+        81,
+        480,
+        832
+      ],
+      "has_nan": false
+    },
+    "50step/fidelity_bf16_vs_fp32": {
+      "latent_source": "real model output (50step)",
+      "mse": 0.00010207454033661634,
+      "psnr_db": 45.931427001953125,
+      "mean_abs_diff": 0.006151165813207626,
+      "max_abs_diff": 0.43693333864212036,
+      "mean_abs_diff_8bit": 0.7842736411839724,
+      "max_abs_diff_8bit": 55.709000676870346,
+      "abs_diff_8bit_quantiles": {
+        "p50": 0.4577234387397766,
+        "p90": 1.9316453486680984,
+        "p99": 4.758226275444031,
+        "p99.9": 8.763997927308083,
+        "p99.99": 14.680877029895782
+      },
+      "frac_pixels_over_2_255": 0.0935782715678215,
+      "frac_pixels_over_8_255": 0.0014401230728253722,
+      "frac_pixels_over_16_255": 5.660291208187118e-05
+    }
+  },
+  "e2e": {
+    "4step/vae_float32": {
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.592066504061222,
+      "vae_s": 9.693628098350018,
+      "total_s": 19.344750213436782,
+      "share": {
+        "text": 0.00305279780684489,
+        "denoise": 0.4958485583028419,
+        "vae": 0.5010986438903132
+      }
+    },
+    "4step/vae_bfloat16": {
+      "text_s": 0.05905561102554202,
+      "denoise_s": 9.592066504061222,
+      "vae_s": 4.888887492008507,
+      "total_s": 14.540009607095271,
+      "share": {
+        "text": 0.00406159367300032,
+        "denoise": 0.6597015245010884,
+        "vae": 0.33623688182591127
+      }
+    },
+    "50step/vae_float32": {
+      "text_s": 0.11877384409308434,
+      "denoise_s": 240.81518706399947,
+      "vae_s": 9.691750559024513,
+      "total_s": 250.62571146711707,
+      "share": {
+        "text": 0.0004739092545525516,
+        "denoise": 0.9608558741013099,
+        "vae": 0.0386702166441375
+      }
+    },
+    "50step/vae_bfloat16": {
+      "text_s": 0.11877384409308434,
+      "denoise_s": 240.81518706399947,
+      "vae_s": 4.888423685915768,
+      "total_s": 245.82238459400833,
+      "share": {
+        "text": 0.0004831693594106455,
+        "denoise": 0.9796308316743466,
+        "vae": 0.019885998966242713
+      }
+    }
+  },
+  "distill_axis": {
+    "naive_forward_ratio": 25.0,
+    "denoise_only_speedup": 25.10566278518188,
+    "e2e_speedup_vae_fp32": 12.955748133311822,
+    "e2e_speedup_vae_bf16": 16.90661775588176,
+    "note": "denoise-only speedup should approach 25x (forward-count ratio); the e2e numbers show how much Amdahl (VAE + text) eats."
+  }
+}

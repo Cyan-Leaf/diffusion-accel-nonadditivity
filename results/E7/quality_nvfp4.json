@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-09-20T18:58:27",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "wfmt": "nvfp4:16:e4m3",
+  "afmt_default": "nvfp4:group:16",
+  "eval_prompts": [
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a beautiful sunset",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a colorful festival",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a winter storm"
+  ],
+  "eval_disjoint_from_calib": "eval prompts taken from the TAIL of MovieGenVideoBench.txt; calibration used the HEAD",
+  "vae_dtype_for_eval": "bfloat16",
+  "metrics_vs_bf16": {
+    "gptq_cd": {
+      "mean": {
+        "latent_rel_l2": 0.5819045603275299,
+        "pixel_psnr_db": 13.635634104410807,
+        "hf_energy_ratio": 0.8585402012077293
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 0.45340290665626526,
+          "pixel_psnr_db": 16.198253631591797,
+          "hf_energy_ratio": 0.8509008169441193
+        },
+        {
+          "latent_rel_l2": 0.7104913592338562,
+          "pixel_psnr_db": 11.095766067504883,
+          "hf_energy_ratio": 1.0244513195149172
+        },
+        {
+          "latent_rel_l2": 0.5818194150924683,
+          "pixel_psnr_db": 13.612882614135742,
+          "hf_energy_ratio": 0.7002684671641517
+        }
+      ],
+      "meta": {
+        "arm": "gptq_cd",
+        "afmt": "nvfp4:group:16",
+        "n_linears": 300,
+        "weights": "solved gptq_cd, 300 layers",
+        "recovery_mean": 0.7687858626943621
+      }
+    }
+  },
+  "note": "No multi-seed noise-floor analysis (excluded by SPEC). hf_energy_ratio > 1 means the arm injects excess high-frequency energy relative to bf16."
+}

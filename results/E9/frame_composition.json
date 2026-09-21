@@ -1,0 +1,199 @@
+{
+  "timestamp": "2026-09-20T15:50:30",
+  "not_a_new_experiment": "reads the already-generated mp4s only; no sampling, no new arm, no new prompt",
+  "metric": "center_border_hf_ratio = Laplacian energy density in the central 50% box divided by that in the surrounding border. Close-up (sharp centred subject, shallow-DOF background) -> high; wide shot (detail spread across the frame) -> near 1.",
+  "composition": {
+    "bf16": {
+      "p0": {
+        "median": 1.2827519692502363,
+        "mean": 1.3967376042845483,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 2.433768224606508,
+        "mean": 2.5748793532640457,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 1.4941548426135982,
+        "mean": 1.528552003035177,
+        "n_frames": 81
+      }
+    },
+    "gptq_cd": {
+      "p0": {
+        "median": 1.2421963647993322,
+        "mean": 1.3350071799877123,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 2.6633610502384704,
+        "mean": 2.7499814076523954,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 1.4939336884358319,
+        "mean": 1.5142384655401728,
+        "n_frames": 81
+      }
+    },
+    "gptq_clip_cd": {
+      "p0": {
+        "median": 1.1920226488921597,
+        "mean": 1.3646968308125105,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 2.1607642994696388,
+        "mean": 2.5565788818087025,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 1.6714794641814377,
+        "mean": 1.6537389721838045,
+        "n_frames": 81
+      }
+    },
+    "rtn_tensor": {
+      "p0": {
+        "median": 1.509259216185391,
+        "mean": 1.629565393826903,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 2.4117070952960256,
+        "mean": 2.5762188796148915,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 1.7513669396478009,
+        "mean": 1.7338848747244042,
+        "n_frames": 81
+      }
+    },
+    "bf16_sparse": {
+      "p0": {
+        "median": 1.1766504534744386,
+        "mean": 1.2270147037943417,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 1.5927462030487867,
+        "mean": 2.669712513182695,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 2.5953719076657746,
+        "mean": 2.5860997234107432,
+        "n_frames": 81
+      }
+    },
+    "bf16_sparse_warm1": {
+      "p0": {
+        "median": 1.1063046703881048,
+        "mean": 1.044248361844987,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 2.695283964695392,
+        "mean": 2.512693394449133,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 1.2525643789263325,
+        "mean": 1.285492605011019,
+        "n_frames": 81
+      }
+    },
+    "fp8_sparse": {
+      "p0": {
+        "median": 1.2633792059553453,
+        "mean": 1.234807118868142,
+        "n_frames": 81
+      },
+      "p1": {
+        "median": 3.676177721957486,
+        "mean": 3.4239756657204845,
+        "n_frames": 81
+      },
+      "p2": {
+        "median": 2.2739334046246085,
+        "mean": 2.1482631037141093,
+        "n_frames": 81
+      }
+    }
+  },
+  "cross_arm_video_psnr": {
+    "p0": {
+      "dense~rtn_tensor": 18.70091373853632,
+      "dense~gptq_cd": 19.793607045217087,
+      "dense~sparse": 8.737306103840183,
+      "dense~fp8_sparse": 8.891677442795451,
+      "dense~warm1": 15.465742405599213,
+      "sparse~fp8_sparse": 11.0205687941023
+    },
+    "p1": {
+      "dense~rtn_tensor": 14.630235324397981,
+      "dense~gptq_cd": 15.137975938086235,
+      "dense~sparse": 7.4669223340159006,
+      "dense~fp8_sparse": 7.32601134817477,
+      "dense~warm1": 11.699183264624967,
+      "sparse~fp8_sparse": 10.104111337505861
+    },
+    "p2": {
+      "dense~rtn_tensor": 16.996440873896727,
+      "dense~gptq_cd": 20.994030621595098,
+      "dense~sparse": 8.705135693967991,
+      "dense~fp8_sparse": 8.249119623123146,
+      "dense~warm1": 14.581727930820913,
+      "sparse~fp8_sparse": 12.900567058185187
+    }
+  },
+  "fp8_perturbation_under_two_conditions": {
+    "values": {
+      "fp8_on_dense__CONFOUNDED_pseudoquant_path": {
+        "pair": [
+          "bf16",
+          "rtn_tensor"
+        ],
+        "per_prompt": {
+          "p0": 18.70091373853632,
+          "p1": 14.630235324397981,
+          "p2": 16.996440873896727
+        },
+        "mean_db": 16.77586331227701
+      },
+      "fp8_on_sparse__real_kernel_path": {
+        "pair": [
+          "bf16_sparse",
+          "fp8_sparse"
+        ],
+        "per_prompt": {
+          "p0": 11.0205687941023,
+          "p1": 10.104111337505861,
+          "p2": 12.900567058185187
+        },
+        "mean_db": 11.34174906326445
+      }
+    },
+    "question_it_would_answer": "is the perturbation FP8 causes the same with and without sparsity? equal => the two axes compose additively in the output domain",
+    "obstacle_1_configuration": "NOT a matched pair. The dense side uses the PSEUDO-QUANT path (wan_fp8.convert_fakequant); fp8_sparse uses the REAL _scaled_mm path with E3 fusion (fusion.wan_fused.convert_fused). Same algorithm (RTN per-tensor), different code path. T4-A measured that path difference: two mathematically equivalent real-kernel configs differ by latent L2 0.1204, against the quant arms' own deviation from bf16 of only 0.31-0.39 -- the confound is about a third of the effect. The strict test needs a matched fp8_dense arm (3 videos); not generated.",
+    "obstacle_2_deeper": "EVEN WITH a matched pair this would not establish 'coupling'. The latency-domain disjointness is a statement about a LINEARLY ADDITIVE quantity (time). The output domain has no additive basis: the sampler is nonlinear, so a perturbation of a given size applied to an ALREADY DIVERGED trajectory (the sparse arm is at latent L2 1.13, past the signal magnitude) simply does not act the same way. That is a property of the ODE solver, not of the axes interacting.",
+    "correct_conclusion": "'Disjoint' cannot be extrapolated to the output domain -- not because we did not measure it, but because the output domain lacks an additive basis in which 'disjoint' is even defined. The latency domain admits the question only because time is additive.",
+    "how_to_read_the_numbers": "illustration that output-domain composition is not magnitude-preserving; NOT evidence of coupling"
+  },
+  "n_prompts": 3,
+  "caveat": "n=3. Descriptive observations reported alongside the extracted frames, not statistical claims.",
+  "verdict": {
+    "center_border_hf_ratio": {
+      "status": "REFUTED as a discriminator",
+      "why": "bf16_sparse mean 1.79 vs bf16 1.74, and the per-prompt directions disagree (p1 lower, p2 higher). The proxy conflates FRAMING with BACKGROUND BLUR: the p1 sparse clip is a close-up but its background is high-frequency bunting, which pushes the ratio down.",
+      "consequence": "the 'composition collapses to a close-up' observation stays QUALITATIVE, supported by results/frames/ only; no number is attached to it in the report"
+    },
+    "cross_arm_video_psnr": {
+      "status": "holds on 3/3 prompts",
+      "claim": "the two sparse arms resemble EACH OTHER more than either resembles dense -> the sparsity axis fixes the sample identity and FP8 on top is a smaller perturbation. This is a DOMINANCE statement, NOT independence. The T8 sentence calling it 'the pixel-domain counterpart of H2' has been deleted -- see the module docstring for why the output domain admits no such counterpart.",
+      "secondary": "dense~warm1 sits between dense~gptq_cd and dense~sparse on 3/3 prompts -> one dense warmup step recovers most of the distance"
+    }
+  }
+}

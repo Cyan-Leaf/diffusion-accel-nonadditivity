@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-09-18T18:09:13",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "trigger": "E4 reported dense SDPA at 164.8 TFLOPS = 99.8% of the 165.2 spec peak. Rule 4 says a number pinned to a boundary is suspect until the measurement is audited.",
+  "flops_formula": {
+    "expression": "4 * B * H * S^2 * D",
+    "derivation": "QK^T is [S,D]x[D,S] = 2*S^2*D MACs->FLOPs per head; P@V is [S,S]x[S,D] = 2*S^2*D. Non-causal, no masking, so no factor of 1/2.",
+    "B": 1,
+    "H": 12,
+    "S": 32760,
+    "D": 128,
+    "total_tflop": 6.5938489344,
+    "matches_e4_script": true,
+    "note": "e4_svg.py used `2 * 2 * Sn * Sn * H * D` which is the same expression."
+  },
+  "correctness": {
+    "S_checked": 2048,
+    "rel_l2_vs_fp64_reference": 0.0022097692256822696,
+    "note": "confirms SDPA is computing full non-causal attention, not a degenerate or masked variant"
+  },
+  "same_session_gemm": {
+    "rows": {
+      "ffn_up_32760x8960x1536": {
+        "ms": 5.48473596572876,
+        "tflops": 164.4058960785704
+      },
+      "ffn_down_32760x1536x8960": {
+        "ms": 5.2611517906188965,
+        "tflops": 171.3926849264932
+      },
+      "square_8192": {
+        "ms": 7.03331184387207,
+        "tflops": 156.3291451002523
+      },
+      "square_16384": {
+        "ms": 57.070430755615234,
+        "tflops": 154.12697794194483
+      }
+    },
+    "max_tflops": 171.3926849264932,
+    "pct_of_spec_peak": 1.0374859862378523
+  },
+  "attention_timing": {
+    "default_event": {
+      "ms": 40.34761428833008,
+      "tflops": 163.42599310282316,
+      "pct_of_spec_peak": 0.9892614594601886,
+      "pct_of_same_session_gemm": 0.9535179005621693
+    },
+    "default_perf_counter": {
+      "ms": 40.36135692149401,
+      "tflops": 163.37034820770648,
+      "pct_of_spec_peak": 0.9889246259546398,
+      "pct_of_same_session_gemm": 0.9531932373763365
+    },
+    "default_event_long": {
+      "ms": 40.44761657714844,
+      "tflops": 163.0219402872135,
+      "pct_of_spec_peak": 0.9868156191719947,
+      "pct_of_same_session_gemm": 0.9511604322969226
+    },
+    "backend_flash": {
+      "ms": 40.4483528137207,
+      "tflops": 163.018972979371,
+      "pct_of_spec_peak": 0.986797657260115,
+      "pct_of_same_session_gemm": 0.9511431193769238
+    },
+    "backend_efficient": {
+      "ms": 62.42544174194336,
+      "tflops": 105.62758949560823,
+      "pct_of_spec_peak": 0.6393921882300742,
+      "pct_of_same_session_gemm": 0.6162899515863803
+    },
+    "backend_cudnn": {
+      "ms": 41.49177551269531,
+      "tflops": 158.9194208472103,
+      "pct_of_spec_peak": 0.9619819663874716,
+      "pct_of_same_session_gemm": 0.9272240581059079
+    }
+  },
+  "verdict": {
+    "attention_tflops": 163.42599310282316,
+    "pct_of_spec_peak_165_2": 0.9892614594601886,
+    "pct_of_same_session_gemm_max": 0.9535179005621693,
+    "same_session_gemm_max_tflops": 171.3926849264932,
+    "exceeds_fp16acc_peak": false,
+    "interpretation": "The right comparison is against the GEMM ceiling measured in the SAME session, not against the spec number: the spec is computed at nominal boost clock, and E0 already observed BF16 GEMM at 167.1 TFLOPS (101% of spec). If attention lands at or below the same-session GEMM max, the measurement is sound and the 'dense side is not being wasted' check stands."
+  }
+}

@@ -1,0 +1,32 @@
+[
+    {
+        "prompt_en": "bf16_sparse_p1",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p1.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bf16_sparse_p2",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p2.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bf16_sparse_p0",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E8/vbench_work/bf16_sparse/bf16_sparse_p0.mp4"
+        ]
+    }
+]

@@ -1,0 +1,166 @@
+{
+  "timestamp": "2026-09-18T14:48:22",
+  "device": "NVIDIA GeForce RTX 4090",
+  "ckpt": "<CKPT_DIR>/distill_native.pt",
+  "n_tensors": 300,
+  "metric": "relative Frobenius error ||W - RTN(W)||_F / ||W||_F, pure weight quantization, no sampler involved",
+  "summary": {
+    "fp8_pertensor": {
+      "rel_fro_err_mean": 0.02650197484220068,
+      "rel_fro_err_max": 0.02666134014725685,
+      "rel_fro_err_min": 0.026204243302345276
+    },
+    "fp8_perchannel": {
+      "rel_fro_err_mean": 0.02644549071167906,
+      "rel_fro_err_max": 0.02663564682006836,
+      "rel_fro_err_min": 0.02627168968319893
+    },
+    "fp8_group128": {
+      "rel_fro_err_mean": 0.025709703372170527,
+      "rel_fro_err_max": 0.02608429454267025,
+      "rel_fro_err_min": 0.025095134973526
+    },
+    "fp8_group16": {
+      "rel_fro_err_mean": 0.022323189930369455,
+      "rel_fro_err_max": 0.023059116676449776,
+      "rel_fro_err_min": 0.021434646099805832
+    },
+    "int8_pertensor": {
+      "rel_fro_err_mean": 0.02469852186429004,
+      "rel_fro_err_max": 0.15943892300128937,
+      "rel_fro_err_min": 0.010029415600001812
+    },
+    "int8_perchannel": {
+      "rel_fro_err_mean": 0.008622785209057232,
+      "rel_fro_err_max": 0.012519845739006996,
+      "rel_fro_err_min": 0.006601591594517231
+    },
+    "int8_group128": {
+      "rel_fro_err_mean": 0.006512643514821927,
+      "rel_fro_err_max": 0.00825764611363411,
+      "rel_fro_err_min": 0.005565628409385681
+    },
+    "int8_group16": {
+      "rel_fro_err_mean": 0.004688852637385329,
+      "rel_fro_err_max": 0.005145935341715813,
+      "rel_fro_err_min": 0.004287903197109699
+    }
+  },
+  "error_reduction_vs_pertensor": {
+    "fp8": {
+      "pertensor": 1.0,
+      "perchannel": 1.0021358700104086,
+      "group128": 1.0308160486553006,
+      "group16": 1.1871947927185003
+    },
+    "int8": {
+      "pertensor": 1.0,
+      "perchannel": 2.8643322621961076,
+      "group128": 3.7923957925962672,
+      "group16": 5.267497994576092
+    }
+  },
+  "per_role_mean": {
+    "self_attn.q": {
+      "fp8_pertensor": 0.026501107091705004,
+      "fp8_perchannel": 0.026421722397208212,
+      "fp8_group128": 0.025641713043053946,
+      "fp8_group16": 0.02217383918662866,
+      "int8_pertensor": 0.025508781460424266,
+      "int8_perchannel": 0.008624376853307088,
+      "int8_group128": 0.006708272996669014,
+      "int8_group16": 0.0047681718599051235
+    },
+    "self_attn.k": {
+      "fp8_pertensor": 0.026494325635333858,
+      "fp8_perchannel": 0.02639516641696294,
+      "fp8_group128": 0.025540263143678507,
+      "fp8_group16": 0.02201566193252802,
+      "int8_pertensor": 0.027712152029077213,
+      "int8_perchannel": 0.009223587966213623,
+      "int8_group128": 0.007002364456032713,
+      "int8_group16": 0.00484926210095485
+    },
+    "self_attn.v": {
+      "fp8_pertensor": 0.026487795325616997,
+      "fp8_perchannel": 0.026409055478870867,
+      "fp8_group128": 0.025604703898231187,
+      "fp8_group16": 0.022150094620883465,
+      "int8_pertensor": 0.016591235405455033,
+      "int8_perchannel": 0.008855030437310537,
+      "int8_group128": 0.006791890319436789,
+      "int8_group16": 0.004780655540525913
+    },
+    "self_attn.o": {
+      "fp8_pertensor": 0.02649701287349065,
+      "fp8_perchannel": 0.02642121519893408,
+      "fp8_group128": 0.025753976156314213,
+      "fp8_group16": 0.022383394278585912,
+      "int8_pertensor": 0.017617306454728046,
+      "int8_perchannel": 0.008544656354933977,
+      "int8_group128": 0.006384679830322663,
+      "int8_group16": 0.004660058688993256
+    },
+    "cross_attn.q": {
+      "fp8_pertensor": 0.026518621606131394,
+      "fp8_perchannel": 0.0264517176275452,
+      "fp8_group128": 0.025714335901041826,
+      "fp8_group16": 0.022333288192749025,
+      "int8_pertensor": 0.015321852794537941,
+      "int8_perchannel": 0.008213544900839528,
+      "int8_group128": 0.006487851946925124,
+      "int8_group16": 0.00468724927244087
+    },
+    "cross_attn.k": {
+      "fp8_pertensor": 0.02651118462284406,
+      "fp8_perchannel": 0.02651903616885344,
+      "fp8_group128": 0.025891669342915216,
+      "fp8_group16": 0.022655452539523443,
+      "int8_pertensor": 0.01176466594139735,
+      "int8_perchannel": 0.007346195479234059,
+      "int8_group128": 0.006015944636116425,
+      "int8_group16": 0.00450786550839742
+    },
+    "cross_attn.v": {
+      "fp8_pertensor": 0.02651383715371291,
+      "fp8_perchannel": 0.026522708187500636,
+      "fp8_group128": 0.025899993193646272,
+      "fp8_group16": 0.02269633108129104,
+      "int8_pertensor": 0.011498489789664746,
+      "int8_perchannel": 0.007332621002569794,
+      "int8_group128": 0.005989424046128988,
+      "int8_group16": 0.004488759534433484
+    },
+    "cross_attn.o": {
+      "fp8_pertensor": 0.02650543289879958,
+      "fp8_perchannel": 0.026452013291418552,
+      "fp8_group128": 0.02585294091453155,
+      "fp8_group16": 0.022596735258897147,
+      "int8_pertensor": 0.05954403541982174,
+      "int8_perchannel": 0.00807950715534389,
+      "int8_group128": 0.006099793749550979,
+      "int8_group16": 0.0045463047300775845
+    },
+    "ffn.0": {
+      "fp8_pertensor": 0.026501780562102794,
+      "fp8_perchannel": 0.026412708001832166,
+      "fp8_group128": 0.02560836561024189,
+      "fp8_group16": 0.022104138943056264,
+      "int8_pertensor": 0.033131918497383596,
+      "int8_perchannel": 0.008801063460608324,
+      "int8_group128": 0.00679246373474598,
+      "int8_group16": 0.004803582358484467
+    },
+    "ffn.2": {
+      "fp8_pertensor": 0.026488650652269522,
+      "fp8_perchannel": 0.026449564347664514,
+      "fp8_group128": 0.02558907251805067,
+      "fp8_group16": 0.022122963269551595,
+      "int8_pertensor": 0.028294780850410463,
+      "int8_perchannel": 0.011207268480211497,
+      "int8_group128": 0.006853749432290594,
+      "int8_group16": 0.004796616779640317
+    }
+  },
+  "interpretation": "If finer scale granularity reduces error much more for int8 than for fp8, then scale-side degrees of freedom (granularity AND clipping) are worth little on a floating-point codebook, because E4M3 already keeps ~3 mantissa bits at every magnitude. That is the same mechanism behind the clip result."
+}

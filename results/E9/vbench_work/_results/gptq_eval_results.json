@@ -1,0 +1,36 @@
+{
+    "aesthetic_quality": [
+        0.6875474651654562,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p0.mp4",
+                "video_results": 0.6454612612724304
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p2.mp4",
+                "video_results": 0.5972676277160645
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p1.mp4",
+                "video_results": 0.8199135065078735
+            }
+        ]
+    ],
+    "imaging_quality": [
+        0.7238384607888052,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p0.mp4",
+                "video_results": 75.6436649840555
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p2.mp4",
+                "video_results": 70.03429638897931
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/gptq/gptq_p1.mp4",
+                "video_results": 71.47357686360677
+            }
+        ]
+    ]
+}

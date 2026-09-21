@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-20T18:50:16",
+  "why_not_FakeQuantLinearParity": "that harness quantises via a HARDWARE CAST (torch.float8_e4m3fn). Ada has no float4 dtype, so there is no hardware cast to compare against for NVFP4. The parity that CAN be run is codebook-level: our implementation against an independent FP64 exhaustive-nearest-level reference.",
+  "scope_discipline": "this gate covers the FORMAT MODEL only. There is no NVFP4 kernel on this machine, so no kernel-output claim is made. The report section must say 'the algorithmic quality of the NVFP4 codebook', not 'the quality of NVFP4'.",
+  "checks": {
+    "1_e2m1_levels": {
+      "pass": true,
+      "n_levels": 15,
+      "absmax": 6.0,
+      "levels": [
+        -6.0,
+        -4.0,
+        -3.0,
+        -2.0,
+        -1.5,
+        -1.0,
+        -0.5,
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        3.0,
+        4.0,
+        6.0
+      ],
+      "note": "OCP E2M1 不保留 inf/nan，故 absmax = 6（若实现保留了就会是 3，那是 T6 抓过的坑）"
+    },
+    "2_algorithm_identical_same_input": {
+      "pass": true,
+      "n_tensors": 12,
+      "rel_l2_max": 0.0,
+      "null_hypothesis_value": 0.0,
+      "what_it_tests": "bucketize-against-midpoints vs exhaustive nearest-level, fed the SAME fp32 normalised input. If the implementation is correct this is EXACTLY zero -- both are nearest-level with the same tie rule.",
+      "contrast_with_T4A": "T4-A measured up to 3.99% of elements choosing different levels on FP8, but there the two sides were a HARDWARE CAST and bucketize -- different rounding rules. Here both sides are software nearest-level, so any difference would be a bug."
+    },
+    "3_precision_sensitivity_fp32_vs_fp64_scale": {
+      "pass": true,
+      "frac_flipped_max": 0.004685296211391687,
+      "frac_flipped_mean": 0.0010323842701230508,
+      "frac_straddling_a_boundary_max": 0.007381015457212925,
+      "frac_flipped_NOT_explained_by_the_perturbation": 0.0,
+      "null_hypothesis_value": "NOT zero for the flip rate -- it equals the fraction of elements whose decision boundary lies between the fp32 and fp64 normalised values. The TESTABLE quantity is the fraction of flips that CANNOT be explained that way, whose null value IS exactly zero.",
+      "what_it_tests": "our scale is computed in fp32, the reference in fp64; they differ by ~1e-7. Elements exactly on a midpoint flip. Off-boundary elements must not.",
+      "rel_l2_including_boundary_flips": 0.02061911566684942,
+      "note": "the 1e-5 threshold in the first version of this gate was wrong: it assumed the null value was 0 for a quantity whose null value is the boundary fraction. See the module docstring."
+    },
+    "4_decision_boundary_fraction": {
+      "pass": true,
+      "frac_max": 0.007381015457212925,
+      "frac_mean": 0.0019877308077411726,
+      "why_it_is_high": "bf16 weights carry only 8 mantissa bits and the E4M3 scale is itself discrete; dividing one coarse grid by another lands on a midpoint far more often than a continuous distribution would. This is a property of the data, not a defect.",
+      "consequence": "any two NVFP4 implementations that differ in tie rule or in scale precision will disagree on this fraction of weights. Reporting a bit-exact match between two such implementations without stating the tie rule would be meaningless."
+    },
+    "5_no_bf16_roundtrip_bug1_analogue": {
+      "pass": true,
+      "all_fp32": true,
+      "note": "T4-A bug1：中间结果落 bf16 贡献 0.7–4.7pp 的误差"
+    },
+    "6_two_level_scale": {
+      "pass": true,
+      "frac_scales_changed_by_e4m3": 1.0,
+      "rel_err_scale_fp32": 0.09687080979347229,
+      "rel_err_scale_e4m3": 0.09766320884227753,
+      "cost_pct": 0.8179956898209273,
+      "note": "§8.3(b) 报的 D2 代价是 +1.05%（300 张量均值）；此处是单张量抽查"
+    }
+  },
+  "GATE": {
+    "pass": true,
+    "meaning": "PASS 只意味着格式模型可信，**不意味着任何 kernel 结论**。按 T13 §2.5，PASS 才允许跑质量臂。"
+  }
+}

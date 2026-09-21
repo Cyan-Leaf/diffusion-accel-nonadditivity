@@ -1,0 +1,36 @@
+{
+    "aesthetic_quality": [
+        0.687717080116272,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p2.mp4",
+                "video_results": 0.5506877303123474
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p0.mp4",
+                "video_results": 0.661806046962738
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p1.mp4",
+                "video_results": 0.8506574630737305
+            }
+        ]
+    ],
+    "imaging_quality": [
+        0.7274894905875249,
+        [
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p2.mp4",
+                "video_results": 69.51527037443938
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p0.mp4",
+                "video_results": 75.93315473014925
+            },
+            {
+                "video_path": "<REPO>/results/E8/vbench_work/rtn_tensor/rtn_tensor_p1.mp4",
+                "video_results": 72.79842207166884
+            }
+        ]
+    ]
+}

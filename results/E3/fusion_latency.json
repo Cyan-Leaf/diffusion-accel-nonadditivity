@@ -1,0 +1,257 @@
+{
+  "timestamp": "2026-09-18T17:31:28",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "config": {
+    "steps": 4,
+    "forwards": 4,
+    "seq_len": 32760,
+    "seed": 242
+  },
+  "kernel": "torch._scaled_mm, use_fast_accum=True, out_dtype=bf16",
+  "rows": {
+    "bf16_eager": {
+      "ok": true,
+      "n_linears": 0,
+      "denoise_s": 9.579863029066473,
+      "denoise_s_all": [
+        9.568421468604356,
+        9.579863029066473,
+        9.599809621926397
+      ],
+      "ms_per_forward": 2394.9657572666183,
+      "peak_alloc_gib": 4.267366409301758,
+      "latent_finite": true,
+      "profile": {
+        "total_device_ms": 9598.228529000093,
+        "buckets_share": {
+          "attention": 0.5172676986174272,
+          "gemm": 0.2018394065265936,
+          "elementwise": 0.15937594373567734,
+          "reshape": 0.06313848104043288,
+          "norm": 0.04008253563015117,
+          "gelu": 0.01798594683158593,
+          "conv": 0.00021594932791385617,
+          "other": 9.403829021820449e-05
+        },
+        "top_ops_ms": {
+          "aten::_flash_attention_forward": 4964.853582000011,
+          "aten::addmm": 1937.300749999998,
+          "aten::copy_": 703.0219060000217,
+          "aten::mul": 627.7981970000362,
+          "aten::cat": 606.0090580000133,
+          "aten::add": 197.65473800003363,
+          "aten::pow": 183.3926739999962,
+          "aten::gelu": 172.62225200000637,
+          "aten::mean": 112.11906799998494,
+          "aten::native_layer_norm": 88.55991700000743,
+          "aten::cudnn_convolution": 2.0727310000011703,
+          "aten::add_": 1.0834380000001824,
+          "aten::rsqrt": 0.6496779999910587,
+          "aten::_local_scalar_dense": 0.4337639999935054,
+          "aten::cumsum": 0.26544300000225485
+        }
+      },
+      "speedup_vs_bf16_eager": 1.0,
+      "speedup_vs_bf16_compiled": 0.991240398979036,
+      "denoise_speedup_vs_bf16": 0.991240398979036,
+      "latent_rel_l2_vs_bf16": 0.0
+    },
+    "bf16_compiled": {
+      "ok": true,
+      "n_linears": 30,
+      "denoise_s": 9.495947251096368,
+      "denoise_s_all": [
+        9.47718927403912,
+        9.495947251096368,
+        9.505206298083067
+      ],
+      "ms_per_forward": 2373.986812774092,
+      "peak_alloc_gib": 4.173639297485352,
+      "latent_finite": true,
+      "profile": {
+        "total_device_ms": 9508.669275000002,
+        "buckets_share": {
+          "attention": 0.5248673018969844,
+          "gemm": 0.20434291779488076,
+          "elementwise": 0.14716581590224262,
+          "reshape": 0.06376844229867173,
+          "norm": 0.03431444480437187,
+          "gelu": 0.01788060201515392,
+          "other": 0.007438204437918017,
+          "conv": 0.00022227084977679117
+        },
+        "top_ops_ms": {
+          "aten::_flash_attention_forward": 4990.789587000006,
+          "aten::addmm": 1943.029224000034,
+          "aten::copy_": 700.4071219999755,
+          "aten::cat": 606.3447399999911,
+          "aten::mul": 565.235351000004,
+          "aten::pow": 183.4793720000061,
+          "triton_poi_fused__to_copy_gelu_0": 170.00201099999828,
+          "aten::add": 132.55568699998602,
+          "aten::mean": 112.06672100000034,
+          "triton_red_fused__to_copy_add_mean_mul_rsqrt_sub_var_0": 69.82917499999635,
+          "aten::native_layer_norm": 30.089163000005517,
+          "aten::cudnn_convolution": 2.113500000000715,
+          "aten::add_": 0.986284999999948,
+          "aten::rsqrt": 0.6494510000023547,
+          "aten::_local_scalar_dense": 0.4335060000065714
+        }
+      },
+      "speedup_vs_bf16_eager": 1.0088370097001558,
+      "speedup_vs_bf16_compiled": 1.0,
+      "denoise_speedup_vs_bf16": 1.0,
+      "latent_rel_l2_vs_bf16": 0.08864156731748928
+    },
+    "fp8_naive": {
+      "ok": true,
+      "n_linears": 300,
+      "denoise_s": 11.433662589173764,
+      "denoise_s_all": [
+        11.42590404395014,
+        11.433662589173764,
+        11.439366112928838
+      ],
+      "ms_per_forward": 2858.415647293441,
+      "peak_alloc_gib": 4.6113481521606445,
+      "latent_finite": true,
+      "speedup_vs_bf16_eager": 0.8378647659357549,
+      "speedup_vs_bf16_compiled": 0.8305254048766344,
+      "denoise_speedup_vs_bf16": 0.8305254048766344,
+      "latent_rel_l2_vs_fp8_compiled": 0.12043117728820561,
+      "latent_rel_l2_vs_bf16": 0.5862333186460469
+    },
+    "fp8_compiled": {
+      "ok": true,
+      "n_linears": 300,
+      "denoise_s": 9.505327933002263,
+      "denoise_s_all": [
+        9.500644390005618,
+        9.505327933002263,
+        9.509404724929482
+      ],
+      "ms_per_forward": 2376.331983250566,
+      "peak_alloc_gib": 3.01798677444458,
+      "latent_finite": true,
+      "speedup_vs_bf16_eager": 1.0078414018526838,
+      "speedup_vs_bf16_compiled": 0.9990131132800452,
+      "denoise_speedup_vs_bf16": 0.9990131132800452,
+      "latent_rel_l2_vs_fp8_compiled": 0.0,
+      "latent_rel_l2_vs_bf16": 0.5925439582723463
+    },
+    "fp8_F1_bias": {
+      "ok": true,
+      "n_linears": 300,
+      "denoise_s": 9.103562419768423,
+      "denoise_s_all": [
+        9.094256586860865,
+        9.103562419768423,
+        9.105003490112722
+      ],
+      "ms_per_forward": 2275.8906049421057,
+      "peak_alloc_gib": 2.9711227416992188,
+      "latent_finite": true,
+      "speedup_vs_bf16_eager": 1.0523202442445785,
+      "speedup_vs_bf16_compiled": 1.0431023387587126,
+      "denoise_speedup_vs_bf16": 1.0431023387587126,
+      "latent_rel_l2_vs_fp8_compiled": 0.18906353104987425,
+      "latent_rel_l2_vs_bf16": 0.5766718762632389
+    },
+    "fp8_F1F2_shareq": {
+      "ok": true,
+      "n_linears": 300,
+      "denoise_s": 9.028226071968675,
+      "denoise_s_all": [
+        9.026374890934676,
+        9.028226071968675,
+        9.030033004004508
+      ],
+      "ms_per_forward": 2257.0565179921687,
+      "peak_alloc_gib": 3.0187196731567383,
+      "latent_finite": true,
+      "speedup_vs_bf16_eager": 1.0611013672786231,
+      "speedup_vs_bf16_compiled": 1.051806542658463,
+      "denoise_speedup_vs_bf16": 1.051806542658463,
+      "latent_rel_l2_vs_fp8_compiled": 0.18906353104987425,
+      "latent_rel_l2_vs_bf16": 0.5766718762632389
+    },
+    "fp8_F1F2F3_full": {
+      "ok": true,
+      "n_linears": 300,
+      "denoise_s": 8.759816387668252,
+      "denoise_s_all": [
+        8.75082365097478,
+        8.759816387668252,
+        8.765518403146416
+      ],
+      "ms_per_forward": 2189.954096917063,
+      "peak_alloc_gib": 2.7922134399414062,
+      "latent_finite": true,
+      "speedup_vs_bf16_eager": 1.0936145924876521,
+      "speedup_vs_bf16_compiled": 1.0840349649867562,
+      "denoise_speedup_vs_bf16": 1.0840349649867562,
+      "latent_rel_l2_vs_fp8_compiled": 0.2084479191299391,
+      "latent_rel_l2_vs_bf16": 0.5748969764972011
+    }
+  },
+  "four_point_line": {
+    "1_naive": 0.8305254048766344,
+    "2_compiled_quant": 0.9990131132800452,
+    "3_fused_F1F2F3": 1.0840349649867562,
+    "4_amdahl_ceiling": 1.106819410847906,
+    "0_bare_gemm_E0": 1.895
+  },
+  "baselines": {
+    "note": "two baselines are reported. The main table uses the COMPILED bf16 baseline: only then is 'compiled vs eager' controlled for, and the remaining delta attributable to FP8. The eager baseline is what T3/T4 reported.",
+    "bf16_eager_s": 9.579863029066473,
+    "bf16_compiled_s": 9.495947251096368,
+    "compile_only_speedup_on_bf16": 1.0088370097001558
+  },
+  "amdahl_ceilings_recomputed": {
+    "bf16_eager": {
+      "gemm_share": 0.2018394065265936,
+      "attention_share": 0.5172676986174272,
+      "denoise_ceiling_fp8_only": 1.1053728093321826
+    },
+    "bf16_compiled": {
+      "gemm_share": 0.20434291779488076,
+      "attention_share": 0.5248673018969844,
+      "denoise_ceiling_fp8_only": 1.106819410847906
+    }
+  },
+  "incremental_attribution": {
+    "BASELINE: compile the BF16 side too": {
+      "from": 0.991240398979036,
+      "to": 1.0,
+      "delta_x": 0.008759601020963959,
+      "delta_pct_of_denoise": 0.8837009700155773
+    },
+    "compiled quant (3 passes -> 1)": {
+      "from": 0.8305254048766344,
+      "to": 0.9990131132800452,
+      "delta_x": 0.16848770840341076,
+      "delta_pct_of_denoise": 20.306922576353426
+    },
+    "F1 bias into _scaled_mm epilogue": {
+      "from": 0.9990131132800452,
+      "to": 1.0431023387587126,
+      "delta_x": 0.04408922547866745,
+      "delta_pct_of_denoise": 4.230915595992313
+    },
+    "F2 share q/k/v quantization": {
+      "from": 1.0431023387587126,
+      "to": 1.051806542658463,
+      "delta_x": 0.008704203899750462,
+      "delta_pct_of_denoise": 0.7933526356841525
+    },
+    "F3 fuse norm/gelu epilogue": {
+      "from": 1.051806542658463,
+      "to": 1.0840349649867562,
+      "delta_x": 0.03222842232829315,
+      "delta_pct_of_denoise": 2.8265709276073636
+    }
+  },
+  "remaining_gap_to_ceiling_pct_of_denoise": 1.8989713531428642,
+  "numerics_note": "F1 (native bias) and F2 (shared q/k/v quant) do not change the math; F3 changes the storage precision of the norm/GELU intermediates and therefore changes the result. Read the latent deltas against the T4-A resolution floor: two mathematically equivalent real-kernel configs already differ by 0.1204 (results/E4A/path_parity.json)."
+}

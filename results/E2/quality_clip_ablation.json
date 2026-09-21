@@ -1,0 +1,79 @@
+{
+  "timestamp": "2026-09-18T14:52:28",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "wfmt": "fp8_e4m3:-1:fp32",
+  "afmt_default": "fp8_e4m3:tensor",
+  "eval_prompts": [
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a beautiful sunset",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a colorful festival",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a winter storm"
+  ],
+  "eval_disjoint_from_calib": "eval prompts taken from the TAIL of MovieGenVideoBench.txt; calibration used the HEAD",
+  "vae_dtype_for_eval": "bfloat16",
+  "metrics_vs_bf16": {
+    "gptq_cd": {
+      "mean": {
+        "latent_rel_l2": 0.3124721000591914,
+        "pixel_psnr_db": 18.570611635843914,
+        "hf_energy_ratio": 0.9716084298538886
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 0.28910139203071594,
+          "pixel_psnr_db": 19.726634979248047,
+          "hf_energy_ratio": 0.9985569981314408
+        },
+        {
+          "latent_rel_l2": 0.4306490123271942,
+          "pixel_psnr_db": 15.043692588806152,
+          "hf_energy_ratio": 0.9091413162250038
+        },
+        {
+          "latent_rel_l2": 0.217665895819664,
+          "pixel_psnr_db": 20.94150733947754,
+          "hf_energy_ratio": 1.0071269752052208
+        }
+      ],
+      "meta": {
+        "arm": "gptq_cd",
+        "afmt": "fp8_e4m3:tensor",
+        "n_linears": 300,
+        "weights": "solved gptq_cd, 300 layers",
+        "recovery_mean": 0.7815051752911435
+      }
+    },
+    "gptq_clip_cd": {
+      "mean": {
+        "latent_rel_l2": 0.3268229365348816,
+        "pixel_psnr_db": 18.0653813680013,
+        "hf_energy_ratio": 0.9944875987184908
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 0.2590697705745697,
+          "pixel_psnr_db": 20.653715133666992,
+          "hf_energy_ratio": 0.9753622102789626
+        },
+        {
+          "latent_rel_l2": 0.4556233286857605,
+          "pixel_psnr_db": 14.453035354614258,
+          "hf_energy_ratio": 0.9662068701766016
+        },
+        {
+          "latent_rel_l2": 0.2657757103443146,
+          "pixel_psnr_db": 19.089393615722656,
+          "hf_energy_ratio": 1.041893715699908
+        }
+      ],
+      "meta": {
+        "arm": "gptq_clip_cd",
+        "afmt": "fp8_e4m3:tensor",
+        "n_linears": 300,
+        "weights": "solved gptq_clip_cd, 300 layers",
+        "recovery_mean": 0.7818540766769795
+      }
+    }
+  },
+  "note": "No multi-seed noise-floor analysis (excluded by SPEC). hf_energy_ratio > 1 means the arm injects excess high-frequency energy relative to bf16."
+}

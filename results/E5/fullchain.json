@@ -1,0 +1,213 @@
+{
+  "timestamp": "2026-09-21T18:27:52",
+  "pure_arithmetic": "no model is run here; this composes numbers already on disk",
+  "naive_product": {
+    "factors": {
+      "step_distillation_denoise_stage": 25.10566278518188,
+      "fp8_bare_gemm_operator": 1.8950877155587238,
+      "sparse_attention_kernel_operator": 3.2758898740389832
+    },
+    "scopes": [
+      "stage (denoise)",
+      "operator (bare GEMM)",
+      "operator (attention kernel)"
+    ],
+    "product": 155.85843144023087,
+    "why_it_is_wrong": "the three factors are measured at three different scopes; multiplying them bounds nothing"
+  },
+  "chains": {
+    "vae_float32": {
+      "baseline_50step": {
+        "total_s": 250.62571146711707,
+        "denoise_s": 240.81518706399947,
+        "note": "official weights, UniPC + CFG, 100 forwards"
+      },
+      "arms": {
+        "bf16_dense": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 9.465041364077479,
+          "vae_s": 9.693628098350018,
+          "total_s": 19.21772507345304,
+          "fullchain_speedup_vs_50step": 13.041382916510038
+        },
+        "fp8_dense": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 8.727880402002484,
+          "vae_s": 9.693628098350018,
+          "total_s": 18.480564111378044,
+          "fullchain_speedup_vs_50step": 13.561583399546379
+        },
+        "bf16_sparse": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 6.357960034161806,
+          "vae_s": 9.693628098350018,
+          "total_s": 16.110643743537366,
+          "fullchain_speedup_vs_50step": 15.556529922502522
+        },
+        "fp8_sparse": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 5.6185218510217965,
+          "vae_s": 9.693628098350018,
+          "total_s": 15.371205560397357,
+          "fullchain_speedup_vs_50step": 16.304883210516262
+        }
+      },
+      "best_arm": "fp8_sparse",
+      "best_fullchain_speedup": 16.304883210516262,
+      "fraction_of_naive_product": 0.10461341782955717,
+      "baseline_sensitivity": {
+        "compiled_50step_baseline_total_s": 248.65232179127634,
+        "note": "ladder's 50step/bf16_dense runs the DISTILLED weights for 50 steps under compile; timing of 100 forwards barely depends on which weights, so this serves as a 'what if the baseline were compiled too' check. It is NOT used as the headline denominator -- see module docstring.",
+        "fullchain_speedup_if_baseline_compiled": 16.17650097868111
+      }
+    },
+    "vae_bfloat16": {
+      "baseline_50step": {
+        "total_s": 245.82238459400833,
+        "denoise_s": 240.81518706399947,
+        "note": "official weights, UniPC + CFG, 100 forwards"
+      },
+      "arms": {
+        "bf16_dense": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 9.465041364077479,
+          "vae_s": 4.888887492008507,
+          "total_s": 14.412984467111528,
+          "fullchain_speedup_vs_50step": 17.055619892947334
+        },
+        "fp8_dense": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 8.727880402002484,
+          "vae_s": 4.888887492008507,
+          "total_s": 13.675823505036533,
+          "fullchain_speedup_vs_50step": 17.974960301547974
+        },
+        "bf16_sparse": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 6.357960034161806,
+          "vae_s": 4.888887492008507,
+          "total_s": 11.305903137195855,
+          "fullchain_speedup_vs_50step": 21.742834836897284
+        },
+        "fp8_sparse": {
+          "text_s": 0.05905561102554202,
+          "denoise_s": 5.6185218510217965,
+          "vae_s": 4.888887492008507,
+          "total_s": 10.566464954055846,
+          "fullchain_speedup_vs_50step": 23.264392174948874
+        }
+      },
+      "best_arm": "fp8_sparse",
+      "best_fullchain_speedup": 23.264392174948874,
+      "fraction_of_naive_product": 0.14926617674752093,
+      "baseline_sensitivity": {
+        "compiled_50step_baseline_total_s": 243.8489949181676,
+        "note": "ladder's 50step/bf16_dense runs the DISTILLED weights for 50 steps under compile; timing of 100 forwards barely depends on which weights, so this serves as a 'what if the baseline were compiled too' check. It is NOT used as the headline denominator -- see module docstring.",
+        "fullchain_speedup_if_baseline_compiled": 23.077632489053805
+      }
+    }
+  },
+  "waterfall": {
+    "levels": [
+      {
+        "level": "naive product",
+        "value": 155.85843144023087,
+        "how": "25.11 (stage) x 1.895 (operator) x 3.28 (operator)"
+      },
+      {
+        "level": "measured denoise stage",
+        "value": 42.86095052210295,
+        "how": "240.815 s (50-step denoise, official weights, eager) / 5.619 s (4-step FP8+sparse denoise, compiled)",
+        "loss_vs_previous": 3.6363736581123254
+      },
+      {
+        "level": "measured full chain",
+        "value": 16.304883210516262,
+        "how": "see chains.vae_float32",
+        "loss_vs_previous": 2.628718646353667,
+        "attribution": "structural fact: VAE decode + text encode lie outside every axis"
+      }
+    ],
+    "itemised_naive_to_stage": [
+      {
+        "n": 1,
+        "what": "FP8: bare GEMM 1.895x -> denoise 1.0845x",
+        "factor": 0.5722481711016005,
+        "direction": "down",
+        "attribution": "cause (2) implementation overhead (naive W8A8 is 0.831x, a NEGATIVE return) + cause (1) scope (GEMM is 20.4% of denoise)",
+        "cumulative": 89.18970234243632
+      },
+      {
+        "n": 2,
+        "what": "sparse: mask kernel 3.276x -> denoise 1.4887x",
+        "factor": 0.4544388257960286,
+        "direction": "down",
+        "attribution": "cause (1) scope: attention is 52.5% of denoise",
+        "cumulative": 40.53126360559406
+      },
+      {
+        "n": 3,
+        "what": "torch.compile gain already present in the BF16 baseline",
+        "factor": 1.0134204527056627,
+        "direction": "up",
+        "attribution": "NOT one of the three causes -- a calibration term. The naive product's distillation factor was measured against EAGER 4-step denoise (9.592 s) while the ladder arms are COMPILED (9.465 s).",
+        "cumulative": 41.075211511913686
+      },
+      {
+        "n": 4,
+        "what": "super-multiplicativity  I = c/(a*b)",
+        "factor": 1.0434748585450695,
+        "direction": "up",
+        "attribution": "THE REFUTATION -- the only factor that adds back. The two axes are exactly disjoint, so composing them beats the product of their individual speedups.",
+        "cumulative": 42.86095052210295
+      }
+    ],
+    "residual_after_four_items": 0.0,
+    "residual_is_an_identity_not_a_check": "stage = (den50/d4_eager) x (d4_eager/d4_comp) x (d4_comp/d4_best) telescopes, and the last factor equals a*b*I BY THE DEFINITION of I. The residual is therefore identically zero no matter how each factor is labelled or attributed. Closure is NOT evidence that the attribution is right.",
+    "distillation_passes_through_untouched": {
+      "factor": 25.10566278518188,
+      "forward_count_ratio": 25.0,
+      "deviation_pct": 0.42265114072752574,
+      "why_it_matters": "the distillation factor appears in the naive product AND in the measured stage speedup with no loss term between them. It is the only one of the three factors measured at the scope it is claimed at (a stage), and it is the only one that is delivered in full. Cause (1) stated positively: a speedup is only realised at the level at which it was measured."
+    },
+    "vae_step": {
+      "n": 5,
+      "what": "VAE decode + text encode outside every axis",
+      "factor": 0.3804134768805,
+      "direction": "down",
+      "cumulative": 16.304883210516262
+    },
+    "per_axis_path": {
+      "fp8": {
+        "headline_bare_gemm": 1.8950877155587238,
+        "after_scope_denoise": 1.0844604793055899,
+        "denoise_ceiling": 1.107,
+        "note": "no separate 'after overhead' rung exists on this axis: the naive implementation is 0.831x, i.e. negative return"
+      },
+      "sparse": {
+        "headline_bare_kernel": 4.131449735298189,
+        "after_implementation_overhead": 3.2758898740389832,
+        "after_scope_denoise": 1.4886915477953757,
+        "note": "4.13 -> 3.28 is the token reordering (cause 2); 3.28 -> 1.489 is attention's share of denoise (cause 1)"
+      }
+    },
+    "which_sparse_factor_in_the_naive_product": {
+      "chosen": 3.2758898740389832,
+      "alternative": 4.131449735298189,
+      "why_chosen": "3.28x is the kernel speedup SVG actually delivers once the token reordering it requires is included. Using 4.13x would count cause (2) twice: once inside the naive product and again as an explanation of the shortfall.",
+      "if_alternative": {
+        "naive_product": 196.5637735324158,
+        "fraction_of_naive_product": 0.08294958382973547
+      }
+    }
+  },
+  "superseded": {
+    "values": "16.48x / 23.63x",
+    "status": "do NOT use -- they do not reproduce from the on-disk numbers",
+    "correct": {
+      "vae_float32": 16.305,
+      "vae_bfloat16": 23.264
+    },
+    "note": "these appeared in intermediate drafts without a recorded composition. That is precisely why this script exists."
+  }
+}

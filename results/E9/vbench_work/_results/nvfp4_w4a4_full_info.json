@@ -1,0 +1,29 @@
+[
+    {
+        "prompt_en": "nvfp4_w4a4_p1",
+        "dimension": [
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p1.mp4"
+        ]
+    },
+    {
+        "prompt_en": "nvfp4_w4a4_p2",
+        "dimension": [
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p2.mp4"
+        ]
+    },
+    {
+        "prompt_en": "nvfp4_w4a4_p0",
+        "dimension": [
+            "imaging_quality"
+        ],
+        "video_list": [
+            "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p0.mp4"
+        ]
+    }
+]

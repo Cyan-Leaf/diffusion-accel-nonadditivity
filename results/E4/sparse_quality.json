@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-09-18T20:24:12",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.11.0+cu128",
+  "wfmt": "fp8_e4m3:-1:fp32",
+  "afmt_default": "fp8_e4m3:tensor",
+  "eval_prompts": [
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a beautiful sunset",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a colorful festival",
+    "an old man wearing a green dress and a sun hat taking a pleasant stroll in Antarctica during a winter storm"
+  ],
+  "eval_disjoint_from_calib": "eval prompts taken from the TAIL of MovieGenVideoBench.txt; calibration used the HEAD",
+  "vae_dtype_for_eval": "bfloat16",
+  "metrics_vs_bf16": {
+    "bf16_sparse": {
+      "mean": {
+        "latent_rel_l2": 1.12727955977122,
+        "pixel_psnr_db": 8.263007958730062,
+        "hf_energy_ratio": 0.6710841267416184
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 1.1072710752487183,
+          "pixel_psnr_db": 8.698271751403809,
+          "hf_energy_ratio": 0.9229927145068136
+        },
+        {
+          "latent_rel_l2": 1.1229289770126343,
+          "pixel_psnr_db": 7.434415340423584,
+          "hf_energy_ratio": 0.7049086841434009
+        },
+        {
+          "latent_rel_l2": 1.1516386270523071,
+          "pixel_psnr_db": 8.656336784362793,
+          "hf_energy_ratio": 0.38535098157464054
+        }
+      ],
+      "meta": {
+        "arm": "bf16_sparse",
+        "n_fp_steps": 0,
+        "sparse_layers": 30,
+        "note": "SVG mask + sample_mse online classification + FlexAttention; reference arm is `bf16` (dense eager), same as the quant arms"
+      }
+    },
+    "bf16_sparse_warm1": {
+      "mean": {
+        "latent_rel_l2": 0.5620280206203461,
+        "pixel_psnr_db": 13.855568885803223,
+        "hf_energy_ratio": 1.087577681482606
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 0.49333640933036804,
+          "pixel_psnr_db": 15.4033203125,
+          "hf_energy_ratio": 1.1868330085374907
+        },
+        {
+          "latent_rel_l2": 0.6692563891410828,
+          "pixel_psnr_db": 11.614203453063965,
+          "hf_energy_ratio": 0.9083733968689334
+        },
+        {
+          "latent_rel_l2": 0.5234912633895874,
+          "pixel_psnr_db": 14.549182891845703,
+          "hf_energy_ratio": 1.1675266390413936
+        }
+      ],
+      "meta": {
+        "arm": "bf16_sparse_warm1",
+        "n_fp_steps": 1,
+        "sparse_layers": 30,
+        "note": "SVG mask + sample_mse online classification + FlexAttention; reference arm is `bf16` (dense eager), same as the quant arms"
+      }
+    },
+    "fp8_sparse": {
+      "mean": {
+        "latent_rel_l2": 1.1452941099802654,
+        "pixel_psnr_db": 8.12091318766276,
+        "hf_energy_ratio": 0.6308153062009701
+      },
+      "per_prompt": [
+        {
+          "latent_rel_l2": 1.1127872467041016,
+          "pixel_psnr_db": 8.853864669799805,
+          "hf_energy_ratio": 0.9621470302807242
+        },
+        {
+          "latent_rel_l2": 1.1309852600097656,
+          "pixel_psnr_db": 7.296034812927246,
+          "hf_energy_ratio": 0.6022563683449279
+        },
+        {
+          "latent_rel_l2": 1.1921098232269287,
+          "pixel_psnr_db": 8.21284008026123,
+          "hf_energy_ratio": 0.32804251997725825
+        }
+      ],
+      "meta": {
+        "arm": "fp8_sparse",
+        "fp8_linears": 300,
+        "n_fp_steps": 0,
+        "sparse_layers": 30,
+        "note": "SVG mask + sample_mse online classification + FlexAttention; reference arm is `bf16` (dense eager), same as the quant arms"
+      }
+    }
+  },
+  "note": "No multi-seed noise-floor analysis (excluded by SPEC). hf_energy_ratio > 1 means the arm injects excess high-frequency energy relative to bf16."
+}

@@ -1,0 +1,19 @@
+{
+    "imaging_quality": [
+        0.7309711399784794,
+        [
+            {
+                "video_path": "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p1.mp4",
+                "video_results": 71.42948565071012
+            },
+            {
+                "video_path": "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p2.mp4",
+                "video_results": 72.98228812512056
+            },
+            {
+                "video_path": "<REPO>/results/E9/vbench_work/nvfp4_w4a4/nvfp4_w4a4_p0.mp4",
+                "video_results": 74.87956821771316
+            }
+        ]
+    ]
+}
